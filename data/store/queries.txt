@@ -1,0 +1,4 @@
+Q0 # List all the employees who are working in ‘Sydney’ # select firstName, lastName from Employees, Offices where Employees.officeCode=Offices.officeCode and city='Sydney'
+Q1 # List every company served by Fixter (Fixter is the last name). # select customerName from Employees, Customers where Customers.salesRepEmployeeNumber=Employees.employeeNumber and Employees.lastName='Fixter'
+Q2 # List the officeCode of the offices which are located in ‘USA’ and have customers in ‘USA’ too. # select distinct Offices.officeCode from Customers, Employees, Offices where Customers.country='USA' and Customers.salesRepEmployeeNumber=Employees.employeeNumber and Employees.officeCode=Offices.officeCode and Offices.country='USA'
+Q3 # List the code and name of a product whose eachPrice is less than 31. # select distinct Products.productCode, productName from OrderDetails, Products where OrderDetails.priceEach<31 and OrderDetails.productCode=Products.productCode

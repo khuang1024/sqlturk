@@ -1,0 +1,10 @@
+*.properties
+archive/
+sqlturk.experiment.dataset.sql
+CVS/
+imports/
+lib/
+bin/
+*.jar
+*.class
+

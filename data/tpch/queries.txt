@@ -1,0 +1,8 @@
+Q0 # List the clerks for orders whose total price is over 500,000 # select O_CLERK from ORDERS where O_TOTALPRICE>500000
+Q1 # List the names of suppliers whose account balance is over 9960. # select S_NAME from SUPPLIER where S_ACCTBAL>9960;
+Q2 # List every nation and the region it belongs to. # select N_NAME, R_NAME from NATION, REGION where N_REGIONKEY=R_REGIONKEY;
+Q3 # List every supplier and the nation s/he comes from. # select S_NAME, N_NAME from NATION, SUPPLIER where N_NATIONKEY=S_NATIONKEY;
+Q4 # List the key and status of the orders whose total price is greater than 530000 and the discount of its line item is equal to 0. # select O_ORDERKEY, O_ORDERSTATUS, O_ORDERPRIORITY from ORDERS, LINEITEM where L_DISCOUNT=0 and O_TOTALPRICE>530000 and O_ORDERKEY=L_ORDERKEY;
+Q5 # List name and phone of the suppliers who are from CHINA and have their account balance greater than 9000. # select S_NAME, S_PHONE from SUPPLIER, NATION where N_NAME='CHINA' and S_ACCTBAL>9000 and S_NATIONKEY=N_NATIONKEY;
+Q6 # List the name and account balance of the customers who are from EUROPE and have their account balance greather than 9990. # select C_NAME, C_ACCTBAL from CUSTOMER, NATION, REGION where R_NAME='EUROPE' and C_ACCTBAL>9990 and R_REGIONKEY=N_REGIONKEY and N_NATIONKEY=C_NATIONKEY;
+Q7 # List the name and phone of the suppliers who have their account balance greater than 1000 and supply the part(s) whose retail price is greater than 2096. # select S_NAME, S_PHONE from PARTSUPP, PART, SUPPLIER where P_RETAILPRICE>2096 and P_PARTKEY=PS_PARTKEY and PS_SUPPKEY=S_SUPPKEY and S_ACCTBAL>1000;
