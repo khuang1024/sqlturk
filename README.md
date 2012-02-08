@@ -1,4 +1,4 @@
-## NoteL
+## Note
 This package does not contain Amazon Mechanical Turk
 property file, which stores the user's information,
 such as acces key, screte key etc. You should place
