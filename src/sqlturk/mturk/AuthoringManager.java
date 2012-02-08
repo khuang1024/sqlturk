@@ -217,14 +217,14 @@ public class AuthoringManager {
      */
     public static void getAllHitStatus(RequesterService service) {
 	HIT[] allHits = service.searchAllHITs();
-	System.out.println("The status of HITs: (hitId, status, "
+	System.out.println("The status of HITs: (hitId, status,"
 		+ "# available assignments, " + "# submitted assignments, "
 		+ "# completed assignments)");
 	for (HIT hit : allHits) {
 	    String hitId = hit.getHITId();
-	    System.out.println(" " + hitId + ", " + hit.getHITStatus() + ", "
-		    + hit.getNumberOfAssignmentsAvailable() + ", "
-		    + getNSubmittedAssignments(service, hitId) + ", "
+	    System.out.println(" " + hitId + ", " + hit.getHITStatus() + ",\t"
+		    + hit.getNumberOfAssignmentsAvailable() + ",\t"
+		    + getNSubmittedAssignments(service, hitId) + ",\t"
 		    + hit.getNumberOfAssignmentsCompleted());
 	}
     }
