@@ -42,9 +42,9 @@ public class GetAuthoringAnswers {
 	    System.out.println("Using local.");
 	}
 	
-//	SQLTurkTaskManager.downloadHitAnswers(service, "2CIFK0COK2JEV4TF710LVW6P121RKR", dbConn);
-	AuthoringManager.forceDownloadHitAnswers(service, "2ZFKO2L92HECQSSNQFFCGF0DS58GFY", dbConn);
-	AuthoringManager.forceDownloadHitAnswers(service, "20R2NJKM05BMDBG7LDTGXP9SD7GBGB", dbConn);
+	AuthoringManager.downloadHitAnswers(service, "2ZRNZW6HEZ6O8MCMUAZ6DGUN4TQZPT", dbConn);
+//	AuthoringManager.forceDownloadHitAnswers(service, "2ZFKO2L92HECQSSNQFFCGF0DS58GFY", dbConn);
+//	AuthoringManager.forceDownloadHitAnswers(service, "20R2NJKM05BMDBG7LDTGXP9SD7GBGB", dbConn);
     }
     
 
