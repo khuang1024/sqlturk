@@ -22,6 +22,13 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 2K9Y0LWSBRI8CCXSLB08NHSUN3TC01
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 
+The HIT below is complemental HIT for HIT 2ZRNZW6HEZ6O8MCMUAZ6DGUN4TQZPT.
+Because 2ZRNZW6HEZ6O8MCMUAZ6DGUN4TQZPT has an invalid answer and it seems
+adding new assignments to it does not work -- nobody takes this HIT. So I
+reposted the same question as a new HIT 2XO7D1X3V0FKUUAAP051Q7PLO5CKDQ.
+2XO7D1X3V0FKUUAAP051Q7PLO5CKDQ
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+
 ********************
 
 world, Master - deprecated
