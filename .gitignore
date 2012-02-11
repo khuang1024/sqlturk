@@ -7,4 +7,4 @@ lib/
 bin/
 *.jar
 *.class
-
+*.swp
