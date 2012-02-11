@@ -33,14 +33,14 @@ public class CreateAuthoringHITs {
 	// the index starts from 0
 	// 0 is the index of question
 	// 1 is the index of a similar question to the previous one
-	AuthoringManager.createANewHit(service, "world", 0, 1);
-	AuthoringManager.createANewHit(service, "world", 2, 3);
-	AuthoringManager.createANewHit(service, "world", 4, 5);
-	AuthoringManager.createANewHit(service, "world", 6, 7);
+//	AuthoringManager.createANewHit(service, "world", 0, 1);
+//	AuthoringManager.createANewHit(service, "world", 2, 3);
+//	AuthoringManager.createANewHit(service, "world", 4, 5);
+//	AuthoringManager.createANewHit(service, "world", 6, 7);
 	AuthoringManager.createANewHit(service, "tpch", 0, 1);
-	AuthoringManager.createANewHit(service, "tpch", 2, 3);
-	AuthoringManager.createANewHit(service, "tpch", 4, 5);
-	AuthoringManager.createANewHit(service, "tpch", 6, 7);
+//	AuthoringManager.createANewHit(service, "tpch", 2, 3);
+//	AuthoringManager.createANewHit(service, "tpch", 4, 5);
+//	AuthoringManager.createANewHit(service, "tpch", 6, 7);
     }
 
 }
