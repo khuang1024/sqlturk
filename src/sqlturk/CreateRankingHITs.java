@@ -93,7 +93,7 @@ public class CreateRankingHITs {
 	// without sample
 	worldCandidateQueries23.add("select a.Name,b.Language from Country a, CountryLanguage b where a.Code = b.CountryCode");
 	worldCandidateQueries23.add("select Name from City where CountryCode in(select Language from CountryLanguage)"); // // the query is syntactically right and can be rewritten, can we have its provenance? and do we need to rewrite the sub-SPJ?
-	worldCandidateQueries23.add("select  Country.Name,CountryLanguage.Language from Country,CountryLanguage where Country.Code = CountryLanguage.CountryCode;");
+	worldCandidateQueries23.add("select Country.Name,CountryLanguage.Language from Country,CountryLanguage where Country.Code = CountryLanguage.CountryCode;");
 	worldCandidateQueries23.add("select C.Name,CL.Language from Country C,CountryLanguage CL where C.Code=CL.CountryCode");
 	worldCandidateQueries23.add("select c.Name, cl.Language from Country c, CountryLanguage cl  where c.Code=cl.CountryCode");
 	worldCandidateQueries23.add("SELECT Country.Name,CountryLanguage.Language FROM Country,CountryLanguage WHERE Country.Code = CountryLanguage.CountryCode ORDER BY Country.Name"); // correct
@@ -192,23 +192,23 @@ public class CreateRankingHITs {
 	tpchCandidateQueries01.add("select O_CLERK from ORDERS where O_TOTALPRICE>=500000");
 	tpchCandidateQueries01.add("SELECT DISTINCT O_CLERK FROM ORDERS WHERE O_TOTALPRICE>500000");
 	tpchCandidateQueries01.add("select O_CLERK From ORDERS where O_TOTALPRICE > 500000");
-	tpchCandidateQueries01.add("SELECT O_CLERK, COUNT(*) FROM ORDERS WHERE O_TOTALPRICE>500000  GROUP BY O_CLERK"); // aggregation is allowed? and no GROUP BY!
+	tpchCandidateQueries01.add("SELECT O_CLERK FROM ORDERS WHERE O_TOTALPRICE > 500000");
 	tpchCandidateQueries01.add("SELECT O_CLERK FROM ORDERS WHERE O_TOTALPRICE > 500000");
 	// with sample
 	tpchCandidateQueries01.add("select S_NAME from SUPPLIER S where S_ACCTBAL >= 9960");
 	tpchCandidateQueries01.add("SELECT S_NAME from SUPPLIER where S_ACCTBAL > 9960");
 	tpchCandidateQueries01.add("SELECT S_NAME FROM SUPPLIER WHERE S_ACCTBAL>9960");
-	tpchCandidateQueries01.add("SELECT S_NAME FROM SUPPLIER WHERE S_ACCTBAL>9960;    ");
+	tpchCandidateQueries01.add("SELECT S_NAME FROM SUPPLIER WHERE S_ACCTBAL>9960");
 	tpchCandidateQueries01.add("select S_NAME from SUPPLIER where S_ACCTBAL>9960.0");
 	tpchCandidateQueries01.add("select S_NAME from SUPPLIER where S_ACCTBAL>=9960");
 	tpchCandidateQueries01.add("SELECT S_NAME FROM SUPPLIER WHERE S_ACCTBAL > 9960");
-	tpchCandidateQueries01.add("select S_NAME From SUPPLIER   where S_ACCTBAL > 9960");
-	tpchCandidateQueries01.add("SELECT DISTINCT S_NAME   FROM SUPPLIER   WHERE S_ACCTBAL>9960 ");
+	tpchCandidateQueries01.add("select S_NAME From SUPPLIER where S_ACCTBAL > 9960");
+	tpchCandidateQueries01.add("SELECT S_NAME FROM SUPPLIER WHERE S_ACCTBAL > 9960");
 	tpchCandidateQueries01.add("SELECT S_NAME FROM SUPPLIER WHERE S_ACCTBAL >9960;");
 	String[] blockedRankerIdsTpch01 = {"AI2ASXAI9ZFDE", "AG1J7P4XG8BSL", 
 		"A1JS6BDUG7WWYP", "A2NHNDD0W2KPR3", "A3IL3HGJW7K6Q1" , 
 		"A3988MX4PJCUJW", "A1GSWHQ1BXWVE7", "A3L8RYKHDDHZ10", 
-		"AWG7KSO2IUX05", "A125ODOYS2ZZDL"};
+		"A1957F34UKAYHY", "A125ODOYS2ZZDL"};
 	
 	/*
 	 * Dataset: tpch
@@ -320,10 +320,10 @@ public class CreateRankingHITs {
 	 * NOTICE: each time, we need to change it manually!
 	 */
 	
-	for (String blockedId : blockedRankerIdsTpch67) {
+	for (String blockedId : blockedRankerIdsTpch01) {
 	    service.blockWorker(blockedId, reason);
 	}
-	RankingManager.createANewHit(service, "tpch", 6, 7, tpchCandidateQueries67);
+	RankingManager.createANewHit(service, "tpch", 0, 1, tpchCandidateQueries01);
     }
 
 }
