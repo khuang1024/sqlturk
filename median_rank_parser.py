@@ -3,7 +3,7 @@ def parse_into_list(string):
     num_list = [] 
     numbers = re.split("\|", string)
     for num in numbers:
-        num_list.append(num)
+        num_list.append(num.strip())
     return num_list
 
 def extract_into_list(hit_id, qnum):
@@ -70,20 +70,43 @@ def atom_median_rank(ranks):
                 again = {}
                 for k in temp.keys():
                     if temp[k] == v and k not in result:
-                        print(str(k) + "=" + str(addition[k]))
+                        #print(str(k) + "=" + str(addition[k]))
                         again[addition[k]] = k
                 for k in sorted(again.keys()):
                     result.append(again[k])
         
     return result
                 
+def median_rank(hit_id):
+    '''This function runs the median rank algorithm for a single HIT, including
+    both the first and second questions of a HIT.'''
+    ranks_p1 = extract_into_list(hit_id, "1")
+    ranks_p2 = extract_into_list(hit_id, "2")
+    print(hit_id + "\tq1\t" + str(atom_median_rank(ranks_p1)))
+    print(hit_id + "\tq2\t" + str(atom_median_rank(ranks_p2)))
+    print("------------------------------------------------------------------")
+
+def get_all_hits():
+    '''This function returns all the HIT IDs in the answer log file.'''
+    hit_ids = []
+    f = open ("ranking_answer_log.csv")
+    lines = f.read().split("\n")
+    for line in lines:
+        hit_id = re.split("&", line)[0]
+        if hit_id not in hit_ids and hit_id:
+            hit_ids.append(hit_id)
+    return hit_ids
 
 if __name__ == "__main__":
     import sys
     import re
-    from operator import itemgetter
-    ranks = extract_into_list(sys.argv[1], "1")
-    result = atom_median_rank(ranks)
-    print (result)
-    test = [["2","1","3","4"],["3","1","4","2"]]
-    print (atom_median_rank(test))
+    hits = get_all_hits()
+    for hit in hits:
+        median_rank(hit)
+
+    #print(get_all_hits())
+    #ranks = extract_into_list(sys.argv[1], "1")
+    #result = atom_median_rank(ranks)
+    #print (result)
+    #test = [["2","1","3","4"],["3","1","4","2"]]
+    #print (atom_median_rank(test))
