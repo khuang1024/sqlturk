@@ -131,7 +131,7 @@ def median_rank(hit_id, top):
     #print(ranks_p2)
     print(hit_id + "\tq1\t" + str(atom_median_rank(ranks_p1)))
     print(hit_id + "\tq2\t" + str(atom_median_rank(ranks_p2)))
-    print("------------------------------------------------------------------")
+    print("\t\t")
 
 if __name__ == "__main__":
     import sys
