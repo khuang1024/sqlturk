@@ -44,7 +44,7 @@ public class SQLTurkRunner {
 	    originalQueries.add("select Name from Country where Region ='Western Europe'");
 	    originalQueries.add("select Name from Country where Region like 'Western Europe'"); // right answer
 	    originalQueries.add("select Name from Country where Region = 'Western Europe'");
-	    originalQueries.add("select Country.Name from Country where Country.Region = 'Western Europe'");
+	    originalQueries.add("select Country.Name from Country where Country.Region='Western Europe'");
 	    originalQueries.add("select Name from Country where Region='Europe'");
 	    originalQueries.add("SELECT * FROM Country WHERE Region='Western Europe'");
 	    
