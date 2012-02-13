@@ -153,22 +153,24 @@ class IncrementalFDPlus {
 	    throws SQLException {
 	ArrayList<String> combinedSchema = new ArrayList<String>();
 	for (Relation relation : allResultRelations) {
-	    for (String attribute : relation.getTuples().get(0).getSchema()) {
-		if (relation.getTuples().size() > 0) {
-		    String original = ColumnInfo.getOriginalTableColumnName(
-			    relation.getRelationName(), attribute, dbConn);
-		    String originalAtt = ColumnInfo.getOriginalColumnName(
-			    relation.getRelationName(), attribute, dbConn);
-
-		    // here, should use relation_name and present_attribute_name to
-		    // determine if the two attribute actual from the same column
-		    if ((!combinedSchema.contains(original)
-			    && (original != null) && !originalAtt
-				.equalsIgnoreCase(Parameters.ROWID_ATT_NAME))) {
-			combinedSchema.add(original);
+	    if (relation.getTuples().size() > 0) {
+		for (String attribute : relation.getTuples().get(0).getSchema()) {
+		    if (relation.getTuples().size() > 0) {
+			String original = ColumnInfo
+				.getOriginalTableColumnName(
+					relation.getRelationName(), attribute,
+					dbConn);
+			String originalAtt = ColumnInfo.getOriginalColumnName(
+				relation.getRelationName(), attribute, dbConn);
+			// here, should use relation_name and present_attribute_name to
+			// determine if the two attribute actual from the same column
+			if ((!combinedSchema.contains(original)
+				&& (original != null) && !originalAtt
+				    .equalsIgnoreCase(Parameters.ROWID_ATT_NAME))) {
+			    combinedSchema.add(original);
+			}
 		    }
 		}
-
 	    }
 	}
 
