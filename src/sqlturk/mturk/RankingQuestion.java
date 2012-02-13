@@ -21,7 +21,7 @@ public class RankingQuestion {
 	    int questionIndexWithSample, int execMode, ArrayList<String> candidateQueries) throws IOException {
 	question = "<?xml version=\"1.0\"?>\n"; // NOTE: cannot use question +=
 	question += "<ExternalQuestion xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2006-07-14/ExternalQuestion.xsd\">\n";
-	question += "<ExternalURL>http://users.soe.ucsc.edu/~khuang/vote.php?";
+	question += "<ExternalURL>http://users.soe.ucsc.edu/~khuang/Vote.php?";
 	question += "rels=" + getEncodedRelation(datasetName);
 	question += "&#x26;nlQuery1="
 		+ getEncodedQueryNL(datasetName, questionIndexWithoutSample);
