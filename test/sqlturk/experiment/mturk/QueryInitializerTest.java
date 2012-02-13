@@ -1,11 +1,11 @@
-package sqlturk;
+package sqlturk.experiment.mturk;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.Test;
 
-import sqlturk.QueryInitializer;
+import sqlturk.experiment.mturk.QueryInitializer;
 
 public class QueryInitializerTest {
 

@@ -1,4 +1,4 @@
-package sqlturk;
+package sqlturk.experiment.mturk;
 
 import java.util.ArrayList;
 

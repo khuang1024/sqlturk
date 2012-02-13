@@ -1,4 +1,4 @@
-package sqlturk;
+package sqlturk.experiment.mturk;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

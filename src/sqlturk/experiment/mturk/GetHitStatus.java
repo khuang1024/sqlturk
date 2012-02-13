@@ -1,4 +1,4 @@
-package sqlturk;
+package sqlturk.experiment.mturk;
 
 import sqlturk.configuration.Parameters;
 import sqlturk.mturk.AuthoringManager;

@@ -1,4 +1,4 @@
-package sqlturk;
+package sqlturk.experiment.mturk;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
