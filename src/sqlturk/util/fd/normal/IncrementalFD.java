@@ -153,8 +153,7 @@ class IncrementalFD {
 			    relation.getRelationName(), attribute, dbConn);
 
 		    // here, should use relation_name and present_attribute_name
-		    // to
-		    // determine if the two attribute actual from the same
+		    // to determine if the two attribute actual from the same
 		    // column
 		    if ((!combinedSchema.contains(original)
 			    && (original != null) && !originalAtt
