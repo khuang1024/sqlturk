@@ -48,7 +48,7 @@ public class CreateRankingHITs {
 	// without sample
 	worldCandidateQueries01.add("select Name from Country where Region like 'Western Europe'"); // "like" is supported
 	worldCandidateQueries01.add("select Name from Country where Region = 'Western Europe'");
-	worldCandidateQueries01.add("select Country.name from Country where Country.Region = 'Western Europe'");
+	worldCandidateQueries01.add("select Country.Name from Country where Country.Region = 'Western Europe'");
 	worldCandidateQueries01.add("select Region from Country where Region='Europe'");
 	worldCandidateQueries01.add("select Name from Country where Region='Europe'");
 	worldCandidateQueries01.add("SELECT * FROM Country WHERE Region='Western Europe'");
