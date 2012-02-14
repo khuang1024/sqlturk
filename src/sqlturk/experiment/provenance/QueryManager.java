@@ -7,6 +7,9 @@ public class QueryManager {
     private static boolean isInitialized = false;
     private static Hashtable<String, ArrayList<ArrayList<String>>> allQueries = new Hashtable<String, ArrayList<ArrayList<String>>>();
     
+    private QueryManager() {
+	throw new AssertionError();
+    }
 
     /**
      * 
