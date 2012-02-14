@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import sqlturk.configuration.Parameters;
+import sqlturk.util.cleaner.Cleaner;
 import sqlturk.util.connected.Connected;
 import sqlturk.util.fd.normal.FD;
 import sqlturk.util.fd.plus.FDPlus;
@@ -15,8 +18,6 @@ import sqlturk.util.provenance.Provenance;
 import sqlturk.util.query.QueryExecutor;
 import sqlturk.util.tableaux.TableauxRewriter;
 import sqlturk.util.union.Union;
-import sqlturk.configuration.Parameters;
-import sqlturk.util.cleaner.Cleaner;
 
 /**
  * This class is for testing the whole process of SQLTurk.
@@ -36,19 +37,6 @@ public class TableGenerator {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    Connection dbConn;
 	    
-	    
-	    /*
-	     * initialize the orginal query batch
-	     */
-	    ArrayList<String> originalQueries = new ArrayList<String>();
-	    originalQueries.add("select Name from Country where Region ='Western Europe'");
-	    originalQueries.add("select Name from Country where Region like 'Western Europe'"); // right answer
-	    originalQueries.add("select Name from Country where Region = 'Western Europe'");
-	    originalQueries.add("select Country.Name from Country where Country.Region='Western Europe'");
-	    originalQueries.add("select Name from Country where Region='Europe'");
-	    originalQueries.add("SELECT * FROM Country WHERE Region='Western Europe'");
-	    
-	    
 	    /*
 	     * use soe server or test locally
 	     */
@@ -59,6 +47,29 @@ public class TableGenerator {
 		dbConn = DriverManager.getConnection(Parameters.LOCAL_DB_URL, Parameters.LOCAL_USER, Parameters.LOCAL_PASSWORD);
 		System.out.println("Using local.");
 	    }
+	    
+	    /*
+	     * create the standard answer result table
+	     */
+	    String standardQuery = "select Name as Country_Name from Country where Region ='Western Europe'";
+	    Statement stmt = dbConn.createStatement();
+	    stmt.executeUpdate("DROP TABLE IF EXISTS " + Parameters.STANDARD_ANSWER_REL_NAME);
+	    stmt.executeUpdate("CREATE TABLE " + Parameters.STANDARD_ANSWER_REL_NAME + " AS " + standardQuery);
+	    stmt.close();
+	    
+	    
+	    /*
+	     * initialize the orginal query batch, odered by the their ranks
+	     */
+	    ArrayList<String> originalQueries = new ArrayList<String>();
+	    originalQueries.add("select Name from Country where Region like 'Western Europe'"); // right answer
+	    originalQueries.add("select Name from Country where Region = 'Western Europe'");
+	    originalQueries.add("select Country.Name from Country where Country.Region='Western Europe'");
+	    originalQueries.add("select Name from Country where Region='Europe'");
+	    originalQueries.add("SELECT * FROM Country WHERE Region='Western Europe'");
+	    
+	    
+	   
 	    
 	    /*
 	     * clean old intermediate tables
@@ -127,7 +138,11 @@ public class TableGenerator {
 	    /*
 	     * metric
 	     */
-//	    System.out.println("Start evaluating by performance metric ...");
+	    System.out.println("Start evaluating performance by metric ........");
+	    System.out.println("standard vs intersection: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.INTERSECTION_REL_NAME, dbConn));
+	    System.out.println("standard vs union: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.UNION_REL_NAME, dbConn));
+	    System.out.println("standard vs fd: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_REL_NAME, dbConn));
+	    System.out.println("standard vs fd+: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_PLUS_REL_NAME, dbConn));
 	    
 	    
 	    /*
