@@ -1,5 +1,7 @@
 package sqlturk.experiment.provenance;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,6 +28,24 @@ import sqlturk.util.union.Union;
  *
  */
 public class SQLTurk {
+    
+    private static void appendToLog(String content, String file) {
+	BufferedWriter bw = null;
+	try {
+	    bw = new BufferedWriter(new FileWriter(file, true));
+	    bw.write(content);
+	    bw.newLine();
+	    bw.flush();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	} finally {
+	    try {
+		bw.close();
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
+	}
+    }
 
     /**
      * @param args
@@ -63,6 +83,14 @@ public class SQLTurk {
 		throw new RuntimeException("Invalid candidates. Some candidates are either less than 1 or greater than 10.");
 	    }
 	}
+	
+	// rename the relation names
+	String header = datasetName.toUpperCase() + "_QUERY" + queryIndex + "_TOP" + topN + "_FROM" + nCandidates;
+	Parameters.UNION_REL_NAME = header + "_UNION";
+	System.out.println(Parameters.UNION_REL_NAME);
+	Parameters.INTERSECTION_REL_NAME = header + "_INTERSECTION";
+	Parameters.FD_REL_NAME = header + "_FD";
+	Parameters.FD_PLUS_REL_NAME = header + "_FD_PLUS";
 	
 	try {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -173,17 +201,20 @@ public class SQLTurk {
 	     * metric
 	     */
 	    System.out.println("Start evaluating performance by metric ........");
-	    System.out.println("standard vs intersection: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.INTERSECTION_REL_NAME, dbConn));
-	    System.out.println("standard vs union: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.UNION_REL_NAME, dbConn));
-	    System.out.println("standard vs fd: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_REL_NAME, dbConn));
-	    System.out.println("standard vs fd+: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_PLUS_REL_NAME, dbConn));
-	    
-	    
-	    /*
-	     * evaluate the results
-	     */
-//	    System.out.println("sim(Q1_RES, Q2_RES) = " + Metric.sim("Q1_RES", "Q2_RES", dbConn));
-//	    System.out.println("sim(Q2_RES, Q1_RES) = " + Metric.sim("Q2_RES", "Q1_RES", dbConn));
+	    double stdIntersec = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.INTERSECTION_REL_NAME, dbConn);
+	    double stdUnion = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.INTERSECTION_REL_NAME, dbConn);
+	    double stdFD = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_REL_NAME, dbConn);
+	    double stdFDPlus = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_PLUS_REL_NAME, dbConn);
+	    double intersecStd = Metric.sim(Parameters.INTERSECTION_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
+	    double unionStd = Metric.sim(Parameters.INTERSECTION_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
+	    double fdStd = Metric.sim(Parameters.FD_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
+	    double fdplusStd = Metric.sim(Parameters.FD_PLUS_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
+	    appendToLog(header, Parameters.PERFORMANCE_LOG_NAME);
+	    appendToLog("Intersection\tPrecision\t" + intersecStd + "\tRecall\t" + stdIntersec, Parameters.PERFORMANCE_LOG_NAME);
+	    appendToLog("Union\tPrecision\t" + unionStd + "\tRecall\t" + stdUnion, Parameters.PERFORMANCE_LOG_NAME);
+	    appendToLog("FD\tPrecision\t" + fdStd + "\tRecall\t" + stdFD, Parameters.PERFORMANCE_LOG_NAME);
+	    appendToLog("FDP_Plus\tPrecision\t" + fdplusStd + "\tRecall\t" + stdFDPlus, Parameters.PERFORMANCE_LOG_NAME);
+	    System.out.println("Finish evaluating performance by metric ........");
 	    
 	    /*
 	     * clear intermediate tables
@@ -200,6 +231,13 @@ public class SQLTurk {
 	} catch (ClassNotFoundException e) {
 	    e.printStackTrace();
 	}
+	
+	
+	// rollback the name
+	Parameters.UNION_REL_NAME = "UNION";
+	Parameters.INTERSECTION_REL_NAME = "INTERSECTION";
+	Parameters.FD_REL_NAME = "FD";
+	Parameters.FD_PLUS_REL_NAME = "FD_PLUS";
 
     }
 
