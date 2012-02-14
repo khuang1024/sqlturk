@@ -18,6 +18,15 @@ public class Intersection {
     static ArrayList<String> getAllIntersectionTables() {
 	return allIntersectionTables;
     }
+    
+    public static void createIntersectionRelation(Connection dbConn, String relationName)
+	    throws SQLException {
+	createIntersectionRelation(dbConn);
+	Statement stmt = dbConn.createStatement();
+	stmt.executeUpdate("ALTER TABLE " + Parameters.INTERSECTION_REL_NAME
+		+ " RENAME TO " + relationName);
+	stmt.close();
+    }
 
     public static void createIntersectionRelation(Connection dbConn)
 	    throws SQLException {
