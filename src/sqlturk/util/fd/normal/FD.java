@@ -17,6 +17,23 @@ public class FD {
     }
 
     /**
+     * Create the Full Disjunction table for the current database and rename it
+     * as the given name.
+     * 
+     * @param dbConn
+     * @param FDRelationName
+     * @throws SQLException
+     */
+    public static void createFDRelation(Connection dbConn, String FDRelationName)
+	    throws SQLException {
+	createFDRelation(dbConn);
+	Statement stmt = dbConn.createStatement();
+	stmt.executeUpdate("ALTER TABLE " + Parameters.FD_REL_NAME
+		+ " RENAME TO " + FDRelationName);
+	stmt.close();
+    }
+
+    /**
      * Create the Full Disjunction table for the current database.
      * 
      * @param dbConn

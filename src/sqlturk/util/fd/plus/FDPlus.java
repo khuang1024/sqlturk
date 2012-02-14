@@ -17,6 +17,23 @@ public class FDPlus {
     }
 
     /**
+     * Create the Full Disjunction (why-connected) table for the current
+     * database and rename it as the given name.
+     * 
+     * @param dbConn
+     * @param FDRelationName
+     * @throws SQLException
+     */
+    public static void createFDPlusRelation(Connection dbConn,
+	    String FDRelationName) throws SQLException {
+	createFDPlusRelation(dbConn);
+	Statement stmt = dbConn.createStatement();
+	stmt.executeUpdate("ALTER TABLE " + Parameters.FD_REL_NAME
+		+ " RENAME TO " + FDRelationName);
+	stmt.close();
+    }
+
+    /**
      * Create the Full Disjunction Plus (why-connected) table for the current
      * database.
      * 
@@ -37,7 +54,8 @@ public class FDPlus {
 	ArrayList<String> allResultRelationNames = getAllResultRelationNames(dbConn);
 	for (String resultRelationName : allResultRelationNames) {
 	    // Please note, the schema of the tuples of this relation has no
-	    // ROWID column. The getTuples function has already filtered out ROWID.
+	    // ROWID column. The getTuples function has already filtered out
+	    // ROWID.
 	    allResultRelations.add(new Relation(resultRelationName, getTuples(
 		    resultRelationName, dbConn)));
 	}
