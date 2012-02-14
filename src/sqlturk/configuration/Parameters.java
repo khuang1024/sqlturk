@@ -171,6 +171,9 @@ public class Parameters {
     // union
     public static final String UNION_REL_NAME = "UNION_TABLE";
     
+    // standard answer table
+    public static final String STANDARD_ANSWER_REL_NAME = "STANDARD_TABLE";
+    
     // relations in dataset
     public static final String REAL_RELATION_0 = "City";
     public static final String REAL_RELATION_1 = "Country";
