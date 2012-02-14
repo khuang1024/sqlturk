@@ -167,7 +167,7 @@ public class QueryManager {
 	tpchCandidateQueries00.add("select O_CLERK from ORDERS O where O_TOTALPRICE >= 500000");
 	tpchCandidateQueries00.add("SELECT O_CLERK from ORDERS where O_TOTALPRICE > 500000");
 	tpchCandidateQueries00.add("SELECT O_CLERK FROM ORDERS WHERE O_TOTALPRICE>500000");
-	tpchCandidateQueries00.add("SELECT O_CLERK FROM ORDERS WHERE O_TOTALPRICE>500000;");
+	tpchCandidateQueries00.add("SELECT O_CLERK FROM ORDERS WHERE O_TOTALPRICE>500000");
 	tpchCandidateQueries00.add("Select O_CLERK from ORDERS where O_TOTALPRICE>500000");
 	tpchCandidateQueries00.add("select O_CLERK from ORDERS where O_TOTALPRICE>=500000");
 	tpchCandidateQueries00.add("SELECT DISTINCT O_CLERK FROM ORDERS WHERE O_TOTALPRICE>500000");
@@ -318,9 +318,9 @@ public class QueryManager {
     }
     
     public static void main(String[] agrs) {
-	String dataset = "world";
+	String dataset = "tpch";
 	int queryIndex = 0;
-	int[] answerIndices = {3, 1, 5, 6, 2};
+	int[] answerIndices = {4, 2, 6, 8, 7};
 	ArrayList<String> top3 = getRankedQueries(dataset, queryIndex, answerIndices);
 	for (String q : top3) {
 	    System.out.println(q);
