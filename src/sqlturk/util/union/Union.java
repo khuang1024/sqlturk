@@ -13,6 +13,15 @@ public class Union {
     Union() {
 	throw new AssertionError();
     }
+    
+    public static void createUionRelation(Connection dbConn, String relationName)
+	    throws SQLException {
+	createUionRelation(dbConn);
+	Statement stmt = dbConn.createStatement();
+	stmt.executeUpdate("ALTER TABLE " + Parameters.UNION_REL_NAME
+		+ " RENAME TO " + relationName);
+	stmt.close();
+    }
 
     public static void createUionRelation(Connection dbConn)
 	    throws SQLException {
