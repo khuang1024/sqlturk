@@ -33,13 +33,13 @@ public class Experiment {
 	int[][] tpchCandidates = { tpchQuery0, tpchQuery1, tpchQuery2,
 		tpchQuery3, tpchQuery4, tpchQuery5, tpchQuery6, tpchQuery7 };
 	for (int i = 0; i < worldCandidates.length; i++) { // for each query i
-	    for (int j = 1; j <= 10; j++) { // for each top j
+	    for (int j = 2; j <= 10; j++) { // for each top j
 		SQLTurk.run("world", i, j, 10, worldCandidates[i]);
 	    }
 	}
 	
 	for (int i = 0; i < tpchCandidates.length; i++) { // for each query i
-	    for (int j = 1; j <= 10; j++) { // for each top j
+	    for (int j = 2; j <= 10; j++) { // for each top j
 		SQLTurk.run("tpch", i, j, 10, tpchCandidates[i]);
 	    }
 	}
