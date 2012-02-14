@@ -134,8 +134,8 @@ public class Parameters {
     public static final String TABLEAUX_ALIAS_SUFFIX = "";
     
     // FD and FD+
-    public static final String FD_REL_NAME = "FD_TABLE";
-    public static final String FD_PLUS_REL_NAME = "FD_PLUS_TABLE";
+    public static String FD_REL_NAME = "FD_TABLE";
+    public static String FD_PLUS_REL_NAME = "FD_PLUS_TABLE";
     public static final String FD_PLUS_SCORE_REL_NAME = "FD_PLUS_SCORE_TABLE";
     
     // FD temp table and FD+ temp table
@@ -166,10 +166,10 @@ public class Parameters {
     public static final String COLUMN_INFO_REL_NAME = "COLUMN_INFO";
     
     // intersection
-    public static final String INTERSECTION_REL_NAME = "INTERSECTION_TABLE";
+    public static String INTERSECTION_REL_NAME = "INTERSECTION_TABLE";
     
     // union
-    public static final String UNION_REL_NAME = "UNION_TABLE";
+    public static String UNION_REL_NAME = "UNION_TABLE";
     
     // standard answer table
     public static final String STANDARD_ANSWER_REL_NAME = "STANDARD_TABLE";
