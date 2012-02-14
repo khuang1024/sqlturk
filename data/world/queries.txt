@@ -1,5 +1,5 @@
-Q0 # List every country in the Western Europe region. # select Name from Country where Region ="Western Europe"
-Q1 # List the CountryCode where French is spoken. # select CountryCode from CountryLanguage where Language="French"
+Q0 # List every country in the Western Europe region. # select Name from Country where region ="Western Europe"
+q1 # list the countrycode where french is spoken. # select CountryCode from CountryLanguage where Language="French"
 Q2 # List every country and its capital. # select City.Name, Country.Name  from Country, City Where Country.Capital = City.ID
 Q3 # List every country and its language(s). # select CountryLanguage.Language, Country.Name  from Country, CountryLanguage Where Country.Code = CountryLanguage.CountryCode
 Q4 # List the names of the countries where Swedish is the official language. # select Country.Name from CountryLanguage, Country where Language="Swedish" AND IsOfficial=true AND Country.Code=CountryLanguage.CountryCode
