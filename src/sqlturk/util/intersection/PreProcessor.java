@@ -29,9 +29,7 @@ public class PreProcessor {
 
     static ArrayList<String> getRewriteResultTables(Connection dbConn)
 	    throws SQLException {
-	if (!hasRewriteResultTable) {
-	    rewriteAllResultTable(dbConn);
-	}
+	rewriteAllResultTable(dbConn);
 	return rewriteResultTables;
     }
 
@@ -44,6 +42,7 @@ public class PreProcessor {
 
     private static void rewriteAllResultTable(Connection dbConn)
 	    throws SQLException {
+	
 	hasRewriteResultTable = true;
 	Statement stmt = dbConn.createStatement();
 	ResultSet rs = stmt.executeQuery("SHOW TABLES");
