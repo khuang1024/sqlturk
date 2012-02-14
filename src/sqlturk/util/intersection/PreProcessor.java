@@ -42,6 +42,8 @@ public class PreProcessor {
 
     private static void rewriteAllResultTable(Connection dbConn)
 	    throws SQLException {
+	// clear the previous content
+	rewriteResultTables.clear();
 	
 	hasRewriteResultTable = true;
 	Statement stmt = dbConn.createStatement();
