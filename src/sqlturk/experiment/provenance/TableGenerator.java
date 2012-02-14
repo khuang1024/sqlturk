@@ -39,12 +39,13 @@ public class TableGenerator {
 	int topN = Integer.parseInt(args[2]); // top n
 	int nCandidates = Integer.parseInt(args[3]); // the size of the candidate pool
 	int[] candidates = new int[args.length - 4];
+	System.out.println(args.length);
 	for (int i = 4; i < args.length; i++) {
 	    candidates[i-4] = Integer.parseInt(args[i]);
 	}
 	
 	// check the input
-	if (nCandidates != candidates.length - 4) {
+	if (nCandidates != candidates.length) {
 	    throw new RuntimeException("Number of candidates does not match the real size of candidates.");
 	}
 	if (topN > nCandidates) {
@@ -82,10 +83,10 @@ public class TableGenerator {
 	     * create the standard answer result table
 	     */
 	    String standardAnswer = QueryManager.getStandardAnswer(datasetName, queryIndex);
-	    Statement stmt = dbConn.createStatement();
-	    stmt.executeUpdate("DROP TABLE IF EXISTS " + Parameters.STANDARD_ANSWER_REL_NAME);
-	    stmt.executeUpdate("CREATE TABLE " + Parameters.STANDARD_ANSWER_REL_NAME + " AS " + standardAnswer);
-	    stmt.close();
+//	    Statement stmt = dbConn.createStatement();
+//	    stmt.executeUpdate("DROP TABLE IF EXISTS " + Parameters.STANDARD_ANSWER_REL_NAME);
+//	    stmt.executeUpdate("CREATE TABLE " + Parameters.STANDARD_ANSWER_REL_NAME + " AS " + standardAnswer);
+//	    stmt.close();
 	    
 	    
 	    /*
@@ -97,93 +98,99 @@ public class TableGenerator {
 	    }
 	    ArrayList<String> originalQueries = QueryManager.getRankedQueries(datasetName, queryIndex, answerIndices);
 	    
-	    
-	    /*
-	     * clean old intermediate tables
-	     */
-	    System.out.println("Start clearing old intermediate and result tables ......");
-	    Cleaner.dropAll(dbConn);
-	    System.out.println("Finish clearing old intermediate and result tables.\n");
-	    
-	    /*
-	     * rewrite the queries
-	     */
-	    ArrayList<String> rewriteQueries = new ArrayList<String>();
-	    System.out.println("Start rewriting queries ...............");
-	    rewriteQueries = TableauxRewriter.getRewriteQueries(originalQueries, dbConn);
-	    System.out.println("Finish rewriting queries.\n");
-	    
-	    /*
-	     * execute the queries
-	     */
-	    System.out.println("Start executing queries ...............");
-	    QueryExecutor.executeQueries(rewriteQueries, dbConn);
-	    System.out.println("Finish executing queries.\n");
-	    
-	    /*
-	     * create PROV table
-	     */
-	    System.out.println("Start creating " + Parameters.PROV_REL_NAME + " ........");
-	    Provenance.createWhyProvenanceRelation(rewriteQueries, dbConn);
-	    System.out.println("Finish creating " + Parameters.PROV_REL_NAME + ".\n");
-	    
-	    /*
-	     * create CONN table
-	     */
-	    System.out.println("Start creating " + Parameters.CONN_REL_NAME + " ..................");
-	    Connected.createWhyConnectedRelation(dbConn);
-	    System.out.println("Finish creating " + Parameters.CONN_REL_NAME + ".\n");
-	    
-	    /*
-	     * create FD
-	     */
-	    System.out.println("Start creating " + Parameters.FD_REL_NAME + " ...............");
-	    FD.createFDRelation(dbConn); // rename the table like: WORLD_0_TOP5_FD
-	    System.out.println("Finish creating " + Parameters.FD_REL_NAME + ".\n");
-	    
-	    /*
-	     * create FD+
-	     */
-	    System.out.println("Start creating " + Parameters.FD_PLUS_REL_NAME + " .............");
-	    FDPlus.createFDPlusRelation(dbConn); // rename the table like: WORLD_0_TOP5_FD_PLUS
-	    System.out.println("Finish creating " + Parameters.FD_PLUS_REL_NAME + ".\n");
-	    
-	    /*
-	     * create intersection
-	     */
-	    System.out.println("Start creating " + Parameters.INTERSECTION_REL_NAME + " .............");
-	    Intersection.createIntersectionRelation(dbConn);
-	    System.out.println("Finish creating " + Parameters.INTERSECTION_REL_NAME + ".\n");
-	    
-	    /*
-	     * create union
-	     */
-	    System.out.println("Start creating " + Parameters.UNION_REL_NAME + " ............");
-	    Union.createUionRelation(dbConn);
-	    System.out.println("Finish creating " + Parameters.UNION_REL_NAME + ".\n");
-	    
-	    /*
-	     * metric
-	     */
-	    System.out.println("Start evaluating performance by metric ........");
-	    System.out.println("standard vs intersection: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.INTERSECTION_REL_NAME, dbConn));
-	    System.out.println("standard vs union: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.UNION_REL_NAME, dbConn));
-	    System.out.println("standard vs fd: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_REL_NAME, dbConn));
-	    System.out.println("standard vs fd+: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_PLUS_REL_NAME, dbConn));
+
+	    System.out.println("standard answer: " + standardAnswer);
+	    for (int i = 0; i < originalQueries.size(); i++) {
+		System.out.println("candidate query: " + originalQueries.get(i));
+	    }
 	    
 	    
-	    /*
-	     * evaluate the results
-	     */
-//	    System.out.println("sim(Q1_RES, Q2_RES) = " + Metric.sim("Q1_RES", "Q2_RES", dbConn));
-//	    System.out.println("sim(Q2_RES, Q1_RES) = " + Metric.sim("Q2_RES", "Q1_RES", dbConn));
-	    
-	    /*
-	     * clear intermediate tables
-	     */
-	    System.out.println("Start clearing intermediate tables ............");
-	    Cleaner.dropIntermediateTables(dbConn);
-	    System.out.println("Finish clearing intermediate tables.\n");
+//	    /*
+//	     * clean old intermediate tables
+//	     */
+//	    System.out.println("Start clearing old intermediate and result tables ......");
+//	    Cleaner.dropAll(dbConn);
+//	    System.out.println("Finish clearing old intermediate and result tables.\n");
+//	    
+//	    /*
+//	     * rewrite the queries
+//	     */
+//	    ArrayList<String> rewriteQueries = new ArrayList<String>();
+//	    System.out.println("Start rewriting queries ...............");
+//	    rewriteQueries = TableauxRewriter.getRewriteQueries(originalQueries, dbConn);
+//	    System.out.println("Finish rewriting queries.\n");
+//	    
+//	    /*
+//	     * execute the queries
+//	     */
+//	    System.out.println("Start executing queries ...............");
+//	    QueryExecutor.executeQueries(rewriteQueries, dbConn);
+//	    System.out.println("Finish executing queries.\n");
+//	    
+//	    /*
+//	     * create PROV table
+//	     */
+//	    System.out.println("Start creating " + Parameters.PROV_REL_NAME + " ........");
+//	    Provenance.createWhyProvenanceRelation(rewriteQueries, dbConn);
+//	    System.out.println("Finish creating " + Parameters.PROV_REL_NAME + ".\n");
+//	    
+//	    /*
+//	     * create CONN table
+//	     */
+//	    System.out.println("Start creating " + Parameters.CONN_REL_NAME + " ..................");
+//	    Connected.createWhyConnectedRelation(dbConn);
+//	    System.out.println("Finish creating " + Parameters.CONN_REL_NAME + ".\n");
+//	    
+//	    /*
+//	     * create FD
+//	     */
+//	    System.out.println("Start creating " + Parameters.FD_REL_NAME + " ...............");
+//	    FD.createFDRelation(dbConn); // rename the table like: WORLD_0_TOP5_FD
+//	    System.out.println("Finish creating " + Parameters.FD_REL_NAME + ".\n");
+//	    
+//	    /*
+//	     * create FD+
+//	     */
+//	    System.out.println("Start creating " + Parameters.FD_PLUS_REL_NAME + " .............");
+//	    FDPlus.createFDPlusRelation(dbConn); // rename the table like: WORLD_0_TOP5_FD_PLUS
+//	    System.out.println("Finish creating " + Parameters.FD_PLUS_REL_NAME + ".\n");
+//	    
+//	    /*
+//	     * create intersection
+//	     */
+//	    System.out.println("Start creating " + Parameters.INTERSECTION_REL_NAME + " .............");
+//	    Intersection.createIntersectionRelation(dbConn);
+//	    System.out.println("Finish creating " + Parameters.INTERSECTION_REL_NAME + ".\n");
+//	    
+//	    /*
+//	     * create union
+//	     */
+//	    System.out.println("Start creating " + Parameters.UNION_REL_NAME + " ............");
+//	    Union.createUionRelation(dbConn);
+//	    System.out.println("Finish creating " + Parameters.UNION_REL_NAME + ".\n");
+//	    
+//	    /*
+//	     * metric
+//	     */
+//	    System.out.println("Start evaluating performance by metric ........");
+//	    System.out.println("standard vs intersection: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.INTERSECTION_REL_NAME, dbConn));
+//	    System.out.println("standard vs union: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.UNION_REL_NAME, dbConn));
+//	    System.out.println("standard vs fd: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_REL_NAME, dbConn));
+//	    System.out.println("standard vs fd+: " + Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_PLUS_REL_NAME, dbConn));
+//	    
+//	    
+//	    /*
+//	     * evaluate the results
+//	     */
+////	    System.out.println("sim(Q1_RES, Q2_RES) = " + Metric.sim("Q1_RES", "Q2_RES", dbConn));
+////	    System.out.println("sim(Q2_RES, Q1_RES) = " + Metric.sim("Q2_RES", "Q1_RES", dbConn));
+//	    
+//	    /*
+//	     * clear intermediate tables
+//	     */
+//	    System.out.println("Start clearing intermediate tables ............");
+//	    Cleaner.dropIntermediateTables(dbConn);
+//	    System.out.println("Finish clearing intermediate tables.\n");
 
 	    System.out.println("Done.");
 	} catch (InstantiationException e) {
