@@ -53,6 +53,17 @@ class Projection {
 		selectClause += allCommonAttributes.get(i) + " ";
 	    }
 	}
+	
+	// solve the confict, record what projected tables
+	// have been created.
+	ArrayList<String> projectedTables = new ArrayList<String>();
+	ResultSet rs = stmt.executeQuery("SHOW TABLES");
+	while(rs.next()) {
+	    if (rs.getString(1).startsWith("projected")) {
+		projectedTables.add(rs.getString(1));
+	    }
+	}
+	
 
 	// when there is no common attribute among these resulting tuples
 	if (!allCommonAttributes.isEmpty()) {
@@ -63,6 +74,14 @@ class Projection {
 	    for (String rewriteTableName : allRewriteResultTables) {
 		String projectedTableName = projectedTablePrefix + "_"
 			+ Integer.toString(projectedId++);
+		
+		// create a new one if exists
+		while (projectedTables.contains(projectedTableName)) {
+		    projectedTableName = "projected"
+			    + new java.util.Random().nextInt(100)
+			    + "_" + Integer.toString(projectedId-1);
+		}
+		
 		String query = "CREATE TABLE " + projectedTableName
 			+ " AS SELECT " + selectClause + " FROM "
 			+ rewriteTableName;
