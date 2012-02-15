@@ -10,6 +10,24 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 2162L92HECWA0FPOBT3F4CP6MFVIH7
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 
+--------------------
+complemental HITs for nested answers
+
+20I11K274J79E8IWOPE4AUXGHLUFD7
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+query ID:       2, 3
+#assignments:   1
+
+2RU9KSSZVXX2KMRKH1HO2GNJ19D4MQ
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+query ID:       3, 4
+#assignments:   1
+
+29AZVXX2Q45UO2CELXEI01NTDW6Q86
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+query ID:       6, 7
+#assignments:   3
+
 ********************
 
 tpch, no Master
@@ -31,6 +49,19 @@ adding new assignments to it does not work -- nobody takes this HIT. So I
 reposted the same question as a new HIT 2XO7D1X3V0FKUUAAP051Q7PLO5CKDQ.
 2XO7D1X3V0FKUUAAP051Q7PLO5CKDQ
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+
+--------------------
+complemental HITs for nested answers
+
+20KD21O3W5XHU1BFFZTK2EPMXXXAGZ
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+query ID:       4, 5
+#assignments:   2
+
+2DH9RNDWIOV1MPEDQUKGY13ZI7YVGL
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+query ID:       6, 7
+#assignments:   3
 
 ********************
 
