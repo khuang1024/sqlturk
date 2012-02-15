@@ -55,7 +55,7 @@ public class Parameters {
     public static final long HIT_DURATION = 30 * 60; // 1 hr
     public static final long HIT_AUTOAPPROVE_DELAY = 60 * 60 * 24 * 15; // 15 days
     public final static long TASK_LIFETIME = 60 * 60 * 24 * 7; // 1 week
-    public static final int HIT_ASSIGNMENT_NUM = 1; // the number of assignments per HIT
+    public static final int HIT_ASSIGNMENT_NUM = 3; // the number of assignments per HIT
     
     // mturk authoring log configuration
     public static final String HIT_LOG_RIGHT_ANSWER = "RIGHT_ANSWER";

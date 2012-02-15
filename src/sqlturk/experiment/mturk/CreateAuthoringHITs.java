@@ -37,10 +37,10 @@ public class CreateAuthoringHITs {
 //	AuthoringManager.createANewHit(service, "world", 2, 3);
 //	AuthoringManager.createANewHit(service, "world", 4, 5);
 //	AuthoringManager.createANewHit(service, "world", 6, 7);
-	AuthoringManager.createANewHit(service, "tpch", 0, 1);
+//	AuthoringManager.createANewHit(service, "tpch", 0, 1);
 //	AuthoringManager.createANewHit(service, "tpch", 2, 3);
 //	AuthoringManager.createANewHit(service, "tpch", 4, 5);
-//	AuthoringManager.createANewHit(service, "tpch", 6, 7);
+	AuthoringManager.createANewHit(service, "tpch", 6, 7);
     }
 
 }
