@@ -84,6 +84,9 @@ public class Provenance {
 	int fromIndex = uQuery.indexOf("FROM");
 	int whereIndex = uQuery.indexOf("WHERE");
 
+	if (whereIndex == -1) {
+	    whereIndex = uQuery.length();
+	}
 	String fromClause = query.substring(fromIndex + 4, whereIndex - 1)
 		.trim();
 	// System.out.println("From: "+fromClause);
