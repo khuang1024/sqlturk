@@ -42,7 +42,7 @@ public class GetAuthoringAnswers {
 	    System.out.println("Using local.");
 	}
 	
-	AuthoringManager.downloadHitAnswers(service, "2ZRNZW6HEZ6O8MCMUAZ6DGUN4TQZPT", dbConn);
+	AuthoringManager.downloadHitAnswers(service, "2TYW40SPW1INGZ2ODLA3RAB7GVI1E7", dbConn);
 //	AuthoringManager.forceDownloadHitAnswers(service, "2ZFKO2L92HECQSSNQFFCGF0DS58GFY", dbConn);
 //	AuthoringManager.forceDownloadHitAnswers(service, "20R2NJKM05BMDBG7LDTGXP9SD7GBGB", dbConn);
     }

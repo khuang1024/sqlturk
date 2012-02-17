@@ -42,7 +42,7 @@ public class GetRankingAnswers {
 	    System.out.println("Using local.");
 	}
 	
-	RankingManager.downloadHitAnswers(service, "2BXJ51Y7QEOZ9GCIOTJTQOFYVAECFD", dbConn);
+	RankingManager.downloadHitAnswers(service, "20I11K274J79E8IWOPE4AUXGHLUFD7", dbConn);
     }
     
 
