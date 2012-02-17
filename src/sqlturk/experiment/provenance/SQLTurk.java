@@ -48,13 +48,24 @@ public class SQLTurk {
     }
 
     /**
-     * @param args
+     * 
+     * @param type
+     *            the table to generate. Valid values are "iu"(intersection and
+     *            union), "fd" (FD), "fdp" (FD+).
+     * @param datasetName
+     *            the name of the dataset. Valid values: "world", "tpch"
+     * @param queryIndex
+     *            the index of the query to test. From 0 to 7.
+     * @param topN
+     * @param nCandidates
+     * @param candidates
      * @throws SQLException
      * @throws IOException
      */
-    public static void run(String datasetName, int queryIndex, int topN,
-	    int nCandidates, int[] candidates) throws SQLException, IOException {
-	
+    public static void run(String type, String datasetName, int queryIndex,
+	    int topN, int nCandidates, int[] candidates) throws SQLException,
+	    IOException {
+
 	System.out.println("SQLTurk is running.\n\n");
 
 	// check the input
@@ -80,7 +91,7 @@ public class SQLTurk {
 			"Invalid candidates. Some candidates are either less than 1 or greater than 10.");
 	    }
 	}
-	
+
 	System.out.println("Passed arguments validation.\n\n");
 
 	// rename the relation names
@@ -96,9 +107,7 @@ public class SQLTurk {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    Connection dbConn;
 
-	    /*
-	     * use soe server or test locally
-	     */
+	    // use soe server or test locally
 	    if (Parameters.USE_SERVER) {
 		dbConn = DriverManager
 			.getConnection(Parameters.MYSQL_CONNECTION_STRING);
@@ -109,9 +118,7 @@ public class SQLTurk {
 		System.out.println("Using local.");
 	    }
 
-	    /*
-	     * create the standard answer result table
-	     */
+	    // create the standard answer result table
 	    String standardAnswer = QueryManager.getStandardAnswer(datasetName,
 		    queryIndex);
 	    Statement stmt = dbConn.createStatement();
@@ -122,9 +129,7 @@ public class SQLTurk {
 		    + standardAnswer);
 	    stmt.close();
 
-	    /*
-	     * initialize the orginal query batch, odered by the their ranks
-	     */
+	    // initialize the orginal query batch, odered by the their ranks
 	    int[] answerIndices = new int[topN];
 	    for (int i = 0; i < topN; i++) {
 		answerIndices[i] = candidates[i];
@@ -138,12 +143,10 @@ public class SQLTurk {
 			.println("candidate query: " + originalQueries.get(i));
 	    }
 
-	    /*
-	     * clean old intermediate tables
-	     */
+	    // clean old tables
 	    System.out
 		    .println("Start clearing old intermediate and result tables ......");
-	    Cleaner.dropAll(dbConn);
+	    Cleaner.dropIntermediateTables(dbConn);
 	    System.out
 		    .println("Finish clearing old intermediate and result tables.\n");
 
@@ -163,96 +166,83 @@ public class SQLTurk {
 	    QueryExecutor.executeQueries(rewriteQueries, dbConn);
 	    System.out.println("Finish executing queries.\n");
 
-	    /*
-	     * create PROV table
-	     */
-	    System.out.println("Start creating " + Parameters.PROV_REL_NAME
-		    + " ........");
-	    Provenance.createWhyProvenanceRelation(rewriteQueries, dbConn);
-	    System.out.println("Finish creating " + Parameters.PROV_REL_NAME
-		    + ".\n");
+	    if (type.equals("iu")) {
+		// create intersection
+		System.out.println("Start creating "
+			+ Parameters.INTERSECTION_REL_NAME + " .............");
+		Intersection.createIntersectionRelation(dbConn);
+		System.out.println("Finish creating "
+			+ Parameters.INTERSECTION_REL_NAME + ".\n");
 
-	    /*
-	     * create CONN table
-	     */
-	    System.out.println("Start creating " + Parameters.CONN_REL_NAME
-		    + " ..................");
-	    Connected.createWhyConnectedRelation(dbConn);
-	    System.out.println("Finish creating " + Parameters.CONN_REL_NAME
-		    + ".\n");
+		// create union
+		System.out.println("Start creating "
+			+ Parameters.UNION_REL_NAME + " ............");
+		Union.createUionRelation(dbConn);
+		System.out.println("Finish creating "
+			+ Parameters.UNION_REL_NAME + ".\n");
 
-	    /*
-	     * create FD
-	     */
-	    System.out.println("Start creating " + Parameters.FD_REL_NAME
-		    + " ...............");
-	    FD.createFDRelation(dbConn); // rename the table like:
-					 // WORLD_0_TOP5_FD
-	    System.out.println("Finish creating " + Parameters.FD_REL_NAME
-		    + ".\n");
+		double stdIntersec = Metric.sim(
+			Parameters.STANDARD_ANSWER_REL_NAME,
+			Parameters.INTERSECTION_REL_NAME, dbConn);
+		double stdUnion = Metric.sim(
+			Parameters.STANDARD_ANSWER_REL_NAME,
+			Parameters.INTERSECTION_REL_NAME, dbConn);
+		double intersecStd = Metric.sim(
+			Parameters.INTERSECTION_REL_NAME,
+			Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
+		double unionStd = Metric.sim(Parameters.INTERSECTION_REL_NAME,
+			Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
+		appendToLog(header, Parameters.PERFORMANCE_LOG_NAME);
+		appendToLog("Intersection\tPrecision\t" + intersecStd
+			+ "\tRecall\t" + stdIntersec,
+			Parameters.PERFORMANCE_LOG_NAME);
+		appendToLog("Union\tPrecision\t" + unionStd + "\tRecall\t"
+			+ stdUnion, Parameters.PERFORMANCE_LOG_NAME);
+	    } else if (type.equals("fd")) {
+		// create FD
+		System.out.println("Start creating " + Parameters.FD_REL_NAME);
+		FD.createFDRelation(dbConn);
+		System.out.println("Finish creating " + Parameters.FD_REL_NAME
+			+ ".\n");
+		double stdFD = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME,
+			Parameters.FD_REL_NAME, dbConn);
+		double fdStd = Metric.sim(Parameters.FD_REL_NAME,
+			Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
+		appendToLog(header, Parameters.PERFORMANCE_LOG_NAME);
+		appendToLog("FD\tPrecision\t" + fdStd + "\tRecall\t" + stdFD,
+			Parameters.PERFORMANCE_LOG_NAME);
+	    } else if (type.equals("fdp")) {
+		// create PROV table
+		System.out
+			.println("Start creating " + Parameters.PROV_REL_NAME);
+		Provenance.createWhyProvenanceRelation(rewriteQueries, dbConn);
+		System.out.println("Finish creating "
+			+ Parameters.PROV_REL_NAME + ".\n");
 
-	    /*
-	     * create FD+
-	     */
-	    System.out.println("Start creating " + Parameters.FD_PLUS_REL_NAME
-		    + " .............");
-	    FDPlus.createFDPlusRelation(dbConn); // rename the table like:
-						 // WORLD_0_TOP5_FD_PLUS
-	    System.out.println("Finish creating " + Parameters.FD_PLUS_REL_NAME
-		    + ".\n");
+		// create CONN table
+		System.out
+			.println("Start creating " + Parameters.CONN_REL_NAME);
+		Connected.createWhyConnectedRelation(dbConn);
+		System.out.println("Finish creating "
+			+ Parameters.CONN_REL_NAME + ".\n");
 
-	    /*
-	     * create intersection
-	     */
-	    System.out.println("Start creating "
-		    + Parameters.INTERSECTION_REL_NAME + " .............");
-	    Intersection.createIntersectionRelation(dbConn);
-	    System.out.println("Finish creating "
-		    + Parameters.INTERSECTION_REL_NAME + ".\n");
+		// FD+
+		System.out.println("Start creating "
+			+ Parameters.FD_PLUS_REL_NAME);
+		FDPlus.createFDPlusRelation(dbConn);
+		System.out.println("Finish creating "
+			+ Parameters.FD_PLUS_REL_NAME + ".\n");
 
-	    /*
-	     * create union
-	     */
-	    System.out.println("Start creating " + Parameters.UNION_REL_NAME
-		    + " ............");
-	    Union.createUionRelation(dbConn);
-	    System.out.println("Finish creating " + Parameters.UNION_REL_NAME
-		    + ".\n");
+		double stdFDPlus = Metric.sim(
+			Parameters.STANDARD_ANSWER_REL_NAME,
+			Parameters.FD_PLUS_REL_NAME, dbConn);
+		double fdplusStd = Metric.sim(Parameters.FD_PLUS_REL_NAME,
+			Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
 
-	    /*
-	     * metric
-	     */
-	    System.out
-		    .println("Start evaluating performance by metric ........");
-	    double stdIntersec = Metric.sim(
-		    Parameters.STANDARD_ANSWER_REL_NAME,
-		    Parameters.INTERSECTION_REL_NAME, dbConn);
-	    double stdUnion = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME,
-		    Parameters.INTERSECTION_REL_NAME, dbConn);
-	    double stdFD = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME,
-		    Parameters.FD_REL_NAME, dbConn);
-	    double stdFDPlus = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME,
-		    Parameters.FD_PLUS_REL_NAME, dbConn);
-	    double intersecStd = Metric.sim(Parameters.INTERSECTION_REL_NAME,
-		    Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
-	    double unionStd = Metric.sim(Parameters.INTERSECTION_REL_NAME,
-		    Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
-	    double fdStd = Metric.sim(Parameters.FD_REL_NAME,
-		    Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
-	    double fdplusStd = Metric.sim(Parameters.FD_PLUS_REL_NAME,
-		    Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
-	    appendToLog(header, Parameters.PERFORMANCE_LOG_NAME);
-	    appendToLog("Intersection\tPrecision\t" + intersecStd
-		    + "\tRecall\t" + stdIntersec,
-		    Parameters.PERFORMANCE_LOG_NAME);
-	    appendToLog("Union\tPrecision\t" + unionStd + "\tRecall\t"
-		    + stdUnion, Parameters.PERFORMANCE_LOG_NAME);
-	    appendToLog("FD\tPrecision\t" + fdStd + "\tRecall\t" + stdFD,
-		    Parameters.PERFORMANCE_LOG_NAME);
-	    appendToLog("FDP_Plus\tPrecision\t" + fdplusStd + "\tRecall\t"
-		    + stdFDPlus, Parameters.PERFORMANCE_LOG_NAME);
-	    System.out
-		    .println("Finish evaluating performance by metric ........");
+		appendToLog(header, Parameters.PERFORMANCE_LOG_NAME);
+		appendToLog("FDP_Plus\tPrecision\t" + fdplusStd + "\tRecall\t"
+			+ stdFDPlus, Parameters.PERFORMANCE_LOG_NAME);
+	    }
 
 	    /*
 	     * clear intermediate tables
@@ -262,6 +252,7 @@ public class SQLTurk {
 	    Cleaner.dropIntermediateTables(dbConn);
 	    System.out.println("Finish clearing intermediate tables.\n");
 
+	    dbConn.close();
 	    System.out.println("Done.");
 	} catch (InstantiationException e) {
 	    e.printStackTrace();
