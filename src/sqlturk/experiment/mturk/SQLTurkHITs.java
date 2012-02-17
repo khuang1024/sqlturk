@@ -125,7 +125,7 @@ public class SQLTurkHITs {
 	world03.add("Select c.Name,cl.Language from Country c,CountryLanguage cl where c.Code=cl.CountryCode");
 	world03.add("select c2.name Country, c3.language Language  from  Country c2, CountryLanguage c3  where c3.CountryCode= c2.Code");
 	
-	//world04.add("select Name from Country where code in(select CountryCode from CountryLanguage where Language like 'Swedish')"); // the query is syntactically right and can be rewritten, can we have its provenance? and do we need to rewrite the sub-SPJ?
+	world04.add("select c.name from Country c,CountryLanguage l where c.Code = l.CountryCode and l.Language='Swedish' and l.IsOfficial='T'");
 	world04.add("select a.Name from Country a, CountryLanguage c where c.CountryCode = a.Code and c.Language = 'Swedish' and c.IsOfficial = 'T'");
 	world04.add("Select a.Name,b.IsOfficial from Country as a,CountryLanguage as b where a.Name='Swedish'");
 	world04.add("select Country.Name from Country,CountryLanguage  where (Country.Code = CountryLanguage.CountryCode) and (CountryLanguage.Language = 'Swedish') and (CountryLanguage.IsOfficial = 'T')"); // correct
@@ -136,7 +136,7 @@ public class SQLTurkHITs {
 	world04.add("Select Country.Name from Country, CountryLanguage where CountryLanguage.Language = 'Swedish' and Country.Code = CountryLanguage.CountryCode");
 	world04.add("SELECT Country.Name FROM Country, CountryLanguage WHERE CountryLanguage.CountryCode = Country.Code AND CountryLanguage.Language = 'Swedish' AND CountryLanguage.IsOfficial = 'T'");
 	
-	//worldCandidateQueries45.add("select District from City where Population>3000000 and CountryCode in(select CountryCode from CountryLanguage where Language like 'Chinese')");
+	world05.add("select a.Name from City a,Country b,CountryLanguage c where a.CountryCode=c.CountryCode and a.CountryCode=b.Code and c.Language='Chinesse' and b.Population > 3000000");
 	world05.add("select b.Name from City b, CountryLanguage c where c.CountryCode = b.CountryCode and c.Language = 'Chinese' and b.Population > 3000000");
 	world05.add("select name from City where Population>=3000000");
 	world05.add("select City.Name from City, CountryLanguage where (City.CountryCode = CountryLanguage.CountryCode) and (CountryLanguage.Language = 'Chinese') and (City.Population > 3000000)"); // the query is syntactically right and can be rewritten, can we have its provenance? and do we need to rewrite the sub-SPJ?
