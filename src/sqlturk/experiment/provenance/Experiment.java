@@ -12,12 +12,10 @@ public class Experiment {
      */
     public static void main(String[] args) throws SQLException, IOException {
 
-	String datasetName = args[0];
-	int queryIndex = Integer.parseInt(args[1]);
-	int topN = 10;
-	if (args.length == 3) {
-	    topN = Integer.parseInt(args[2]);
-	}
+	String type = args[0];
+	String datasetName = args[1];
+	int queryIndex = Integer.parseInt(args[2]);
+	int topN = Integer.parseInt(args[3]);
 
 	int[] worldQuery0 = { 3, 1, 5, 6, 2, 8, 9, 10, 4, 7 };
 	int[] worldQuery1 = { 1, 5, 3, 7, 6, 2, 9, 8, 10, 4 };
@@ -41,32 +39,14 @@ public class Experiment {
 	int[][] tpchCandidates = { tpchQuery0, tpchQuery1, tpchQuery2,
 		tpchQuery3, tpchQuery4, tpchQuery5, tpchQuery6, tpchQuery7 };
 
-	if (topN != 10) {
-	    if (datasetName.equals("world")) {
-		SQLTurk.run("world", queryIndex, topN, 10,
-			worldCandidates[queryIndex]);
-
-	    } else if (datasetName.equals("tpch")) {
-
-		SQLTurk.run("tpch", queryIndex, topN, 10,
-			tpchCandidates[queryIndex]);
-	    } else {
-		throw new RuntimeException("Invalid dataset name.");
-	    }
+	if (datasetName.equals("world")) {
+	    SQLTurk.run(type, "world", queryIndex, topN, 10,
+		    worldCandidates[queryIndex]);
+	} else if (datasetName.equals("tpch")) {
+	    SQLTurk.run(type, "tpch", queryIndex, topN, 10,
+		    tpchCandidates[queryIndex]);
 	} else {
-	    if (datasetName.equals("world")) {
-		for (int j = 2; j <= 10; j++) { // for each top j
-		    SQLTurk.run("world", queryIndex, j, 10,
-			    worldCandidates[queryIndex]);
-		}
-	    } else if (datasetName.equals("tpch")) {
-		for (int j = 2; j <= 10; j++) { // for each top j
-		    SQLTurk.run("tpch", queryIndex, j, 10,
-			    tpchCandidates[queryIndex]);
-		}
-	    } else {
-		throw new RuntimeException("Invalid dataset name.");
-	    }
+	    throw new RuntimeException("Invalid dataset name.");
 	}
 
     }
