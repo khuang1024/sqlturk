@@ -13,6 +13,7 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 --------------------
 complemental HITs for nested answers
 
+@Done
 20I11K274J79E8IWOPE4AUXGHLUFD7
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       2, 3
@@ -20,18 +21,19 @@ query ID:       2, 3
 
 2TYW40SPW1INGZ2ODLA3RAB7GVI1E7
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
-query ID:       3, 4
+query ID:       4, 5
 #assignments:   1
 
 2OOO33FDEY5CIEMB38Q3CCRGQS1R06
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       6, 7
+#assignments:   3
 
 @Deprecated
 2RU9KSSZVXX2KMRKH1HO2GNJ19D4MQ
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
-query ID:       3, 4
+query ID:       4, 5
 #assignments:   1
 
 @Deprecated
@@ -148,6 +150,12 @@ http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 2Z2MN9U8P9Y32BIMKZUSYYIN3HHVEG
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
+
+complemental HITs
+2PWBDPGFL6VCJELZE44WMOV2XQL4JB
+http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
+query index:    2, 3
+#assignment:    10
 
 **********************
 
