@@ -18,11 +18,23 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       2, 3
 #assignments:   1
 
+2TYW40SPW1INGZ2ODLA3RAB7GVI1E7
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+query ID:       3, 4
+#assignments:   1
+
+2OOO33FDEY5CIEMB38Q3CCRGQS1R06
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+query ID:       6, 7
+
+@Deprecated
 2RU9KSSZVXX2KMRKH1HO2GNJ19D4MQ
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       3, 4
 #assignments:   1
 
+@Deprecated
 29AZVXX2Q45UO2CELXEI01NTDW6Q86
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       6, 7
@@ -53,11 +65,23 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 --------------------
 complemental HITs for nested answers
 
+2XBP9RA7S5WMVOVOF5674JMIQQDYTR
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+query ID:       4, 5
+#assignments:   2
+
+2M998D8J3VE7QAEJAF3G7MCLDQPHXV
+http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
+query ID:       6, 7
+#assignments:   3
+
+@Deprecated
 20KD21O3W5XHU1BFFZTK2EPMXXXAGZ
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       4, 5
 #assignments:   2
 
+@Deprecated
 2DH9RNDWIOV1MPEDQUKGY13ZI7YVGL
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       6, 7
