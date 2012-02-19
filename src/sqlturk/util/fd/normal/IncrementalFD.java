@@ -50,6 +50,8 @@ class IncrementalFD {
 	// create the table
 	stmt.executeUpdate(query);
 	stmt.close();
+	unionTableAtoms = null;
+	combinedSchema = null;
     }
 
     private static String createSubFDRelationFor(Relation relation,
@@ -279,6 +281,7 @@ class IncrementalFD {
 				    }
 				}
 			    }
+			    tupleSetPrime = null;
 			}
 		    }
 		}
@@ -295,7 +298,10 @@ class IncrementalFD {
 	    if (add) {
 		complete.add(tupleSet);
 	    }
+	    tupleSet = null;
 	}
+	inComplete = null;
+	
 	return complete;
     }
 
