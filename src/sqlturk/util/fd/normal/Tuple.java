@@ -42,9 +42,46 @@ class Tuple {
 	}
 	return null;
     }
+    
+    static boolean isSameValue(Tuple t1, Tuple t2) {
+	// 2. check the schema
+	if (t1.schema.size() != t2.schema.size()) {
+	    return false;
+	}
+	for (int i = 0; i < t1.schema.size(); i++) {
+	    if (!t1.schema.get(i).equals(t2.schema.get(i))) {
+		return false;
+	    }
+	}
+
+	// 3. check the values
+	if (t1.values.size() != t2.values.size()) {
+	    return false;
+	}
+	for (int i = 0; i < t1.values.size(); i++) {
+
+	    if ((t1.values.get(i) != null) && (t2.values.get(i) != null)) {
+		if (!t1.values.get(i).equals(t2.values.get(i))) {
+		    return false;
+		}
+	    }
+	}
+
+	return true;
+    }
 
     static boolean isSame(Tuple t1, Tuple t2) {
 	// boolean isSame = true;
+	
+	// debug
+//	System.out.println("*********************************************");
+//	System.out.println("t1: source: " + t1.source);
+//	System.out.println("t2: source: " + t2.source);
+//	t1.printSchema();
+//	t2.printSchema();
+//	t1.printValues();
+//	t2.printValues();
+//	System.out.println("*********************************************");
 
 	// 1. check the source table name
 	if (!t1.source.equals(t2.source)) {

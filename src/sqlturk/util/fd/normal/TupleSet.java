@@ -47,7 +47,7 @@ class TupleSet {
 
     boolean hasTuple(Tuple tuple) {
 	for (Tuple t : tupleSet) {
-	    if (Tuple.isSame(t, tuple)) {
+	    if (Tuple.isSameValue(t, tuple)) {
 		return true;
 	    }
 	}
