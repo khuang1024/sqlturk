@@ -43,6 +43,7 @@ public class FD {
 	// must clear previous tables
 	ArrayList<Relation> allResultRelations = getAllResultRelations(dbConn);
 	IncrementalFD.createFDRelation(allResultRelations, dbConn);
+	allResultRelations = null;
     }
 
     // The returned relations are with tuples, and the schemas of these tuples
@@ -53,11 +54,11 @@ public class FD {
 	ArrayList<String> allResultRelationNames = getAllResultRelationNames(dbConn);
 	for (String resultRelationName : allResultRelationNames) {
 	    // Please note, the schema of the tuples of this relation has no
-	    // ROWID column.
-	    // The getTuples function has already filtered out ROWID.
+	    // ROWID column. The getTuples function has already filtered out ROWID.
 	    allResultRelations.add(new Relation(resultRelationName, getTuples(
 		    resultRelationName, dbConn)));
 	}
+	allResultRelationNames = null;
 	return allResultRelations;
     }
 
@@ -87,6 +88,8 @@ public class FD {
 	    }
 	    allTuples.add(new Tuple(relationName, schema, values));
 	}
+	rs.close();
+	stmt.close();
 	return allTuples;
     }
 
@@ -99,6 +102,8 @@ public class FD {
 	while (rs.next()) {
 	    schema.add(rs.getString(1));
 	}
+	rs.close();
+	stmt.close();
 	return schema;
     }
 
@@ -117,6 +122,8 @@ public class FD {
 		// System.out.println(rs.getString(1));
 	    }
 	}
+	rs.close();
+	stmt.close();
 	return allResultRelations;
     }
 
