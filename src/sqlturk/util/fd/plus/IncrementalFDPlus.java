@@ -52,6 +52,8 @@ class IncrementalFDPlus {
 	// create the table
 	stmt.executeUpdate(query);
 	stmt.close();
+	combinedSchema = null;
+	unionTableAtoms = null;
     }
 
     private static String createSubFDPlusRelationFor(Relation relation,
@@ -134,9 +136,9 @@ class IncrementalFDPlus {
 	    System.out.println("debug:\t|-> " + query);
 	    stmt.executeUpdate(query);
 	}
-	System.out
-		.println("debug:\t--------------------------------------\n\n");
+	System.out.println("debug:\t--------------------------------------\n\n");
 	stmt.close();
+	resultTupleSets = null;
 	return tempTableName;
     }
 
@@ -223,16 +225,6 @@ class IncrementalFDPlus {
 	    TupleSet tupleSet = inComplete.get(0);
 	    inComplete.remove(0);
 
-	    // //debug
-	    // System.out.println("XXXX");
-	    // tupleSet.print();
-	    // System.out.println("==inComplete");
-	    // for (TupleSet ts : inComplete) {
-	    // ts.print();
-	    // }
-	    // System.out.println("==");
-	    // System.out.println("XXXX");
-
 	    // get the maximal why-connected set of for the target tupleSet:
 	    // line 7
 	    for (Relation rel : allResultRelations) {
@@ -245,14 +237,6 @@ class IncrementalFDPlus {
 			if (!tupleSet.hasTuple(tup)) {
 			    // when after adding tup to tupleSet, tupeSet is
 			    // still JCC, then, add it
-
-			    // //debug
-			    // for (Tuple t : tupleSet.getTuples()) {
-			    // t.printValues();
-			    // }
-			    // System.out.println("---");
-			    // tup.printValues();
-			    // System.out.println("===");
 
 			    // Here, change the criteria to adapt to our FD+
 			    if (tupleSet.isConnectedWith(tup,
@@ -279,21 +263,10 @@ class IncrementalFDPlus {
 			// exclude the tuples already in tupleSet
 			if (!tupleSet.hasTuple(tup)) {
 
-			    // //debug
-			    // System.out.println("tupleSet has tup = " +
-			    // (tupleSet.hasTuple(tup)));
-			    // tup.printValues();
-			    // tupleSet.print();
-			    // System.out.println("-------------------------");
-
 			    TupleSet tupleSetPrime = getTupleSetPrime(tupleSet,
 				    tup, Parameters.ROWID_ATT_NAME, dbConn);
 
 			    if (tupleSetPrime != null) {
-
-				// // debug
-				// System.out.println("T-prime (start) = ");
-				// tupleSetPrime.print();
 
 				if (tupleSetPrime
 					.hasTupleFromRelation(relation)) {
@@ -329,19 +302,8 @@ class IncrementalFDPlus {
 					}
 				    }
 				}
-
-				// debug
-				// System.out.println("T-prime (end) = ");
-				// tupleSetPrime.print();
-				// System.out.println("==inComplete");
-				// for (TupleSet ts : inComplete) {
-				// ts.print();
-				// }
-				// System.out.println("==complete");
-				// for (TupleSet ts : complete) {
-				// ts.print();
-				// }
 			    }
+			    tupleSetPrime = null;
 			}
 		    }
 		}
@@ -360,48 +322,10 @@ class IncrementalFDPlus {
 	    if (add) {
 		complete.add(tupleSet);
 	    }
-
-	    // //debug
-	    // System.out.println("-------------------");
-	    // System.out.println("After an iteration:");
-	    // System.out.println("=inComplete:");
-	    // for (TupleSet ts : inComplete) {
-	    // ts.print();
-	    // }
-	    // System.out.println("=complete");
-	    // for (TupleSet ts : complete) {
-	    // ts.print();
-	    // }
-	    // System.out.println("-------------------");
-
-	    // debug
-	    // System.out.println("After a iteration:");
-	    // System.out.println("==inComplete");
-	    // for (TupleSet ts : inComplete) {
-	    // ts.print();
-	    // }
-	    // System.out.println("==complete");
-	    // for (TupleSet ts : complete) {
-	    // ts.print();
-	    // }
-	    // System.out.println("===================");
-
-	    // System.out.println()
+	    tupleSet = null;
 	}
 
-	// // debug
-	// System.out.println("The final FD for " + relation.getRelationName() +
-	// " is:\n");
-	// int i = 0;
-	// for (TupleSet ts : complete) {
-	// System.out.println("TupleSet " + (i++) + ": ");
-	// for (Tuple t : ts.getTuples()) {
-	// System.out.println(t.getSource() + " : " + t.gettValuesString());
-	// }
-	// System.out.println();
-	// }
-	// System.out.println("==================");
-
+	inComplete = null;
 	return complete;
     }
 
@@ -433,8 +357,9 @@ class IncrementalFDPlus {
 		}
 	    }
 	    if (temp.size() > tupleSetPrime.size()) {
-		tupleSetPrime = temp.copy();
+		tupleSetPrime = temp;
 	    }
+	    temp = null;
 	}
 
 	/*

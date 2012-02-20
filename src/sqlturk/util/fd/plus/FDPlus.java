@@ -44,6 +44,7 @@ public class FDPlus {
 	    throws SQLException {
 	ArrayList<Relation> allResultRelations = getAllResultRelations(dbConn);
 	IncrementalFDPlus.createFDPlusRelation(allResultRelations, dbConn);
+	allResultRelations = null;
     }
 
     // The returned relations are with tuples, and the schemas of these tuples
