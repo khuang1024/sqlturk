@@ -1,4 +1,6 @@
-*******************
+*************************************************************************
+****************************   Authoring   ******************************
+*************************************************************************
 
 world, no Master
 2LNUUKQOYGNIQJ9IV570507TXYGYGU
@@ -10,7 +12,7 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 2162L92HECWA0FPOBT3F4CP6MFVIH7
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 
---------------------
+-------------------------------------------------------------------------
 complemental HITs for nested answers
 
 @Done
@@ -19,17 +21,20 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       2, 3
 #assignments:   1
 
+@Done
 2TYW40SPW1INGZ2ODLA3RAB7GVI1E7
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       4, 5
 #assignments:   1
 
+@Done
 2OOO33FDEY5CIEMB38Q3CCRGQS1R06
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       6, 7
 #assignments:   3
 
+-------------------------------------------------------------------------
 @Deprecated
 2RU9KSSZVXX2KMRKH1HO2GNJ19D4MQ
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
@@ -42,7 +47,8 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       6, 7
 #assignments:   3
 
-********************
+*************************************************************************
+*************************************************************************
 
 tpch, no Master
 2ZRNZW6HEZ6O8MCMUAZ6DGUN4TQZPT
@@ -54,6 +60,7 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 2K9Y0LWSBRI8CCXSLB08NHSUN3TC01
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 
+-------------------------------------------------------------------------
 @Deprecated:
 The info below is deprecated, since we got an answer from the original
 HIT 2ZRNZW6HEZ6O8MCMUAZ6DGUN4TQZPT. So, this HIT is not needed.
@@ -64,19 +71,22 @@ reposted the same question as a new HIT 2XO7D1X3V0FKUUAAP051Q7PLO5CKDQ.
 2XO7D1X3V0FKUUAAP051Q7PLO5CKDQ
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 
---------------------
+-------------------------------------------------------------------------
 complemental HITs for nested answers
 
+@Done
 2XBP9RA7S5WMVOVOF5674JMIQQDYTR
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       4, 5
 #assignments:   2
 
+@Done
 2M998D8J3VE7QAEJAF3G7MCLDQPHXV
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       6, 7
 #assignments:   3
 
+-------------------------------------------------------------------------
 @Deprecated
 20KD21O3W5XHU1BFFZTK2EPMXXXAGZ
 http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
@@ -89,57 +99,9 @@ http://www.mturk.com/mturk/preview?groupId=22X2J1LY58B7WP8Q5X6KLD16YR3R6J
 query ID:       6, 7
 #assignments:   3
 
-********************
-
-world, Master - deprecated
-24BL0XULRGNT51PC9UO5JP7O927Q4E
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-2F4NCWYB49F9MAE7KISJSNSU8HSSOF
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-2ZFKO2L92HECQSSNQFFCGF0DS58GFY
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-20R2NJKM05BMDBG7LDTGXP9SD7GBGB
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-
-********************
-
-tpch, Master - deprecated
-2OM6OQ1SNQQ7KOTQSIHKGNR25TDQ6Z
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-20CNU8LZ6R70ANDZVUZJ7VE8ZSFL5P
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-2QKHECWA6X3YIUY5NTG5OXPULN6LMG
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-2KR5SW6NG1FSX5KD6SPF5FZT2LQIWQ
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-
-********************
-
-world, Master
-2QFBNVP3TVOKZC19SIP7UEO0IGN30I
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-2YJXERSQV66RF738GK8V0AVLLOYA24
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-26UGJ2D21O3WZF3Q66GSM2KZH7H7DJ
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-29E1VP9746OQVA9GDOH6B052T290KQ
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-
-*********************
-
-tpch, Master
-298V66RLPHITXZHMXCBIA2NKTKXF72
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-2DNXH0JPPSI2EG0F89G79KLN9EFHND
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-2EXB0HFL42J1FGRYYOT7Q0IHI2E0LT
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-243VWJ5OPB0YPYLYL3NBBEPAXLX4W5
-http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
-
-*********************
-
-RANKING
+*************************************************************************
+****************************   Ranking   ********************************
+*************************************************************************
 
 world, without Master
 2J5JKM05BMJTOZKMPXKPDRA8V1CDIW
@@ -151,13 +113,25 @@ http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 2Z2MN9U8P9Y32BIMKZUSYYIN3HHVEG
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 
+-------------------------------------------------------------------------
 complemental HITs
 2PWBDPGFL6VCJELZE44WMOV2XQL4JB
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 query index:    2, 3
 #assignment:    10
 
-**********************
+2YDKCJ011K27Y1TZ77N658N5BMQ9B9
+http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
+query index:    4, 5
+#assignment:    10
+
+2UNNQYN5F3Q0DYRJL3EC0YB5E75D9N
+http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
+query index:    6, 7
+#assignment:    10
+
+*************************************************************************
+*************************************************************************
 
 tpch, without Master
 2IMIXKO2L92H8UI0TEUYSCCG3AEED1
@@ -169,9 +143,77 @@ http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 20BUHYW2GTP9LSTISDD1A9YTRDWMR4
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 
-**********************
+-------------------------------------------------------------------------
+complement
+
+2XXL6VCPWZ9RHVI8BCSSBSN4ILD9OH
+http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
+query index:    4, 5
+#assignment:    10
+
+2FPQEOZFYQS16AFCBWORHS4JHTBHKV
+http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
+query index:    6, 7
+#assignment:    10
+
+*************************************************************************
+*************************************************************************
 tpch, without Master -- complement
 This is HIT is for ranking the new set of (tpch, no master, 0, 1), since 
 the previous submission has an invalid query which contains keyword "IN".
 2BXJ51Y7QEOZ9GCIOTJTQOFYVAECFD
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
+
+*************************************************************************
+***********************    Master Deprecated   **************************
+*************************************************************************
+
+world, Master - deprecated
+24BL0XULRGNT51PC9UO5JP7O927Q4E
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+2F4NCWYB49F9MAE7KISJSNSU8HSSOF
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+2ZFKO2L92HECQSSNQFFCGF0DS58GFY
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+20R2NJKM05BMDBG7LDTGXP9SD7GBGB
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+
+*************************************************************************
+*************************************************************************
+
+tpch, Master - deprecated
+2OM6OQ1SNQQ7KOTQSIHKGNR25TDQ6Z
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+20CNU8LZ6R70ANDZVUZJ7VE8ZSFL5P
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+2QKHECWA6X3YIUY5NTG5OXPULN6LMG
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+2KR5SW6NG1FSX5KD6SPF5FZT2LQIWQ
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+
+*************************************************************************
+*************************************************************************
+
+world, Master
+2QFBNVP3TVOKZC19SIP7UEO0IGN30I
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+2YJXERSQV66RF738GK8V0AVLLOYA24
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+26UGJ2D21O3WZF3Q66GSM2KZH7H7DJ
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+29E1VP9746OQVA9GDOH6B052T290KQ
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+
+*************************************************************************
+*************************************************************************
+
+tpch, Master
+298V66RLPHITXZHMXCBIA2NKTKXF72
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+2DNXH0JPPSI2EG0F89G79KLN9EFHND
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+2EXB0HFL42J1FGRYYOT7Q0IHI2E0LT
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+243VWJ5OPB0YPYLYL3NBBEPAXLX4W5
+http://www.mturk.com/mturk/preview?groupId=2828D8J3VE7WMAFDLT73QCK8A5XIYQ
+
