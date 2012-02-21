@@ -130,7 +130,7 @@ public class SQLTurkHITs {
 	world04.add("Select a.Name,b.IsOfficial from Country as a,CountryLanguage as b where a.Name='Swedish'");
 	world04.add("select Country.Name from Country,CountryLanguage  where (Country.Code = CountryLanguage.CountryCode) and (CountryLanguage.Language = 'Swedish') and (CountryLanguage.IsOfficial = 'T')"); // correct
 	world04.add("select C.Name from Country C,CountryLanguage CL where CL.Language='Swedish' and CL.IsOfficial='T'");
-	world04.add("SELECT Name from Country C, CountryLanguage CL   WHERE C.Code = CL.CountryCode  AND CL.IsOfficial is true  and CL.Language='Swedish'");
+	world04.add("SELECT Name from Country C, CountryLanguage CL WHERE C.Code = CL.CountryCode  AND CL.IsOfficial is true  and CL.Language='Swedish'");
 	world04.add("select ctry.Name from Country as ctry,CountryLanguage as lan where lan.Language like 'Swedish' and lan.IsOfficial = 'Y' and lan.CountryCode = ctry.Code"); // can rewrite it, but lan.IsOfficial should be 'T'... not 'Y'. so it is empty. 
 	world04.add("select c2.name Name  from Country c2, CountryLanguage c3  where c3.CountryCode= c2.Code and  c3.Language='Swedish'");
 	world04.add("Select Country.Name from Country, CountryLanguage where CountryLanguage.Language = 'Swedish' and Country.Code = CountryLanguage.CountryCode");
@@ -141,31 +141,31 @@ public class SQLTurkHITs {
 	world05.add("select name from City where Population>=3000000");
 	world05.add("select City.Name from City, CountryLanguage where (City.CountryCode = CountryLanguage.CountryCode) and (CountryLanguage.Language = 'Chinese') and (City.Population > 3000000)"); // the query is syntactically right and can be rewritten, can we have its provenance? and do we need to rewrite the sub-SPJ?
 	world05.add("select C.Name from City C,Country CU,CountryLanguage CL where CU.Population>3000000 and CL.Language='Chinese'");
-	world05.add("SELECT Cy.Name from City Cy, Country C, CountryLanguage CL  where Cy.CountryCode = C.Code and C.Code=CL.CountryCode  and CL.Language='Chinese'  and Cy.population>3000000");
+	world05.add("SELECT Cy.Name from City Cy, Country C, CountryLanguage CL where Cy.CountryCode = C.Code and C.Code=CL.CountryCode  and CL.Language='Chinese'  and Cy.population>3000000");
 	world05.add("select cty.Name from City as cty,CountryLanguage as lan where lan.Language like 'Chinese' and cty.Population > 3000000");
 	world05.add("select c1.name Name  from City c1, Country c2, CountryLanguage c3  where c1.CountryCode=c2.Code and  c3.CountryCode= c2.Code and  c3.language='Chinese' and   c1.Population>3000000");
 	world05.add("Select City.Name  From City, CountryLanguage, Country  Where CountryLanguage.Language = 'Chinese'  and City.Population > 3000000 and Country.Code = CountryLanguage.CountryCode  and City.CountryCode = Country.Code");
 	world05.add("SELECT City.Name FROM City, Country, CountryLanguage WHERE CountryLanguage.CountryCode = Country.Code AND Country.Code = City.CountryCode AND CountryLanguage.Language = 'Chinese' AND City.Population > 3000000");
 	
-	//world06.add("select Name,Capital from Country where code in(select CountryCode from CountryLanguage where language like 'English' and Percentage<=50)"); // can rewrite it, and no syntax error... but the rewritten query is almost the same, because it has no foreign keys.
+	world06.add("select a.Name,a.Capital from Country a,CountryLanguage b where a.Code=b.CountryCode and b.Language='English' and b.Percentage >= 50");
 	world06.add("select a.Name,b.Name from Country a, City b, CountryLanguage c where a.Capital = b.ID and c.CountryCode = a.Code and c.Language = 'English' and c.Percentage >= 50");
 	world06.add("select Name, Capital from Country, CountryLanguage where (Country.Code = CountryLanguage.CountryCode) and (CountryLanguage.Language = 'English' and CountryLanguage.Percentage >= 50)");
 	world06.add("Select C.Name,C.Capital from Country C,CountryLanguage CL where CL.Language='English' and CL.Percentage>'50.0'");
 	world06.add("Select Country.Name, Country.Capital  From Country , CountryLanguage   Where CountryLanguage.Language = 'English' and CountryLanguage.Percentage >= 50  and CountryLanguage.CountryCode = Country.Code");
-	//world06.add("select C.Name, Cy.Name from Country C, City Cy WHERE C.Capital = Cy.ID  AND EXISTS (SELECT * FROM CountryLanguage WHERE CountryCode = C.Code AND Language='English' AND Percentage>='50.0')"); // can rewrite it and no syntax error... don't need to rewrite the sub-SPJ because CountryLanguage has no foreign keys
-	world06.add("select c2.name Country, c1.name Capital from City c1, Country c2, CountryLanguage c3  where c1.id=c2.Capital and   c3.CountryCode= c2.Code and  c3.Language='English' and   c3.Percentage >=50");
-	//world06.add("select Name, Capital from Country where Code in (select CountryCode from CountryLanguage where Language = 'English' and Percentage >= 50.0)");
+	world06.add("select Country.Name,Country.Capital from Country,CountryLanguage where CountryLanguage.Language='English' AND Country.Population>=(Country.Population*0.5) AND Country.code=CountryLanguage.CountryCode");
+	world06.add("select c2.Name Country, c1.Name Capital from City c1, Country c2, CountryLanguage c3  where c1.ID=c2.Capital and c3.CountryCode= c2.Code and c3.Language='English' and c3.Percentage >=50");
+	world06.add("SELECT Name, Capital FROM Country, CountryLanguage WHERE Country.Code = CountryLanguage.CountryCode    AND CountryLanguage.Percentage >= 50 AND Language = 'ENGLISH'");
 	world06.add("SELECT C.Name,C.LocalName FROM City CC,Country C,CountryLanguage CCC WHERE CC.CountryCode=C.Code AND C.Code=CCC.CountryCode AND CCC.Language='English' AND C.Population > 50");
 	world06.add("SELECT Name ,Capital FROM Country , CountryLanguage where Language = 'English' and Percentage >= 50");
 	
-	//world07.add("select Name,Population from City where Population<200000 and CountryCode in(select CountryCode from CountryLanguage where Language like 'Spanish')"); // can rewrite it, and no syntax error... but the rewritten query is almost the same, because it has no foreign keys.
+	world07.add("select a.Name,a.Population from City a,Country b,CountryLanguage c where a.CountryCode=b.Code and a.CountryCode=c.CountryCode and b.Continent='Europe' and c.Language='Spanish' and c.IsOfficial='T' and a.Population< 200000");
 	world07.add("select b.Name,b.Population from Country a ,City b, CountryLanguage c where a.Capital = b.ID and a.Continent = 'Europe' and a.Code = c.CountryCode and c.Language = 'Spanish' and c.IsOfficial = 'T'");
 	world07.add("select City.Name,City.Population from City, Country,CountryLanguage where (Country.Code = City.CountryCode) and (Country.Code = CountryLanguage.CountryCode) and  (CountryLanguage.Language = 'Spanish') and (Country.Continent = 'Europe') and (City.Population < 200000)");
 	world07.add("select C.Name,C.Population from City C,Country CU,CountryLanguage CL where CL.Language='Spanish' and CU.Region='Europe' and C.Population<200000");
 	world07.add("Select City.Name, City.Population  From City, Country, CountryLanguage   Where Country.Continent = 'Europe' and CountryLanguage.Language = 'Spanish' and Country.Population < 200000  and CountryLanguage.CountryCode = Country.Code and City.CountryCode = Country.Code");
-	//world07.add("SELECT Cy.Name, Cy.Population FROM City Cy  WHERE Cy.CountryCode IN (Select C.Code FROM Country C, CountryLanguage CL WHERE C.Code = CL.CountryCode AND CL.IsOfficial='T' AND CL.Language='Spanish' AND C.Continent='Europe') AND Cy.Population<200000");
-	world07.add("select c1.name Name, c1.population Population  from City c1, Country c2, CountryLanguage c3  where c1.id=c2.Capital and  c3.CountryCode= c2.Code and  c2.Continent='Europe' and   c3.language='Spanish' and   c1.Population<200000");
-	//world07.add("select Name, Population from City where CountryCode in (select CountryCode from CountryLanguage where Language = 'Spanish') and Population <= 200000");// can rewrite it and no syntax error... don't need to rewrite the sub-SPJ because CountryLanguage has no foreign keys
+	world07.add("SELECT City.Name, City.Population from City, CountryLanguage, Country where Country.Continent='Europe'AND Country.Population<200000 AND Country.Code=City.CountryCode AND City.CountryCode=CountryLanguage.CountryCode AND CountryLanguage.Language='Spanish'");
+	world07.add("select c1.Name Name, c1.Population Population  from City c1, Country c2, CountryLanguage c3  where c1.ID=c2.Capital and c3.CountryCode= c2.Code and c2.Continent='Europe' and c3.language='Spanish' and c1.Population<200000");
+	world07.add("SELECT City.Name, City.population  FROM City,  CountryLanguage,  Country  WHERE Country.Code = CountryLanguage.CountryCode  AND Country.Continent= 'Europe'  AND City.CountryCode = Country.code  AND Language = 'Spanish' AND IsOfficial = 'T'");
 	world07.add("SELECT C.Name,C.Population FROM City C,Country CC,CountryLanguage CL WHERE C.CountryCode=CC.Code AND CL.CountryCode=C.CountryCode AND CC.Continent='Europe' AND CL.Language='Spanish' AND CL.IsOfficial='T' AND  C.Population < 200000");
 	world07.add("Select Name , Population FROM Country , CountryLanguage where Continent = 'Europe' and Language = 'Spanish' and IsOfficial = 'T' and Population  < 200000");
 	
@@ -219,10 +219,10 @@ public class SQLTurkHITs {
 	tpch04.add("SELECT A.O_TOTALPRICE FROM ORDERS AS A,LINEITEM WHERE A.O_TOTALPRICE>=530000 AND LINEITEM.L_DISCOUNT=0");
 	tpch04.add("SELECT O_ORDERKEY, O_ORDERSTATUS FROM ORDERS, LINEITEM WHERE  L_ORDERKEY = O_ORDERKEY AND O_TOTALPRICE > 530000 AND L_DISCOUNT = 0");
 	tpch04.add("select O_ORDERKEY,O_ORDERSTATUS FROM ORDERS O,LINEITEM L where (O_TOTALPRICE > 530000 AND L_DISCOUNT=0 AND O_ORDERKEY=L_ORDERKEY)");
-	tpch04.add("select O.O_ORDERKEY,O.O_ORDERSTATUS from ORDERS O,LINEITEM LI where O_TOTALPRICE>530000 and LI.L_ORDERKEY=O.O_ORDERKEY and LI.L_DISCOUNT=0");
-	//tpch04.add("select O_CUSTKEY,O_ORDERSTATUS from ORDERS where O_TOTALPRICE<530000 in(select L_DISCOUNT from LINEITEM where L_DISCOUNT=0)");
+	tpch04.add("SELECT O_ORDERKEY, O_ORDERSTATUS FROM ORDERS, LINEITEM WHERE O_ORDERKEY = L_ORDERKEY AND L_DISCOUNT = 0 AND O_TOTALPRICE > 530000");
+	tpch04.add("SELECT  O_ORDERKEY, O_ORDERSTATUS  FROM ORDERS,LINEITEM  WHERE  ORDERS.O_TOTALPRICE > 530000  AND LINEITEM.L_ORDERKEY = ORDERS.O_ORDERKEY  AND L_DISCOUNT = 0");
 	tpch04.add("SELECT O_ORDERKEY, O_ORDERSTATUS FROM ORDERS, LINEITEM WHERE O_TOTALPRICE>530000 AND L_DISCOUNT=0");
-	tpch04.add("select L_ORDERKEY,O_ORDERSTATUS From ORDERS , LINEITEM  where L_ORDERKEY=O_ORDERKEY and  O_TOTALPRICE > 530000 and  L_DISCOUNT = 0");
+	tpch04.add("select L_ORDERKEY,O_ORDERSTATUS From ORDERS, LINEITEM  where L_ORDERKEY=O_ORDERKEY and  O_TOTALPRICE > 530000 and L_DISCOUNT = 0");
 	tpch04.add("SELECT ORDERS.O_ORDERKEY, ORDERS.O_ORDERSTATUS FROM ORDERS,LINEITEM WHERE ORDERS.O_TOTALPRICE>530000 AND LINEITEM.L_DISCOUNT=0 AND LINEITEM.L_ORDERKEY=ORDERS.O_ORDERKEY");
 	// with sample
 	tpch05.add("select S_NAME , S_PHONE FROM SUPPLIER , NATION where N_NAME = 'CHINA' and S_ACCTBAL > 9000");
@@ -230,8 +230,8 @@ public class SQLTurkHITs {
 	tpch05.add("SELECT A.S_NAME,A.S_PHONE FROM SUPPLIER AS A,CUSTOMER AS B WHERE B.C_ADDRESS='CHINA' AND B.C_ACCTBAL>=9000");
 	tpch05.add("SELECT S_NAME, S_PHONE, S_ACCTBAL FROM SUPPLIER, NATION  WHERE N_NATIONKEY = S_NATIONKEY AND N_NATIONKEY = 'CHINA' AND S_ACCTBAL > 9000");
 	tpch05.add("select S_NAME,S_PHONE from SUPPLIER S,NATION N where (S_ACCTBAL >= 9000 and N_NAME='CHINA' and S_NATIONKEY=N_NATIONKEY)");
-	//tpch05.add("select S.S_NAME,S.S_PHONE from SUPPLIER S  where S.S_ACCTBAL>9000 and S.S_NATIONKEY in (select N.N_NATIONKEY from NATION N,REGION R where R.R_NAME='CHINA' and N.N_REGIONKEY=R.R_REGIONKEY)"); // don't rewrite the sub-SPJ. However, the result (no matter rewritting it or not) is empty set
-	//tpch05.add("select S_NAME,S_PHONE from SUPPLIER where S_ACCTBAL>9000 in(select N_NATIONKEY from NATION where N_NAME like 'CHINA')"); // don't rewrite sub-SPJ, can rewrite and run
+	tpch05.add("SELECT S_NAME, S_PHONE FROM NATION, SUPPLIER WHERE N_NATIONKEY= S_NATIONKEY AND  N_NAME = 'China'  AND  S_ACCTBAL > 9000");
+	tpch05.add("SELECT S_NAME,S_PHONE  FROM SUPPLIER,NATION  WHERE N_NAME ='CHINA'  AND S_NATIONKEY = N_NATIONKEY  AND S_ACCTBAL > 9000");
 	tpch05.add("SELECT S_NAME, S_PHONE FROM SUPPLIER, NATION WHERE N_NAME='CHINA' AND S_ACCTBAL>9000");
 	tpch05.add("select S_NAME,S_PHONE from SUPPLIER ,NATION   where N_NATIONKEY=S_NATIONKEY and  N_NAME = 'CHINA' and  S_ACCTBAL > 9000");
 	tpch05.add("SELECT SUPPLIER.S_NAME, SUPPLIER.S_PHONE FROM SUPPLIER, NATION  WHERE NATION.N_NATIONKEY=SUPPLIER.S_NATIONKEY AND NATION.N_NAME='CHINA' AND SUPPLIER.S_ACCTBAL>9000");
@@ -239,9 +239,9 @@ public class SQLTurkHITs {
 	tpch06.add("SELECT C_NAME , C_ACCTBAL FROM CUSTOMER , NATION  WHERE N_NAME ='EUROPE' AND C_ACCTBAL > 9990");
 	tpch06.add("SELECT C_NAME, C_ACCTBAL FROM CUSTOMER C, NATION N, REGION R  WHERE C.C_ACCTBAL>9990  AND C.c_NATIONKEY=N.N_NATIONKEY  AND N.N_REGIONKEY=R.R_REGIONKEY  AND lower(R_NAME)='europe'"); // good query
 	tpch06.add("SELECT C_NAME,C_ACCTBAL FROM CUSTOMER WHERE C_ADDRESS='EUROPE'  AND C_ACCTBAL>=9990");
-	//tpch06.add("select C_NAME, C_ACCTBAL   from CUSTOMER  where C_NATIONKEY in  (select N_NATIONKEY from NATION where N_NAME = 'EUROPE')"); // don't rewrite sub-SPJ, but empty set no matter rewritting it or not...
-	//tpch06.add("select C.C_NAME,C.C_ACCTBAL from CUSTOMER C where C_NATIONKEY in (select N.N_NATIONKEY from NATION N,REGION R where R.R_NAME='EUROPE') and C.C_ACCTBAL>9990");
-	tpch06.add("select C_NAME,C_ACCTBAL from CUSTOMER where C_NATIONKEY like 'EUROPE' and C_ACCTBAL>9990");
+	tpch06.add("select a.C_NAME,a.C_ACCTBAL from CUSTOMER a,NATION b where a.C_NATIONKEY=b.N_NATIONKEY and b.N_NAME='Europe' and a.C_ACCTBAL >9990");
+	tpch06.add("select C_NAME,C_ACCTBAL from CUSTOMER,NATION where CUSTOMER.C_NATIONKEY= NATION.N_NATIONKEY AND NATION.N_NAME='EUROPE' AND CUSTOMER.C_ACCTBAL>9990");
+	tpch06.add("SELECT C_NAME, C_ACCTBAL  FROM CUSTOMER,  NATION,  REGION   WHERE C_NATIONKEY = N_NATIONKEY AND N_REGIONKEY = R_REGIONKEY AND R_NAME = 'EUROPE'  AND C_ACCTBAL > 9990");
 	tpch06.add("SELECT CUSTOMER.C_NAME,NATION.N_NAME FROM CUSTOMER,NATION WHERE NATION.N_NAME='EUROPE' AND CUSTOMER.C_ACCTBAL>9990");
 	tpch06.add("SELECT C_NAME,C_ACCTBAL FROM CUSTOMER WHERE C_ADDRESS = 'EUROPE' AND C_ACCTBAL > 9990");
 	tpch06.add("SELECT C_NAME  FROM CUSTOMER C, NATION N  WHERE C.C_NATIONKEY = N.N_NATIONKEY  AND N.N_NAME = 'EUROPE'  AND C_ACCTBAL > 9990");
@@ -250,9 +250,9 @@ public class SQLTurkHITs {
 	tpch07.add("SELECT S_NAME , S_PHONE FROM SUPPLIER , PART WHERE S_ACCTBAL > 1000 AND 	P_RETAILPRICE > 2096");
 	tpch07.add("SELECT S_NAME, S_PHONE FROM SUPPLIER, PARTSUPP WHERE PS_SUPPKEY=S_SUPPKEY  AND S_ACCTBAL>1000  AND PS_SUPPLYCOST>2096");
 	tpch07.add("SELECT A.S_NAME,A.S_PHONE FROM SUPPLIER AS A,PART AS B WHERE A.S_ACCTBAL>1000 AND B.P_RETAILPRICE>2096");
-	//tpch07.add("select S_NAME, S_PHONE from SUPPLIER  where (S_ACCTBAL > '1000' and   S_SUPPKEY in   (select PS_SUPPKEY from PARTSUPP where PS_PARTKEY in (  select P_PARTKEY from PART where P_RETAILPRICE > '2096')))"); // nested too much...
-	//tpch07.add("select S.S_NAME,S.S_PHONE from SUPPLIER S where S.S_ACCTBAL>1000.0 and S.S_SUPPKEY in (select PS.PS_SUPPKEY from PARTSUPP PS,PART P where P.P_PARTKEY=PS.PS_PARTKEY and P.P_RETAILPRICE>2096.0)"); // nested
-	//tpch07.add("select S_NAME,S_PHONE from SUPPLIER WHERE S_ACCTBAL>1000 in (select PS_SUPPKEY from PARTSUPP where PS_SUPPLYCOST>2096)"); // nested
+	tpch07.add("select a.S_NAME,a.S_PHONE from SUPPLIER a,PARTSUPP b where a.S_SUPPKEY=b.PS_SUPPKEY and a.S_ACCTBAL>1000 and b.PS_SUPPLYCOST>2096");
+	tpch07.add("select SUPPLIER.S_NAME,SUPPLIER.S_PHONE from SUPPLIER,PARTSUPP,PART where SUPPLIER.S_ACCTBAL>1000 AND PART.P_RETAILPRICE>2096 AND PARTSUPP.PS_SUPPKEY=SUPPLIER.S_SUPPKEY AND PARTSUPP.PS_PARTKEY=PART.P_PARTKEY");
+	tpch07.add("SELECT S_NAME, S_PHONE  FROM SUPPLIER,  PARTSUPP,  PART WHERE S_ACCTBAL > 1000 AND S_SUPPKEY = PS_SUPPKEY AND PS_PARTKEY = P_PARTKEY  AND P_RETAILPRICE > 2096");
 	tpch07.add("SELECT S_NAME,S_PHONE FROM SUPPLIER WHERE S_ACCTBAL >1000");
 	tpch07.add("SELECT S_NAME,S_PHONE FROM SUPPLIER, PARTSUPP WHERE SUPPLIER.S_ACCTBAL > 1000 AND PARTSUPP.PS_SUPPLYCOST > 2096");
 	tpch07.add("SELECT S.S_NAME, S.S_PHONE  FROM SUPPLIER  S, PART P, PARTSUPP PS  WHERE S_ACCTBAL > 1000   AND P.P_PARTKEY = PS.PS_PARTKEY  AND S.S_SUPPKEY = PS.PS_SUPPKEY  AND P_RETAILPRICE > 2096");
