@@ -140,6 +140,17 @@ class IncrementalFDPlus {
 	stmt.close();
 	resultTupleSets.clear();
 	resultTupleSets = null;
+	
+	// request gc
+	System.gc();
+	// pasuse for 10 sec, allowing enough time for gc
+	try {
+	    Thread.sleep(10000);
+	} catch (InterruptedException e) {
+	    e.printStackTrace();
+	}
+//	System.runFinalization();
+	
 	return tempTableName;
     }
 
