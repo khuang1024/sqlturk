@@ -231,8 +231,12 @@ public class Connected {
 		}
 	    }
 	}
+	witnessSetOfTuple1.clear();
+	witnessSetOfTuple2.clear();
 	witnessSetOfTuple1 = null;
 	witnessSetOfTuple2 = null;
+	System.gc();
+	System.gc();
 	// System.out.println("Violate condition 2: No minial witness set in common.");
 	return false;
     }
