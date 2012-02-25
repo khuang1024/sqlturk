@@ -138,6 +138,7 @@ class IncrementalFDPlus {
 	}
 	System.out.println("debug:\t--------------------------------------\n\n");
 	stmt.close();
+	resultTupleSets.clear();
 	resultTupleSets = null;
 	return tempTableName;
     }
