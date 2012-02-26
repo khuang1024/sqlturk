@@ -115,16 +115,20 @@ http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 
 -------------------------------------------------------------------------
 complemental HITs
+
+@Done
 2PWBDPGFL6VCJELZE44WMOV2XQL4JB
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 query index:    2, 3
 #assignment:    10
 
+@Done
 2YDKCJ011K27Y1TZ77N658N5BMQ9B9
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 query index:    4, 5
 #assignment:    10
 
+@Done
 2UNNQYN5F3Q0DYRJL3EC0YB5E75D9N
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 query index:    6, 7
@@ -146,21 +150,47 @@ http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 -------------------------------------------------------------------------
 complement
 
+@Done
 2XXL6VCPWZ9RHVI8BCSSBSN4ILD9OH
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 query index:    4, 5
 #assignment:    10
 
+@Done
 2FPQEOZFYQS16AFCBWORHS4JHTBHKV
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 query index:    6, 7
 #assignment:    10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 *************************************************************************
 *************************************************************************
 tpch, without Master -- complement
 This is HIT is for ranking the new set of (tpch, no master, 0, 1), since 
 the previous submission has an invalid query which contains keyword "IN".
+@Deprecated
 2BXJ51Y7QEOZ9GCIOTJTQOFYVAECFD
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 
