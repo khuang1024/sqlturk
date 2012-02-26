@@ -138,7 +138,7 @@ public class SQLTurkHITs {
 	
 	world05.add("select a.Name from City a,Country b,CountryLanguage c where a.CountryCode=c.CountryCode and a.CountryCode=b.Code and c.Language='Chinesse' and b.Population > 3000000");
 	world05.add("select b.Name from City b, CountryLanguage c where c.CountryCode = b.CountryCode and c.Language = 'Chinese' and b.Population > 3000000");
-	world05.add("select name from City where Population>=3000000");
+	world05.add("select Name from City where Population>=3000000");
 	world05.add("select City.Name from City, CountryLanguage where (City.CountryCode = CountryLanguage.CountryCode) and (CountryLanguage.Language = 'Chinese') and (City.Population > 3000000)"); // the query is syntactically right and can be rewritten, can we have its provenance? and do we need to rewrite the sub-SPJ?
 	world05.add("select C.Name from City C,Country CU,CountryLanguage CL where CU.Population>3000000 and CL.Language='Chinese'");
 	world05.add("SELECT Cy.Name from City Cy, Country C, CountryLanguage CL where Cy.CountryCode = C.Code and C.Code=CL.CountryCode  and CL.Language='Chinese'  and Cy.population>3000000");
