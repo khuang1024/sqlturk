@@ -265,10 +265,11 @@ class IncrementalFDPlus {
 			}
 			
 			tup = null;
-			System.gc();
+			
 		    }
 		}
 	    }
+//	    System.gc();
 //	    try {
 //		Thread.sleep(2000);
 //	    } catch (InterruptedException e) {
@@ -349,6 +350,13 @@ class IncrementalFDPlus {
 	}
 
 	inComplete = null;
+	
+	System.gc();
+	try {
+	    Thread.sleep(2000);
+	} catch (InterruptedException e) {
+	    e.printStackTrace();
+	}
 	return complete;
     }
 
