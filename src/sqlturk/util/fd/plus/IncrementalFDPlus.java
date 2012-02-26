@@ -213,6 +213,9 @@ class IncrementalFDPlus {
 	    throws SQLException {
 	ArrayList<TupleSet> complete = new ArrayList<TupleSet>();
 	ArrayList<TupleSet> inComplete = new ArrayList<TupleSet>();
+	
+	Runtime rt = Runtime.getRuntime();
+	int mb = 1024*1024;
 
 	for (Tuple tuple : relation.getTuples()) {
 	    // System.out.println("debug:\t" + tuple.gettValuesString());
@@ -241,10 +244,12 @@ class IncrementalFDPlus {
 	    // line 7
 	    for (Relation rel : allResultRelations) {
 
+		System.out.println("debug:\tfor loop\tallResRel\tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
 		// exclude the target relation itself
 		if (!rel.getRelationName().equals(relation.getRelationName())) {
 		    for (Tuple tup : rel.getTuples()) {
 
+			System.out.println("debug:\tfor loop\trelTuple\tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
 			// exclude the tuples already in tupleSet
 			if (!tupleSet.hasTuple(tup)) {
 			    // when after adding tup to tupleSet, tupeSet is
@@ -254,11 +259,7 @@ class IncrementalFDPlus {
 			    if (tupleSet.isConnectedWith(tup,
 				    Parameters.ROWID_ATT_NAME,
 				    Parameters.CONN_REL_NAME, dbConn)) {
-				System.out.println("debug:\t"
-					+ "add new tuple ["
-					+ tup.gettValuesString()
-					+ "] to tupleset ["
-					+ tupleSet.getPrintInfo() + "]");
+				System.out.println("debug:\t add new tuple [" + tup.gettValuesString() + "] to tupleset [" + tupleSet.getPrintInfo() + "]");
 				tupleSet.addTuple(tup);
 			    }
 			}
@@ -266,6 +267,7 @@ class IncrementalFDPlus {
 		}
 	    }
 
+	    System.out.println("debug:\tfor rest\t----\tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
 	    // deal with the rest tuples: line 9
 	    for (Relation rel : allResultRelations) {
 
@@ -335,6 +337,7 @@ class IncrementalFDPlus {
 		complete.add(tupleSet);
 	    }
 	    tupleSet = null;
+	    System.out.println("debug:\twhile loop\t-----\tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
 	}
 
 	inComplete = null;
