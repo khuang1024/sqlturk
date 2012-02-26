@@ -385,7 +385,7 @@ public class TableauxRewriter {
 	stmt.close();
 
 	// debug
-	ColumnInfo.printColumnInfo();
+//	ColumnInfo.printColumnInfo();
     }
 
     private static void createSelectClauseAliasPairRelation(Connection dbConn)
