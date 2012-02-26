@@ -119,7 +119,7 @@ public class SQLTurkHITs {
 	world03.add("select Country.Name,CountryLanguage.Language from Country,CountryLanguage where Country.Code = CountryLanguage.CountryCode");
 	world03.add("select C.Name,CL.Language from Country C,CountryLanguage CL where C.Code=CL.CountryCode");
 	world03.add("select c.Name, cl.Language from Country c, CountryLanguage cl  where c.Code=cl.CountryCode");
-	world03.add("SELECT Country.Name,CountryLanguage.Language FROM Country,CountryLanguage WHERE Country.Code = CountryLanguage.CountryCode ORDER BY Country.Name"); // correct
+	world03.add("SELECT Country.Name,CountryLanguage.Language FROM Country,CountryLanguage WHERE Country.Code = CountryLanguage.CountryCode"); // correct
 	world03.add("select ctry.Name,lan.Language from Country as ctry, CountryLanguage as lan where lan.CountryCode = ctry.Code");
 	world03.add("SELECT Country.Name, CountryLanguage.Language   FROM Country, CountryLanguage  WHERE Country.Code = CountryLanguage.CountryCode");
 	world03.add("Select c.Name,cl.Language from Country c,CountryLanguage cl where c.Code=cl.CountryCode");
