@@ -266,13 +266,13 @@ class IncrementalFDPlus {
 			
 			tup = null;
 			System.gc();
-			try {
-			    Thread.sleep(2000);
-			} catch (InterruptedException e) {
-			    e.printStackTrace();
-			}
 		    }
 		}
+	    }
+	    try {
+		Thread.sleep(2000);
+	    } catch (InterruptedException e) {
+		e.printStackTrace();
 	    }
 
 	    System.out.println("debug:\tfor rest\t----\tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
