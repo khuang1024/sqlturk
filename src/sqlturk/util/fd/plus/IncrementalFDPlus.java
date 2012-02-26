@@ -263,6 +263,14 @@ class IncrementalFDPlus {
 				tupleSet.addTuple(tup);
 			    }
 			}
+			
+			tup = null;
+			System.gc();
+			try {
+			    Thread.sleep(2000);
+			} catch (InterruptedException e) {
+			    e.printStackTrace();
+			}
 		    }
 		}
 	    }
