@@ -166,10 +166,10 @@ public class Parameters {
     public static final String COLUMN_INFO_REL_NAME = "COLUMN_INFO";
     
     // intersection
-    public static String INTERSECTION_REL_NAME = "INTERSECTION";
+    public static String INTERSECTION_REL_NAME = "INTERSECTION_TABLE";
     
     // union
-    public static String UNION_REL_NAME = "UNION";
+    public static String UNION_REL_NAME = "UNION_TABLE";
     
     // standard answer table
     public static final String STANDARD_ANSWER_REL_NAME = "STANDARD_TABLE";
