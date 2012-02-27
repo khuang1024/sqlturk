@@ -16,6 +16,7 @@ public class Experiment {
 	String datasetName = args[1];
 	int queryIndex = Integer.parseInt(args[2]);
 	int topN = Integer.parseInt(args[3]);
+	int limit = Integer.parseInt(args[4]);
 
 	int[] worldQuery0 = { 3, 1, 5, 6, 2, 8, 9, 10, 4, 7 };
 	int[] worldQuery1 = { 1, 5, 3, 7, 6, 2, 9, 8, 10, 4 };
@@ -48,10 +49,10 @@ public class Experiment {
 
 	if (datasetName.equals("world")) {
 	    SQLTurk.run(type, "world", queryIndex, topN, 10,
-		    worldCandidates[queryIndex]);
+		    worldCandidates[queryIndex], limit);
 	} else if (datasetName.equals("tpch")) {
 	    SQLTurk.run(type, "tpch", queryIndex, topN, 10,
-		    tpchCandidates[queryIndex]);
+		    tpchCandidates[queryIndex], limit);
 	} else {
 	    throw new RuntimeException("Invalid dataset name.");
 	}

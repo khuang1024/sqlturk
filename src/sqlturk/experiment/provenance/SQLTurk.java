@@ -63,7 +63,7 @@ public class SQLTurk {
      * @throws IOException
      */
     public static void run(String type, String datasetName, int queryIndex,
-	    int topN, int nCandidates, int[] candidates) throws SQLException,
+	    int topN, int nCandidates, int[] candidates, int limit) throws SQLException,
 	    IOException {
 
 	System.out.println("SQLTurk is running.\n\n");
@@ -159,7 +159,7 @@ public class SQLTurk {
 	    tempQueries = TableauxRewriter.getRewriteQueries(
 		    originalQueries, dbConn);
 	    for (int i = 0; i < tempQueries.size(); i++) {
-		rewriteQueries.add(tempQueries.get(i) + " ORDER BY RAND() LIMIT " + Parameters.LIMIT_NUM);
+		rewriteQueries.add(tempQueries.get(i) + " ORDER BY RAND() LIMIT " + limit);
 	    }
 	    System.out.println("Finish rewriting queries.\n");
 
