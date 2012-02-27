@@ -53,7 +53,12 @@ public class Metric {
 		+ "]\t sum = " + sum);
 	System.out.println("debug:\t[" + relationName1 + ", " + relationName2
 		+ "]\t size = " + size);
-	return sum / size;
+	if (size == 0) { // if the resulting table is null
+	    return 0;
+	} else {
+	    return sum / size;
+	}
+	
     }
 
     private static double sim(Tuple tup, String relationName, Connection dbConn)
