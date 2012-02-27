@@ -151,6 +151,12 @@ http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 complement
 
 @Done
+2BXJ51Y7QEOZ9GCIOTJTQOFYVAECFD
+http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HG
+query index:    0, 1
+#assignment:    10
+
+@Done
 2XXL6VCPWZ9RHVI8BCSSBSN4ILD9OH
 http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
 query index:    4, 5
@@ -187,12 +193,7 @@ query index:    6, 7
 
 *************************************************************************
 *************************************************************************
-tpch, without Master -- complement
-This is HIT is for ranking the new set of (tpch, no master, 0, 1), since 
-the previous submission has an invalid query which contains keyword "IN".
-@Deprecated
-2BXJ51Y7QEOZ9GCIOTJTQOFYVAECFD
-http://www.mturk.com/mturk/preview?groupId=2EDO2L92HECW4OJTL53CJ0CP5X6HGE
+E
 
 *************************************************************************
 ***********************    Master Deprecated   **************************
