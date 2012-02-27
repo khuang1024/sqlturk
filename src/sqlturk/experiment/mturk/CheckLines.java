@@ -37,8 +37,8 @@ public class CheckLines {
 	System.out.println("World");
 	for (int i = 0; i < 8; i++) {
 	    System.out.println("\tQuery " + i);
-//	    ArrayList<String> worlds = TableauxRewriter.getRewriteQueries(SQLTurkHITs.get("world", i), dbConn);
-	    ArrayList<String> worlds = SQLTurkHITs.get("world", i);
+	    ArrayList<String> worlds = TableauxRewriter.getRewriteQueries(SQLTurkHITs.get("world", i), dbConn);
+//	    ArrayList<String> worlds = SQLTurkHITs.get("world", i);
 	    for (int j = 0; j < worlds.size(); j++) {
 //		ResultSet rs = stmt.executeQuery(worlds.get(j));
 		ResultSet rs = stmt.executeQuery(worlds.get(j) + " ORDER BY RAND() LIMIT 100");
@@ -53,8 +53,8 @@ public class CheckLines {
 	System.out.println("TPCH");
 	for (int i = 0; i < 8; i++) {
 	    System.out.println("\tQuery " + i);
-//	    ArrayList<String> tpch = TableauxRewriter.getRewriteQueries(SQLTurkHITs.get("tpch", i), dbConn);
-	    ArrayList<String> tpch = SQLTurkHITs.get("tpch", i);
+	    ArrayList<String> tpch = TableauxRewriter.getRewriteQueries(SQLTurkHITs.get("tpch", i), dbConn);
+//	    ArrayList<String> tpch = SQLTurkHITs.get("tpch", i);
 	    for (int j = 0; j < tpch.size(); j++) {
 //		ResultSet rs = stmt.executeQuery(tpch.get(j));
 		ResultSet rs = stmt.executeQuery(tpch.get(j) + " ORDER BY RAND() LIMIT 100");
