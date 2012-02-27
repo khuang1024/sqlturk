@@ -117,16 +117,18 @@ def get_all_hits():
     f = open ("ranking_answer_log.csv")
     lines = f.read().split("\n")
     for line in lines:
-        hit_id = re.split("&", line)[0]
-        if hit_id not in hit_ids and hit_id:
-            hit_ids.append(hit_id)
+        if re.search("q1\[\]=", line):
+            hit_id = re.split("&", line)[0]
+            if hit_id not in hit_ids and hit_id:
+                hit_ids.append(hit_id)
+                #print(hit_id);
     return hit_ids
                 
-def median_rank(hit_id, top):
+def median_rank(hit_id, nRand):
     '''This function runs the median rank algorithm for a single HIT, including
     both the first and second questions of a HIT.'''
-    ranks_p1 = filter_ranks(extract_into_list(hit_id, "1"), random_keys(top))
-    ranks_p2 = filter_ranks(extract_into_list(hit_id, "2"), random_keys(top))
+    ranks_p1 = filter_ranks(extract_into_list(hit_id, "1"), random_keys(nRand))
+    ranks_p2 = filter_ranks(extract_into_list(hit_id, "2"), random_keys(nRand))
     #print(ranks_p1)
     #print(ranks_p2)
     print(hit_id + "\tq1\t" + str(atom_median_rank(ranks_p1)))
