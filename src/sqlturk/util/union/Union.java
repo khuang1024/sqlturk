@@ -29,8 +29,12 @@ public class Union {
 	ArrayList<String> allProjectedRewriteResultTables = Projection
 		.getAllProjectedRewriteResultTables(dbConn);
 
-	// when there is no common attribute for resulting tuples
-	if (allProjectedRewriteResultTables.isEmpty()) {
+ 	if (allProjectedRewriteResultTables == null) {
+	    stmt.executeUpdate("CREATE TABLE " + Parameters.UNION_REL_NAME
+		    + " (INFO VARCHAR (30)) ");
+	    stmt.executeUpdate("INSERT INTO " + Parameters.UNION_REL_NAME
+		    + " VALUES ('Columns dismatch')");
+	} else 	if (allProjectedRewriteResultTables.isEmpty()) {// when there is no common attribute for resulting tuples
 	    stmt.executeUpdate("CREATE TABLE " + Parameters.UNION_REL_NAME
 		    + " (INFO VARCHAR (30)) ");
 	    stmt.executeUpdate("INSERT INTO " + Parameters.UNION_REL_NAME
