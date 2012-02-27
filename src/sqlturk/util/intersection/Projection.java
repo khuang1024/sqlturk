@@ -38,6 +38,12 @@ public class Projection {
 		.getAllCommonAttributes(dbConn);
 	ArrayList<String> allRewriteResultTables = PreProcessor
 		.getRewriteResultTables(dbConn);
+	
+	// debug:
+	if (!isSizeMatch(allCommonAttributes, allRewriteResultTables, dbConn)) {
+	    allProjectedRewriteResultTables = null;
+	    return;
+	}
 
 	// TODO We only consider common attribute, rather than equivalent
 	// attirbute.
@@ -120,6 +126,31 @@ public class Projection {
 	}
 
 	return allCommonAttributes;
+    }
+    
+    private static boolean isSizeMatch(ArrayList<String> allCommonAttributes, 
+	    ArrayList<String> allRewriteResultTables, Connection dbConn) throws SQLException {
+	int relationColumnSize = 0;
+	Statement stmt = dbConn.createStatement();
+	for (String relationName : allRewriteResultTables) {
+	    int count = 0;
+	    ResultSet rs = stmt.executeQuery("DESC " + relationName);
+	    while (rs.next()) {
+		count++;
+	    }
+	    if (relationColumnSize == 0) {
+		relationColumnSize = count;
+	    } else {
+		if (relationColumnSize != count) {
+		    return false;
+		}
+	    }
+	}
+	if(allCommonAttributes.size() != relationColumnSize) {
+	    return false;
+	} else {
+	    return true;
+	}
     }
 
     /**
