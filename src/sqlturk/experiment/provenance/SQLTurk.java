@@ -97,9 +97,9 @@ public class SQLTurk {
 	// rename the relation names
 	String header = datasetName.toUpperCase() + "_QUERY" + queryIndex
 		+ "_TOP" + topN + "_FROM" + nCandidates;
-	Parameters.UNION_REL_NAME = header + "_UNION";
-	System.out.println(Parameters.UNION_REL_NAME);
-	Parameters.INTERSECTION_REL_NAME = header + "_INTERSECTION";
+//	Parameters.UNION_REL_NAME = header + "_UNION";
+//	System.out.println(Parameters.UNION_REL_NAME);
+//	Parameters.INTERSECTION_REL_NAME = header + "_INTERSECTION";
 	Parameters.FD_REL_NAME = header + "_FD";
 	Parameters.FD_PLUS_REL_NAME = header + "_FD_PLUS";
 
@@ -146,7 +146,8 @@ public class SQLTurk {
 	    // clean old tables
 	    System.out
 		    .println("Start clearing old intermediate and result tables ......");
-	    Cleaner.dropIntermediateTables(dbConn);
+//	    Cleaner.dropIntermediateTables(dbConn);
+	    Cleaner.dropAll(dbConn);
 	    System.out
 		    .println("Finish clearing old intermediate and result tables.\n");
 
@@ -190,11 +191,11 @@ public class SQLTurk {
 			Parameters.INTERSECTION_REL_NAME, dbConn);
 		double stdUnion = Metric.sim(
 			Parameters.STANDARD_ANSWER_REL_NAME,
-			Parameters.INTERSECTION_REL_NAME, dbConn);
+			Parameters.UNION_REL_NAME, dbConn);
 		double intersecStd = Metric.sim(
 			Parameters.INTERSECTION_REL_NAME,
 			Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
-		double unionStd = Metric.sim(Parameters.INTERSECTION_REL_NAME,
+		double unionStd = Metric.sim(Parameters.UNION_REL_NAME,
 			Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
 		appendToLog(header, Parameters.PERFORMANCE_LOG_NAME);
 		appendToLog("Intersection\tPrecision\t" + intersecStd
@@ -253,7 +254,8 @@ public class SQLTurk {
 	     */
 	    System.out
 		    .println("Start clearing intermediate tables ............");
-	    Cleaner.dropIntermediateTables(dbConn);
+//	    Cleaner.dropIntermediateTables(dbConn);
+	    Cleaner.dropAll(dbConn);
 	    System.out.println("Finish clearing intermediate tables.\n");
 
 	    dbConn.close();
@@ -267,10 +269,10 @@ public class SQLTurk {
 	}
 
 	// rollback the name
-	Parameters.UNION_REL_NAME = "UNION";
-	Parameters.INTERSECTION_REL_NAME = "INTERSECTION";
-	Parameters.FD_REL_NAME = "FD";
-	Parameters.FD_PLUS_REL_NAME = "FD_PLUS";
+//	Parameters.UNION_REL_NAME = "UNION_TABLE";
+//	Parameters.INTERSECTION_REL_NAME = "INTERSECTION_TABLE";
+//	Parameters.FD_REL_NAME = "FD";
+//	Parameters.FD_PLUS_REL_NAME = "FD_PLUS";
 
     }
 
