@@ -154,9 +154,13 @@ public class SQLTurk {
 	     * rewrite the queries
 	     */
 	    ArrayList<String> rewriteQueries = new ArrayList<String>();
+	    ArrayList<String> tempQueries = new ArrayList<String>();
 	    System.out.println("Start rewriting queries ...............");
-	    rewriteQueries = TableauxRewriter.getRewriteQueries(
+	    tempQueries = TableauxRewriter.getRewriteQueries(
 		    originalQueries, dbConn);
+	    for (int i = 0; i < tempQueries.size(); i++) {
+		rewriteQueries.add(tempQueries.get(i) + " ORDER BY RAND() LIMIT " + Parameters.LIMIT_NUM);
+	    }
 	    System.out.println("Finish rewriting queries.\n");
 
 	    /*

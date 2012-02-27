@@ -188,4 +188,6 @@ public class Parameters {
     
     public static final String PERFORMANCE_LOG_NAME = "performance.tsv";
     
+    public static final int LIMIT_NUM = 200;
+    
 }
