@@ -43,7 +43,8 @@ public class DropUnion {
 	    for (String union : unions) {
 		stmt.executeUpdate("DROP TABLE " + union);
 	    }
-	    
+	    rs.close();
+	    stmt.close();
 	    
 	} catch (InstantiationException e) {
 	    e.printStackTrace();

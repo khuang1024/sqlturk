@@ -136,7 +136,6 @@ public class FD {
      */
     public static void main(String[] args) throws InstantiationException,
 	    IllegalAccessException, ClassNotFoundException, SQLException {
-	// TODO Auto-generated method stub
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	Connection dbConn;
 	/*

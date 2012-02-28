@@ -44,6 +44,7 @@ public class Connected {
 		resultRelationNames.add(rs.getString(1));
 	    }
 	}
+	rs.close();
 
 	// get all the tuples and their schemas
 	for (String resultRelationName : resultRelationNames) {
@@ -67,6 +68,7 @@ public class Connected {
 		}
 		resultTuples.add(new Tuple(resultRelationName, schema, values));
 	    }
+	    rsTuples.close();
 	}
 
 	// // debug
@@ -260,6 +262,7 @@ public class Connected {
 	    while (rs.next()) {
 		distinctDERIV.add(rs.getString(1));
 	    }
+	    rs.close();
 
 	    for (String DERIV : distinctDERIV) {
 		String queryWitnessSet = "select "
@@ -272,6 +275,7 @@ public class Connected {
 		while (tmpRs.next()) {
 		    tmpWitnessSet.add(tmpRs.getString(1));
 		}
+		tmpRs.close();
 		witnessSet.put(DERIV, tmpWitnessSet);
 	    }
 

@@ -922,6 +922,7 @@ public class TableauxRewriter {
 		    tableName = relation;
 		}
 	    }
+	    rs.close();
 	}
 
 	// double-check if this relation has alias

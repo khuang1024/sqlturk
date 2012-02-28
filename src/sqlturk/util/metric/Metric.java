@@ -120,6 +120,8 @@ public class Metric {
 		}
 		tuples.add(new Tuple(relationName, schema, values));
 	    }
+	    rs.close();
+	    stmt.close();
 	    tuplesOfRelation.put(relationName, tuples);
 	    return tuples;
 	}
@@ -186,6 +188,7 @@ public class Metric {
 		    foreignKeyChains.add(foreignKeyChain);
 		}
 	    }
+	    rs.close();
 	}
 
 	// // debug

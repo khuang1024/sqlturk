@@ -104,7 +104,9 @@ public class Projection {
 		attributes.add(rs.getString(1));
 	    }
 	    allAttributes.add(attributes);
+	    rs.close();
 	}
+	stmt.close();
 
 	// here, only concern about the common attributes, not equivalent
 	// attributes
@@ -138,6 +140,8 @@ public class Projection {
 	    while (rs.next()) {
 		count++;
 	    }
+	    rs.close();
+	    stmt.close();
 	    if (relationColumnSize == 0) {
 		relationColumnSize = count;
 	    } else {

@@ -38,15 +38,14 @@ public class CheckLines {
 	for (int i = 0; i < 8; i++) {
 	    System.out.println("\tQuery " + i);
 	    ArrayList<String> worlds = TableauxRewriter.getRewriteQueries(SQLTurkHITs.get("world", i), dbConn);
-//	    ArrayList<String> worlds = SQLTurkHITs.get("world", i);
 	    for (int j = 0; j < worlds.size(); j++) {
-//		ResultSet rs = stmt.executeQuery(worlds.get(j));
 		ResultSet rs = stmt.executeQuery(worlds.get(j) + " ORDER BY RAND() LIMIT 100");
 		int nRows = 0;
 		while (rs.next()) {
 		    nRows ++;
 		}
 		System.out.println("\t\tCandidate " + j + ": " + nRows );
+		rs.close();
 	    }
 	}
 	
@@ -63,9 +62,10 @@ public class CheckLines {
 		    nRows ++;
 		}
 		System.out.println("\t\tCandidate " + j + ": " + nRows );
+		rs.close();
 	    }
 	}
-	
+	stmt.close();
 
     }
 

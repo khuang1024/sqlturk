@@ -57,6 +57,8 @@ public class PreProcessor {
 			.add(getRewriteResultTable(tableName, dbConn));
 	    }
 	}
+	rs.close();
+	stmt.close();
     }
 
     /**

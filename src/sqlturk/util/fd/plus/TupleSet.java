@@ -117,6 +117,14 @@ class TupleSet {
 	for (Tuple tup : this.tupleSet) {
 	    ROWIDs.add(tup.getValueAt(rowId, dbConn));
 	}
+//	ArrayList<String> ROWIDs = new ArrayList<String>();
+//	for (Tuple tup : this.tupleSet) {
+//	    String value = tup.getValueAt(rowId, dbConn);
+//	    if (!ROWIDs.contains(value)) {
+//		ROWIDs.add(value);
+//	    }
+//	    value = null;
+//	}
 
 	/*
 	 * self-validation: if the tuple is not in the CONN table, it means it
@@ -147,6 +155,7 @@ class TupleSet {
 	// them in targetTuplePair
 	String targetTupleId = targetTuple.getValueAt(rowId, dbConn);
 	HashSet<String> targetTuplePair = new HashSet<String>();
+//	ArrayList<String> targetTuplePair = new ArrayList<String>();
 	for (int i = 0; i < firstColumn.size(); i++) {
 	    if (firstColumn.get(i).equals(targetTupleId)) {
 		targetTuplePair.add(secondColumn.get(i));
@@ -172,6 +181,8 @@ class TupleSet {
 	    }
 	}
 
+	rs.close();
+	stmt.close();
 	return true;
     }
 

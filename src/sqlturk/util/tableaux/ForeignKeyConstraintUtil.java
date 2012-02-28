@@ -97,6 +97,8 @@ class ForeignKeyConstraintUtil {
 	while (rs.next()) {
 	    referencedRelations.add(rs.getString("REFERENCED_TABLE_NAME"));
 	}
+	rs.close();
+	stmt.close();
 
 	@SuppressWarnings("unchecked")
 	ArrayList<String> rfRel = (ArrayList<String>) referencedRelations
@@ -152,6 +154,8 @@ class ForeignKeyConstraintUtil {
 		fkConstraintStrings.add(fkConstraint);
 		// System.out.println("debug:\t" + fkConstraint);
 	    }
+	    rs.close();
+	    stmt.close();
 	}
 
 	return fkConstraintStrings;

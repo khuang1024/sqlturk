@@ -109,6 +109,7 @@ public class QueryExecutor {
 
 	stmt.executeUpdate("DROP TABLE TEMP");
 
+	rs.close();
 	stmt.close();
 	System.out.println("End executing query No." + queryId);
 

@@ -137,6 +137,8 @@ public class Score {
 	    deriv.add(rs.getString(Parameters.DERIVATION_NUMBER_ATT));
 	    src.add(rs.getString(Parameters.SOURCE_NUMBER_ATT));
 	}
+	rs.close();
+	stmt.close();
 
 	// process the DERIV and SRC
 	String lastDriv = deriv.get(0);

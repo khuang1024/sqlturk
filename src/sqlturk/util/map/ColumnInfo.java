@@ -92,6 +92,7 @@ public class ColumnInfo {
 	    // when there is no information about this table in SELECT_ALIAS
 	    // table
 	    // just return the name of the column as the original column name
+	    rs.close();
 	    return resultColumnName;
 	}
     }

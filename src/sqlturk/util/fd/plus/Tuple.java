@@ -69,9 +69,14 @@ class Tuple {
 		    }
 		}
 		if (found) {
-		    return rs.getString(colName);
+		    String colVal = rs.getString(colName);
+		    rs.close();
+		    stmt.close();
+		    return colVal;
 		}
 	    }
+	    rs.close();
+	    stmt.close();
 	    throw new RuntimeException("No ROWID found.");
 	} else {
 	    // when look for a normal attribute

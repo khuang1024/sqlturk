@@ -70,6 +70,7 @@ class Projection {
 		projectedTables.add(rs.getString(1));
 	    }
 	}
+	rs.close();
 	
 
 	// when there is no common attribute among these resulting tuples
@@ -96,6 +97,7 @@ class Projection {
 		allProjectedRewriteResultTables.add(projectedTableName);
 	    }
 	}
+	stmt.close();
     }
 
     static ArrayList<String> getAllCommonAttributes(Connection dbConn)
@@ -124,7 +126,10 @@ class Projection {
 		attributes.add(rs.getString(1));
 	    }
 	    allAttributes.add(attributes);
+	    rs.close();
 	}
+	stmt.close();
+	
 
 	// here, only concern about the common attributes, not equivalent
 	// attributes
@@ -158,6 +163,8 @@ class Projection {
 	    while (rs.next()) {
 		count++;
 	    }
+	    rs.close();
+	    stmt.close();
 	    if (relationColumnSize == 0) {
 		relationColumnSize = count;
 	    } else {

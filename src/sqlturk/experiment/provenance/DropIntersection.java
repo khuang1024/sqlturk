@@ -40,10 +40,11 @@ public class DropIntersection {
 		    intersections.add(tableName);
 		}
 	    }
+	    rs.close();
 	    for (String intersection : intersections) {
 		stmt.executeUpdate("DROP TABLE " + intersection);
 	    }
-	    
+	    stmt.close();
 	    
 	} catch (InstantiationException e) {
 	    e.printStackTrace();

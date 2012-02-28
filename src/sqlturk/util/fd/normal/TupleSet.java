@@ -182,6 +182,12 @@ class TupleSet {
 		return false;
 	    }
 	}
+	
+	firstColumn = null;
+	secondColumn = null;
+	
+	rs.close();
+	rs = null;
 
 	return true;
     }

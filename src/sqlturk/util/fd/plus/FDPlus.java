@@ -89,6 +89,8 @@ public class FDPlus {
 	    }
 	    allTuples.add(new Tuple(relationName, schema, values));
 	}
+	rsmd = null;
+	rs.close();
 	return allTuples;
     }
 
@@ -101,6 +103,7 @@ public class FDPlus {
 	while (rs.next()) {
 	    schema.add(rs.getString(1));
 	}
+	rs.close();
 	return schema;
     }
 
@@ -119,6 +122,7 @@ public class FDPlus {
 		// System.out.println(rs.getString(1));
 	    }
 	}
+	rs.close();
 	return allResultRelations;
     }
 
