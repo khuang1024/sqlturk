@@ -97,6 +97,7 @@ class TupleSet {
      */
     boolean isConnectedWith(Tuple targetTuple, String rowId, String CONN_TABLE,
 	    Connection dbConn) throws SQLException {
+//	Runtime rt = Runtime.getRuntime();
 
 	// Note: TupleSet tupleSet = inComplete.get(0); So, no need to consider
 	// the scenario that this.tupleSet is null.
@@ -105,18 +106,24 @@ class TupleSet {
 	// secondColumn
 	Statement stmt = dbConn.createStatement();
 	ResultSet rs = stmt.executeQuery("SELECT * FROM " + CONN_TABLE);
+//	System.out.println("debug------1-----USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " B");
 	ArrayList<String> firstColumn = new ArrayList<String>();
 	ArrayList<String> secondColumn = new ArrayList<String>();
+//	System.out.println("debug------2-----USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " B");
 	while (rs.next()) {
 	    firstColumn.add(rs.getString(Parameters.CONN_TUPLE1_ID_ATT));
 	    secondColumn.add(rs.getString(Parameters.CONN_TUPLE2_ID_ATT));
 	}
+	rs.close();
+	stmt.close();
+//	System.out.println("debug------3-----USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " B");
 
 	// extract all the __ROWID of tuples of this TupleSet
 	HashSet<String> ROWIDs = new HashSet<String>();
 	for (Tuple tup : this.tupleSet) {
 	    ROWIDs.add(tup.getValueAt(rowId, dbConn));
 	}
+//	System.out.println("debug------4-----USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " B");
 //	ArrayList<String> ROWIDs = new ArrayList<String>();
 //	for (Tuple tup : this.tupleSet) {
 //	    String value = tup.getValueAt(rowId, dbConn);
@@ -145,11 +152,31 @@ class TupleSet {
 		// System.out.println("debug:\tsecond_column=" + str);
 		// }
 
+		/*
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 * ISSUE #7 -- DON'T FORGET TO CLOSE!!!!
+		 */
+		firstColumn.clear();
+		secondColumn.clear();
+		firstColumn = null;
+		secondColumn = null;
+		System.gc();
 		return false;
 		// throw new
 		// RuntimeException("Why-connected: self-validation failed.");
 	    }
 	}
+	
+//	System.out.println("debug------5-----USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " B");
 
 	// find out all the ROWIDs which are paired with this tuple and store
 	// them in targetTuplePair
@@ -166,6 +193,12 @@ class TupleSet {
 		targetTuplePair.add(firstColumn.get(i));
 	    }
 	}
+	firstColumn.clear();
+	secondColumn.clear();
+	firstColumn = null;
+	secondColumn = null;
+	System.gc();
+//	System.out.println("debug------6-----USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " B");
 
 	// // debug
 	// for (String t : targetTuplePair) {
@@ -177,12 +210,14 @@ class TupleSet {
 	// target tuple
 	for (String ROWID : ROWIDs) {
 	    if (!targetTuplePair.contains(ROWID)) {
+		targetTuplePair.clear();
+		targetTuplePair = null;
 		return false;
 	    }
 	}
-
-	rs.close();
-	stmt.close();
+	targetTuplePair.clear();
+	targetTuplePair = null;
+//	System.out.println("debug------8-----USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " B");
 	return true;
     }
 

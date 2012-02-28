@@ -122,6 +122,8 @@ class IncrementalFDPlus {
 			}
 		    }
 		}
+		
+		schema = null;
 	    }
 	    System.out.println("debug:\tFinish processing tupleset : "
 		    + ts.getPrintInfo());
@@ -133,6 +135,8 @@ class IncrementalFDPlus {
 		    query += "'" + tuple[i] + "')";
 		}
 	    }
+	    tuple = null;
+	    
 	    System.out.println("debug:\t|-> " + query);
 	    stmt.executeUpdate(query);
 	}
@@ -214,8 +218,7 @@ class IncrementalFDPlus {
 	ArrayList<TupleSet> complete = new ArrayList<TupleSet>();
 	ArrayList<TupleSet> inComplete = new ArrayList<TupleSet>();
 	
-	Runtime rt = Runtime.getRuntime();
-	int mb = 1024*1024;
+//	Runtime rt = Runtime.getRuntime();
 
 	for (Tuple tuple : relation.getTuples()) {
 	    // System.out.println("debug:\t" + tuple.gettValuesString());
@@ -223,15 +226,15 @@ class IncrementalFDPlus {
 	}
 
 	// debug
-	for (int i = 0; i < inComplete.size(); i++) {
-	    for (int j = 0; j < inComplete.get(i).getTuples().size(); j++) {
-		Set<Tuple> tuples = inComplete.get(i).getTuples();
-		for (Tuple tuple : tuples) {
-		    System.out.println("debug:\tElement in inComplete (" + i
-			    + "): " + tuple.gettValuesString());
-		}
-	    }
-	}
+//	for (int i = 0; i < inComplete.size(); i++) {
+//	    for (int j = 0; j < inComplete.get(i).getTuples().size(); j++) {
+//		Set<Tuple> tuples = inComplete.get(i).getTuples();
+//		for (Tuple tuple : tuples) {
+//		    System.out.println("debug:\tElement in inComplete (" + i
+//			    + "): " + tuple.gettValuesString());
+//		}
+//	    }
+//	}
 
 	// line 5
 	while (!inComplete.isEmpty()) {
@@ -244,17 +247,18 @@ class IncrementalFDPlus {
 	    // line 7
 	    for (Relation rel : allResultRelations) {
 
-//		System.out.println("debug:\tfor loop\tallResRel\tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
+//		System.out.println("debug:\tfor loop\tallResRel\tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " B");
 		// exclude the target relation itself
 		if (!rel.getRelationName().equals(relation.getRelationName())) {
 		    for (Tuple tup : rel.getTuples()) {
 
-//			System.out.println("debug:\tfor loop\trelTuple\tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
+//			System.out.println("debug:********1*****USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " B");
 			// exclude the tuples already in tupleSet
 			if (!tupleSet.hasTuple(tup)) {
 			    // when after adding tup to tupleSet, tupeSet is
 			    // still JCC, then, add it
 
+//			    System.out.println("debug------1-----USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " B");
 			    // Here, change the criteria to adapt to our FD+
 			    if (tupleSet.isConnectedWith(tup,
 				    Parameters.ROWID_ATT_NAME,
@@ -263,10 +267,10 @@ class IncrementalFDPlus {
 				tupleSet.addTuple(tup);
 //				System.out.println("debug:\tAFTER ADDING TUPLE **** \tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
 			    }
-//			    System.out.println("debug:\tAFTER has TUPLE **** \tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
+//			    System.out.println("debug------2-----USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " MB");
 			}
 			tup = null;
-//			System.out.println("debug:\tAFTER has TUPLE **** \tUSED MEMO: " + ((rt.totalMemory()-rt.freeMemory())/mb) + " MB");
+//			System.out.println("debug:********2*******USED MEMO: " + ((rt.totalMemory()-rt.freeMemory())) + " MB");
 			
 		    }
 		}
