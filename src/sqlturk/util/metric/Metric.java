@@ -190,6 +190,7 @@ public class Metric {
 	    }
 	    rs.close();
 	}
+	stmt.close();
 
 	// // debug
 	// for (ForeignKeyChain fkc : foreignKeyChains) {

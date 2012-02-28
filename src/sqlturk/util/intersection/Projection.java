@@ -76,6 +76,7 @@ public class Projection {
 		allProjectedRewriteResultTables.add(projectedTableName);
 	    }
 	}
+	stmt.close();
     }
 
     static ArrayList<String> getAllCommonAttributes(Connection dbConn)

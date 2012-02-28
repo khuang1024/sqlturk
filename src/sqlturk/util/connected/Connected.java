@@ -278,6 +278,7 @@ public class Connected {
 		tmpRs.close();
 		witnessSet.put(DERIV, tmpWitnessSet);
 	    }
+	    stmt.close();
 
 	} catch (SQLException e) {
 	    System.err.println("JDBC Exception.");

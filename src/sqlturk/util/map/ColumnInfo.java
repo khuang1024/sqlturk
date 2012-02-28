@@ -82,6 +82,7 @@ public class ColumnInfo {
 	    String originalColumnName = rs
 		    .getString(Parameters.SELECT_ALIAS_COLUMN_REAL);
 	    rs.close();
+	    stmt.close();
 	    if (originalColumnName.contains(".")) {
 		String[] col = originalColumnName.split("\\.");
 		return col[1];
@@ -93,6 +94,7 @@ public class ColumnInfo {
 	    // table
 	    // just return the name of the column as the original column name
 	    rs.close();
+	    stmt.close();
 	    return resultColumnName;
 	}
     }
@@ -132,6 +134,7 @@ public class ColumnInfo {
 	String originalTableName = rs
 		.getString(Parameters.FROM_ALIAS_TABLE_REAL);
 	rs.close();
+	stmt.close();
 	return originalTableName;
 
 	// if (rs.next()) {

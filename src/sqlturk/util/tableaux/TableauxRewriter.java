@@ -924,6 +924,7 @@ public class TableauxRewriter {
 	    }
 	    rs.close();
 	}
+	stmt.close();
 
 	// double-check if this relation has alias
 	if (relationAlias.containsKey(tableName) && relationAlias != null) {

@@ -91,6 +91,7 @@ public class FDPlus {
 	}
 	rsmd = null;
 	rs.close();
+	stmt.close();
 	return allTuples;
     }
 
@@ -104,6 +105,7 @@ public class FDPlus {
 	    schema.add(rs.getString(1));
 	}
 	rs.close();
+	stmt.close();
 	return schema;
     }
 
@@ -123,6 +125,7 @@ public class FDPlus {
 	    }
 	}
 	rs.close();
+	stmt.close();
 	return allResultRelations;
     }
 

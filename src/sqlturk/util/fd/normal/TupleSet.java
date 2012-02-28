@@ -187,7 +187,7 @@ class TupleSet {
 	secondColumn = null;
 	
 	rs.close();
-	rs = null;
+	stmt.close();
 
 	return true;
     }
