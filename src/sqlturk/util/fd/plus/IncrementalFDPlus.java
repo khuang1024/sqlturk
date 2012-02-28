@@ -18,71 +18,42 @@ class IncrementalFDPlus {
 	throw new AssertionError();
     }
 
-    static void createFDPlusRelation(ArrayList<Relation> allResultRelations)
-	    throws SQLException {
-	try {
-	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-	    Connection dbConn;
+    static void createFDPlusRelation(ArrayList<Relation> allResultRelations,
+	    Connection dbConn) throws SQLException {
+	ArrayList<String> combinedSchema = getCombinedSchema(
+		allResultRelations, dbConn);
+	Statement stmt = dbConn.createStatement();
 
-	    // use soe server or test locally
-	    if (Parameters.USE_SERVER) {
-		dbConn = DriverManager
-			.getConnection(Parameters.MYSQL_CONNECTION_STRING);
-		System.out.println("Using server.");
-	    } else {
-		dbConn = DriverManager.getConnection(Parameters.LOCAL_DB_URL,
-			Parameters.LOCAL_USER, Parameters.LOCAL_PASSWORD);
-		System.out.println("Using local.");
-	    }
-	    
-	    
-	    
-	    ///////////////////////////////////////////////////
-	    ArrayList<String> combinedSchema = getCombinedSchema(
-			allResultRelations, dbConn);
-	    Statement stmt = dbConn.createStatement();
-	    
-	    // get each FDi
-	    String[] unionTableAtoms = new String[allResultRelations.size()];
-	    for (int i = 0; i < allResultRelations.size(); i++) {
-		unionTableAtoms[i] = "SELECT * FROM "
-			+ createSubFDPlusRelationFor(allResultRelations.get(i),
-				allResultRelations, combinedSchema, dbConn) + " ";
-	    }
-	    //
-	    stmt.executeUpdate("DROP TABLE IF EXISTS "
-		    + Parameters.FD_PLUS_REL_NAME);
-	    String query = "CREATE TABLE " + Parameters.FD_PLUS_REL_NAME + " AS ";
-	    String unionTableClause = "";
-	    for (int i = 0; i < unionTableAtoms.length; i++) {
-		if (i < unionTableAtoms.length - 1) {
-		    unionTableClause += unionTableAtoms[i] + " UNION ";
-		} else {
-		    unionTableClause += unionTableAtoms[i];
-		}
-	    }
-	    query += unionTableClause;
-	
-	    //debug
-	    // System.out.println("debug:\tIncrementalFD_PLUS: "+query);
-
-	    // create the table
-	    stmt.executeUpdate(query);
-	    stmt.close();
-	    combinedSchema = null;
-	    unionTableAtoms = null;
-	    dbConn.close();
-	    
-	} catch (InstantiationException e) {
-	    e.printStackTrace();
-	} catch (IllegalAccessException e) {
-	    e.printStackTrace();
-	} catch (ClassNotFoundException e) {
-	    e.printStackTrace();
+	// get each FDi
+	String[] unionTableAtoms = new String[allResultRelations.size()];
+	for (int i = 0; i < allResultRelations.size(); i++) {
+	    unionTableAtoms[i] = "SELECT * FROM "
+		    + createSubFDPlusRelationFor(allResultRelations.get(i),
+			    allResultRelations, combinedSchema, dbConn) + " ";
 	}
-	
-	
-	
+
+	//
+	stmt.executeUpdate("DROP TABLE IF EXISTS "
+		+ Parameters.FD_PLUS_REL_NAME);
+	String query = "CREATE TABLE " + Parameters.FD_PLUS_REL_NAME + " AS ";
+	String unionTableClause = "";
+	for (int i = 0; i < unionTableAtoms.length; i++) {
+	    if (i < unionTableAtoms.length - 1) {
+		unionTableClause += unionTableAtoms[i] + " UNION ";
+	    } else {
+		unionTableClause += unionTableAtoms[i];
+	    }
+	}
+	query += unionTableClause;
+
+	// //debug
+	// System.out.println("debug:\tIncrementalFD_PLUS: "+query);
+
+	// create the table
+	stmt.executeUpdate(query);
+	stmt.close();
+	combinedSchema = null;
+	unionTableAtoms = null;
     }
 
     private static String createSubFDPlusRelationFor(Relation relation,
@@ -583,7 +554,7 @@ class IncrementalFDPlus {
 	relations.add(relation2);
 	relations.add(relation3);
 
-//	createFDPlusRelation(relations, dbConn);
+	createFDPlusRelation(relations, dbConn);
 
     }
 

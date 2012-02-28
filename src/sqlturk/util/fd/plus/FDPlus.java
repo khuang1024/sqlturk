@@ -43,8 +43,7 @@ public class FDPlus {
     public static void createFDPlusRelation(Connection dbConn)
 	    throws SQLException {
 	ArrayList<Relation> allResultRelations = getAllResultRelations(dbConn);
-//	IncrementalFDPlus.createFDPlusRelation(allResultRelations, dbConn);
-	IncrementalFDPlus.createFDPlusRelation(allResultRelations);
+	IncrementalFDPlus.createFDPlusRelation(allResultRelations, dbConn);
 	allResultRelations = null;
     }
 
