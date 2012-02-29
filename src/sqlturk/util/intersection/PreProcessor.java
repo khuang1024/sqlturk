@@ -22,7 +22,7 @@ import sqlturk.util.map.ColumnInfo;
  */
 public class PreProcessor {
     private static ArrayList<String> rewriteResultTables = new ArrayList<String>();
-    private static boolean hasRewriteResultTable = false;
+//    private static boolean hasRewriteResultTable = false;
 
     PreProcessor() {
     }
@@ -35,9 +35,9 @@ public class PreProcessor {
 
     static void generateRewriteResultTable(Connection dbConn)
 	    throws SQLException {
-	if (!hasRewriteResultTable) {
+//	if (!hasRewriteResultTable) {
 	    rewriteAllResultTable(dbConn);
-	}
+//	}
     }
 
     private static void rewriteAllResultTable(Connection dbConn)
@@ -45,7 +45,7 @@ public class PreProcessor {
 	// clear the previous content
 	rewriteResultTables.clear();
 	
-	hasRewriteResultTable = true;
+//	hasRewriteResultTable = true;
 	Statement stmt = dbConn.createStatement();
 	ResultSet rs = stmt.executeQuery("SHOW TABLES");
 

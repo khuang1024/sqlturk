@@ -1,4 +1,4 @@
-package sqlturk.util.union;
+package sqlturk.util.equi;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,12 +36,12 @@ class PreProcessor {
 	return rewriteResultTables;
     }
 
-    static void generateRewriteResultTable(Connection dbConn)
-	    throws SQLException {
+//    static void generateRewriteResultTable(Connection dbConn)
+//	    throws SQLException {
 //	if (!hasRewriteResultTable) {
-	    rewriteAllResultTable(dbConn);
+//	    rewriteAllResultTable(dbConn);
 //	}
-    }
+//    }
 
     private static void rewriteAllResultTable(Connection dbConn)
 	    throws SQLException {
