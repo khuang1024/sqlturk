@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import sqlturk.configuration.Parameters;
+import sqlturk.util.equi.Equivalence;
 import sqlturk.util.map.ColumnInfo;
 
 class IncrementalFDPlus {
@@ -25,11 +26,31 @@ class IncrementalFDPlus {
 	Statement stmt = dbConn.createStatement();
 
 	// get each FDi
-	String[] unionTableAtoms = new String[allResultRelations.size()];
+	ArrayList<String> unionTableAtoms = new ArrayList<String>();
+//	for (int i = 0; i < allResultRelations.size(); i++) {
+//	    if (Equivalence.getInequivalentResultTables(dbConn).contains(allResultRelations.get(i).getRelationName())) {
+//		unionTableAtoms.add("SELECT * FROM " + createSubFDPlusRelationFor(allResultRelations.get(i), allResultRelations, combinedSchema, dbConn));
+//	    } else {
+//		System.out.println("debug:\t" + allResultRelations.get(i).getRelationName() + " has an equivalent table. Skip its FD_i.");
+//	    }
+//	    
+//	}
+	
+	// filter
+	ArrayList<Relation> needComputeResultTables = new ArrayList<Relation>();
+	ArrayList<String> needComputeResultTableNames = Equivalence.getInequivalentResultTables(dbConn);
 	for (int i = 0; i < allResultRelations.size(); i++) {
-	    unionTableAtoms[i] = "SELECT * FROM "
-		    + createSubFDPlusRelationFor(allResultRelations.get(i),
-			    allResultRelations, combinedSchema, dbConn) + " ";
+	    if (needComputeResultTableNames.contains(allResultRelations.get(i).getRelationName())) {
+		System.out.println(allResultRelations.get(i).getRelationName() + " will be used for computation.");
+		needComputeResultTables.add(allResultRelations.get(i));
+	    } else {
+		System.out.println("debug:\t" + allResultRelations.get(i).getRelationName() + " has an equivalent table. Skip its FD_i.");
+	    }
+	}
+	
+	// compute
+	for (int i = 0; i < needComputeResultTables.size(); i++) {
+	    unionTableAtoms.add("SELECT * FROM " + createSubFDPlusRelationFor(needComputeResultTables.get(i), needComputeResultTables, combinedSchema, dbConn));
 	}
 
 	//
@@ -37,17 +58,17 @@ class IncrementalFDPlus {
 		+ Parameters.FD_PLUS_REL_NAME);
 	String query = "CREATE TABLE " + Parameters.FD_PLUS_REL_NAME + " AS ";
 	String unionTableClause = "";
-	for (int i = 0; i < unionTableAtoms.length; i++) {
-	    if (i < unionTableAtoms.length - 1) {
-		unionTableClause += unionTableAtoms[i] + " UNION ";
+	for (int i = 0; i < unionTableAtoms.size(); i++) {
+	    if (i < unionTableAtoms.size() - 1) {
+		unionTableClause += unionTableAtoms.get(i) + " UNION ";
 	    } else {
-		unionTableClause += unionTableAtoms[i];
+		unionTableClause += unionTableAtoms.get(i);
 	    }
 	}
 	query += unionTableClause;
 
 	// //debug
-	// System.out.println("debug:\tIncrementalFD_PLUS: "+query);
+	 System.out.println("debug:\tIncrementalFD_PLUS: "+query);
 
 	// create the table
 	stmt.executeUpdate(query);
