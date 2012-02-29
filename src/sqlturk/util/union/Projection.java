@@ -164,7 +164,6 @@ class Projection {
 		count++;
 	    }
 	    rs.close();
-	    stmt.close();
 	    if (relationColumnSize == 0) {
 		relationColumnSize = count;
 	    } else {
@@ -173,6 +172,7 @@ class Projection {
 		}
 	    }
 	}
+	stmt.close();
 	if(allCommonAttributes.size() != relationColumnSize) {
 	    return false;
 	} else {
