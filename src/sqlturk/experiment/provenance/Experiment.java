@@ -11,12 +11,7 @@ public class Experiment {
      * @throws SQLException
      */
     public static void main(String[] args) throws SQLException, IOException {
-
-	String type = args[0];
-	String datasetName = args[1];
-	int queryIndex = Integer.parseInt(args[2]);
-	int topN = Integer.parseInt(args[3]);
-	int limit = Integer.parseInt(args[4]);
+	int limit = Integer.parseInt(args[0]);
 
 	int[] worldQuery0 = { 3, 1, 5, 6, 2, 8, 9, 10, 4, 7 };
 	int[] worldQuery1 = { 1, 5, 3, 7, 6, 2, 9, 8, 10, 4 };
@@ -46,16 +41,13 @@ public class Experiment {
 		worldQuery3, worldQuery4, worldQuery5, worldQuery6, worldQuery7 };
 	int[][] tpchCandidates = { tpchQuery0, tpchQuery1, tpchQuery2,
 		tpchQuery3, tpchQuery4, tpchQuery5, tpchQuery6, tpchQuery7 };
-
-	if (datasetName.equals("world")) {
-	    SQLTurk.run(type, "world", queryIndex, topN, 10,
-		    worldCandidates[queryIndex], limit);
-	} else if (datasetName.equals("tpch")) {
-	    SQLTurk.run(type, "tpch", queryIndex, topN, 10,
-		    tpchCandidates[queryIndex], limit);
-	} else {
-	    throw new RuntimeException("Invalid dataset name.");
+	
+	for (int i = 0; i < worldCandidates.length; i++) {
+	    SQLTurk.run("world", i, worldCandidates[i], limit);
 	}
-
+	
+	for (int i = 0; i < tpchCandidates.length; i++) {
+	    SQLTurk.run("tpch", i, tpchCandidates[i], limit);
+	}
     }
 }
