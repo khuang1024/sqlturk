@@ -13,6 +13,7 @@ import sqlturk.configuration.Parameters;
 import sqlturk.experiment.provenance.QueryManager;
 import sqlturk.util.cleaner.Cleaner;
 import sqlturk.util.connected.Connected;
+import sqlturk.util.equi.Equivalence;
 import sqlturk.util.fd.normal.FD;
 import sqlturk.util.fd.plus.FDPlus;
 import sqlturk.util.intersection.Intersection;
@@ -108,6 +109,10 @@ public class SQLTurk {
 	    System.out.println("Start executing queries ...............");
 	    QueryExecutor.executeQueries(rewriteQueries, dbConn);
 	    System.out.println("Finish executing queries.\n");
+	    
+	    
+	    Equivalence.init(dbConn);
+	    
 
 	    // create intersection
 	    System.out.println("Start creating " + Parameters.INTERSECTION_REL_NAME + " .............");
@@ -167,7 +172,7 @@ public class SQLTurk {
     /**
      * run it for QUERY#{queryIndex} with its candidates
      */
-    public static void run(String datasetName, int queryIndex, int[] candidates, int limit) throws SQLException,
+    public static void run(String datasetName, int queryIndex, int topN, int[] candidates, int limit) throws SQLException,
 	    IOException {
 
 	System.out.println("SQLTurk is running.\n\n");
@@ -181,9 +186,11 @@ public class SQLTurk {
 	    }
 	}
 	
-	for (int topN = 2; topN <= candidates.length; topN++) {
-	    compute(datasetName, queryIndex, topN, candidates, limit);
-	}
+	compute(datasetName, queryIndex, topN, candidates, limit);
+	
+//	for (int topN = 2; topN <= candidates.length; topN++) {
+//	    compute(datasetName, queryIndex, topN, candidates, limit);
+//	}
     }
 
 }
