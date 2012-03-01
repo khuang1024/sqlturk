@@ -142,20 +142,32 @@ class ForeignKeyConstraintUtil {
 	    // System.out.println("-debug:\t" + relName);
 
 	    // create the FK dependency tables first
-	    Statement stmt = conn.createStatement();
-	    ResultSet rs = stmt.executeQuery("select * from "
-		    + Parameters.FK_CONSTRAINT_TABLE_PREFIX + relName
-		    + Parameters.FK_CONSTRAINT_TABLE_SUFFIX);
-	    while (rs.next()) {
-		String fkConstraint = rs.getString("TABLE_NAME") + "."
-			+ rs.getString("COLUMN_NAME") + "="
-			+ rs.getString("REFERENCED_TABLE_NAME") + "."
-			+ rs.getString("REFERENCED_COLUMN_NAME");
-		fkConstraintStrings.add(fkConstraint);
-		// System.out.println("debug:\t" + fkConstraint);
+	    Statement stmt = null;
+	    ResultSet rs = null;
+	    
+	    try {
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery("select * from "
+			+ Parameters.FK_CONSTRAINT_TABLE_PREFIX + relName
+			+ Parameters.FK_CONSTRAINT_TABLE_SUFFIX);
+		while (rs.next()) {
+		    String fkConstraint = rs.getString("TABLE_NAME") + "."
+			    + rs.getString("COLUMN_NAME") + "="
+			    + rs.getString("REFERENCED_TABLE_NAME") + "."
+			    + rs.getString("REFERENCED_COLUMN_NAME");
+		    fkConstraintStrings.add(fkConstraint);
+		    // System.out.println("debug:\t" + fkConstraint);
+		}
+	    } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException e) {
+		System.out.println("No Foreign Key in the table.");
+	    } finally {
+		if (rs != null) {
+		    rs.close();
+		}
+		if (stmt != null) {
+		    stmt.close();
+		}
 	    }
-	    rs.close();
-	    stmt.close();
 	}
 
 	return fkConstraintStrings;
