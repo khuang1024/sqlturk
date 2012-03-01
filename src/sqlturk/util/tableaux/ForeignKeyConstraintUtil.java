@@ -145,6 +145,7 @@ class ForeignKeyConstraintUtil {
 	    Statement stmt = null;
 	    ResultSet rs = null;
 	    
+	    // when the exception comes up, just ignore it.
 	    try {
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery("select * from "
