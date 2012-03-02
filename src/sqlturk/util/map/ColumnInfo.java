@@ -120,6 +120,7 @@ public class ColumnInfo {
 	}
 	if (!hasColumn) {
 	    rs.close();
+	    stmt.close();
 	    return resultTableName;
 	}
 
