@@ -33,60 +33,77 @@ class IncrementalFD {
 	    
 	    System.out.println("debug:\tprevious FD exists! Use it for optimzied computation.");
 	    
-	    if (QueryExecutor.getCurrentLastQueryResultTableName().equals(getAdditionalResultTableName(dbConn))) {
+	    if (!QueryExecutor.getCurrentLastQueryResultTableName().equals(getAdditionalResultTableName(dbConn))) {
 		throw new RuntimeException("Confusing additional resulting table.");
 	    }
 	    
-	    String additionalQueryResultRelationName = getAdditionalResultTableName(dbConn);
+	    String additionalResultRelationName = getAdditionalResultTableName(dbConn);
 	    Relation previousFDRelation = new Relation(previousFDName, FD.getTuples(previousFDName, dbConn));
-	    Relation additionalQueryResultRelation = new Relation(additionalQueryResultRelationName, FD.getTuples(additionalQueryResultRelationName, dbConn));
+	    Relation additionalResultRelation = new Relation(additionalResultRelationName, FD.getTuples(additionalResultRelationName, dbConn));
 	    ArrayList<Relation> relationsToCompute = new ArrayList<Relation>();
-	    relationsToCompute.add(additionalQueryResultRelation);
+	    relationsToCompute.add(additionalResultRelation); // the order is important! the first one must be additionalResultRelation
 	    relationsToCompute.add(previousFDRelation);
-	    
-	    createFDRelation(relationsToCompute, dbConn);
+	    createFDRelation(relationsToCompute, true, dbConn);
 	} else {
-	    createFDRelation(allResultRelations, dbConn);
+	    createFDRelation(allResultRelations, false, dbConn);
 	}
     }
 
-    static void createFDRelation(ArrayList<Relation> allResultRelations,
+    static void createFDRelation(ArrayList<Relation> allResultRelations, boolean hasFD,
 	    Connection dbConn) throws SQLException {
-	ArrayList<String> combinedSchema = getCombinedSchema(
-		allResultRelations, dbConn);
+	
+	// first, get common schema, using the same function, but neet to wrap it
+	ArrayList<String> combinedSchema = null;
+	if (hasFD) {	 
+	    ArrayList<Relation> wrapper = new ArrayList<Relation>();
+	    wrapper.add(allResultRelations.get(0));
+	    ArrayList<String> additionalResultSchema = getCombinedSchema(wrapper, dbConn); // commbinedSchema is the rewritten schema of additionalResultRelation
+	    ArrayList<String> previousFDSchema = allResultRelations.get(1).getTuples().get(0).getSchema(); // FD' schema has already been rewritten, so don't need to rewrite
+	    combinedSchema = new ArrayList<String>();
+	    // get their combined schema
+	    for (String col : previousFDSchema) {
+		if (combinedSchema.contains(col)) {
+		    throw new RuntimeException("Duplicate column names in previous FD.");
+		} else {
+		    combinedSchema.add(col);
+		}
+	    }
+	    for (String col : additionalResultSchema) {
+		if (!combinedSchema.contains(col)) {
+		    combinedSchema.add(col);
+		}
+	    }
+	} else {
+	    combinedSchema = getCombinedSchema(allResultRelations, dbConn);
+	}
 	Statement stmt = dbConn.createStatement();
 
+	
 	// get each FDi
 	ArrayList<String> unionTableAtoms = new ArrayList<String>();
-//	for (int i = 0; i < allResultRelations.size(); i++) {
-//	    // first, check if this table have an equivalent table that
-//	    // has been created
-//	    if (Equivalence.getInequivalentResultTables(dbConn).contains(allResultRelations.get(i).getRelationName())) {
-//		unionTableAtoms.add("SELECT * FROM " + createSubFDRelationFor(allResultRelations.get(i), allResultRelations, combinedSchema, dbConn));
-//	    } else {
-//		System.out.println("debug:\t" + allResultRelations.get(i).getRelationName() + " has an equivalent table. Skip its FD_i: ");
-//	    }
-//	    
-//	}
 	
-	// filter
-	ArrayList<Relation> needComputeResultTables = new ArrayList<Relation>();
-	ArrayList<String> needComputeResultTableNames = Equivalence.getInequivalentResultTables(dbConn);
-	for (int i = 0; i < allResultRelations.size(); i++) {
-	    if (needComputeResultTableNames.contains(allResultRelations.get(i).getRelationName())) {
-		System.out.println(allResultRelations.get(i).getRelationName() + " will be used for computation.");
-		needComputeResultTables.add(allResultRelations.get(i));
-	    } else {
-		System.out.println("debug:\t" + allResultRelations.get(i).getRelationName() + " has an equivalent table. Skip its FD_i.");
+	if (hasFD) {
+	    for (int i = 0; i < allResultRelations.size(); i++) {
+		unionTableAtoms.add("SELECT * FROM " + createSubFDRelationFor(allResultRelations.get(i), allResultRelations, combinedSchema, dbConn));
+	    } 
+	} else {
+	 // filter
+	    ArrayList<Relation> needComputeResultTables = new ArrayList<Relation>();
+	    ArrayList<String> needComputeResultTableNames = Equivalence.getInequivalentResultTables(dbConn);
+	    for (int i = 0; i < allResultRelations.size(); i++) {
+		if (needComputeResultTableNames.contains(allResultRelations.get(i).getRelationName())) {
+		    System.out.println(allResultRelations.get(i).getRelationName() + " will be used for computation.");
+		    needComputeResultTables.add(allResultRelations.get(i));
+		} else {
+		    System.out.println("debug:\t" + allResultRelations.get(i).getRelationName() + " has an equivalent table. Skip its FD_i.");
+		}
+	    }
+	    // compute
+	    for (int i = 0; i < needComputeResultTables.size(); i++) {
+		unionTableAtoms.add("SELECT * FROM " + createSubFDRelationFor(needComputeResultTables.get(i), needComputeResultTables, combinedSchema, dbConn));
 	    }
 	}
-		
-	// compute
-	for (int i = 0; i < needComputeResultTables.size(); i++) {
-	    unionTableAtoms.add("SELECT * FROM " + createSubFDRelationFor(needComputeResultTables.get(i), needComputeResultTables, combinedSchema, dbConn));
-	}
 	
-
 	//
 	stmt.executeUpdate("DROP TABLE IF EXISTS " + Parameters.FD_REL_NAME);
 	String query = "CREATE TABLE " + Parameters.FD_REL_NAME + " AS ";
@@ -158,9 +175,13 @@ class IncrementalFD {
 		ArrayList<String> schema = tup.getSchema();
 
 		for (int i = 0; i < schema.size(); i++) {// i : inner index
-		    String originalAttName = ColumnInfo
-			    .getOriginalTableColumnName(tup.getSource(),
-				    schema.get(i), dbConn);
+		    String originalAttName = null;
+		    if (Tuple.isAlreadyOriginalTableColumnName(schema, dbConn)) {
+			originalAttName = schema.get(i);
+		    } else {
+			originalAttName = ColumnInfo.getOriginalTableColumnName(tup.getSource(), schema.get(i), dbConn);
+		    }
+		    
 		    // j: index for combinedSchema
 		    for (int j = 0; j < combinedSchema.size(); j++) {
 			if (originalAttName != null) {

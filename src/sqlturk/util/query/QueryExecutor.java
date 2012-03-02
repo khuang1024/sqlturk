@@ -45,6 +45,11 @@ public class QueryExecutor {
 	    stmt2.close();
 	}
     }
+    
+    public static String getCurrentLastQueryResultTableName () {
+	return Parameters.QUERY_RESULT_PREFIX + (queryId-1)
+	+ Parameters.QUERY_RESULT_SUFFIX;
+    }
 
     public static void executeQueries(ArrayList<String> queries,
 	    Connection dbConn) throws SQLException {

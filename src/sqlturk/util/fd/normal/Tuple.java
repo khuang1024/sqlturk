@@ -1,7 +1,9 @@
 package sqlturk.util.fd.normal;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import sqlturk.util.map.ColumnInfo;
@@ -113,6 +115,37 @@ class Tuple {
 
 	return true;
     }
+    
+    static boolean isAlreadyOriginalTableColumnName(ArrayList<String> schema, Connection dbConn) throws SQLException {
+	for (String att : schema) {
+	    String[] elements =	att.split("_"); 
+	    if (elements.length != 2) {
+		return false;
+	    } else {
+		String tableName = elements[0];
+		String columnName = elements[1];
+		Statement stmt = dbConn.createStatement();
+		ResultSet rs = stmt.executeQuery("DESC " + tableName);
+		boolean isFound = false;
+		while (rs.next()) {
+		    if (rs.getString(1).equals(columnName)) {
+			isFound = true;
+			break;
+		    }
+		}
+		if (rs != null) {
+		    rs.close();
+		}
+		if (stmt != null) {
+		    stmt.close();
+		}
+		if (!isFound) {
+		    return false;
+		}
+	    }
+	}
+	return true;
+    }
 
     /*
      * NOTE: the consistent MUST be checked under the original attribute!
@@ -140,11 +173,21 @@ class Tuple {
 		// t1.getSource());
 		// String originalAtt2 = getOriginalAttName(schema2.get(j),
 		// t2.getSource());
-
-		String originalAtt1 = ColumnInfo.getOriginalTableColumnName(
-			t1.getSource(), schema1.get(i), dbConn);
-		String originalAtt2 = ColumnInfo.getOriginalTableColumnName(
-			t2.getSource(), schema2.get(j), dbConn);
+		
+		String originalAtt1 = null;
+		String originalAtt2 = null;
+		if (isAlreadyOriginalTableColumnName(schema1, dbConn)) {
+		    originalAtt1 = schema1.get(i);
+		} else {
+		    originalAtt1 = ColumnInfo.getOriginalTableColumnName(
+			    t1.getSource(), schema1.get(i), dbConn);
+		}
+		if (isAlreadyOriginalTableColumnName(schema2, dbConn)) {
+		    originalAtt2 = schema2.get(j);
+		} else {
+		    originalAtt2 = ColumnInfo.getOriginalTableColumnName(
+			    t2.getSource(), schema2.get(j), dbConn);
+		}
 
 		if (originalAtt1.equals(originalAtt2)) {
 		    hasCommonAttributes = true;
