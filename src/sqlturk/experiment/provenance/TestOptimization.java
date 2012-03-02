@@ -58,7 +58,6 @@ public class TestOptimization {
 //		tpchQuery3, tpchQuery4, tpchQuery5, tpchQuery6, tpchQuery7 };
 	
 	SQLTurk34.run(type, datasetName, queryIndex, 2, worldCandidates[queryIndex], limit);
-	SQLTurk34.run(type, datasetName, queryIndex, 2, worldCandidates[queryIndex], limit);
 	SQLTurk34.run(type, datasetName, queryIndex, 3, worldCandidates[queryIndex], limit);
 	SQLTurk34.run(type, datasetName, queryIndex, 4, worldCandidates[queryIndex], limit);
 	SQLTurk34.run(type, datasetName, queryIndex, 5, worldCandidates[queryIndex], limit);
