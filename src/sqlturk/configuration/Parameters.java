@@ -11,7 +11,7 @@ public class Parameters {
     
     // local testing database information
     public static final boolean USE_SERVER = true;
-    public final static String LOCAL_DB_URL = "jdbc:mysql://127.0.0.1:3306/test";
+    public final static String LOCAL_DB_URL = "jdbc:mysql://127.0.0.1:3306/abogdan";
     public final static String LOCAL_USER = "root";
     public final static String LOCAL_PASSWORD = "1";
     
