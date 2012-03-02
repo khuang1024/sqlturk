@@ -24,14 +24,7 @@ public class FD {
      * @param FDRelationName
      * @throws SQLException
      */
-    public static void createFDRelation(Connection dbConn, String FDRelationName)
-	    throws SQLException {
-	createFDRelation(dbConn);
-	Statement stmt = dbConn.createStatement();
-	stmt.executeUpdate("ALTER TABLE " + Parameters.FD_REL_NAME
-		+ " RENAME TO " + FDRelationName);
-	stmt.close();
-    }
+
     
     public static void createFDRelationOptimally(String datasetName, int queryIndex, int topN, int[] candidates, Connection dbConn) throws SQLException {
 	// must clear previous tables
@@ -48,12 +41,12 @@ public class FD {
      * @param dbConn
      * @throws SQLException
      */
-    public static void createFDRelation(Connection dbConn) throws SQLException {
-	// must clear previous tables
-	ArrayList<Relation> allResultRelations = getAllResultRelations(dbConn);
-	IncrementalFD.createFDRelation(allResultRelations, dbConn);
-	allResultRelations = null;
-    }
+//    public static void createFDRelation(Connection dbConn) throws SQLException {
+//	// must clear previous tables
+//	ArrayList<Relation> allResultRelations = getAllResultRelations(dbConn);
+//	IncrementalFD.createFDRelation(allResultRelations, dbConn);
+//	allResultRelations = null;
+//    }
 
     // The returned relations are with tuples, and the schemas of these tuples
     // do not have ROWID.
@@ -160,7 +153,7 @@ public class FD {
 	    System.out.println("Using local.");
 	}
 
-	createFDRelation(dbConn);
+//	createFDRelation(dbConn);
     }
 
 }
