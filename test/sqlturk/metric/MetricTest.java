@@ -93,10 +93,10 @@ public class MetricTest {
 	/*
 	 * create FD
 	 */
-	System.out.println("\n\nStart creating " + Parameters.FD_REL_NAME);
-	FD.createFDRelation(dbConn);
-	System.out.println("Finish creating " + Parameters.FD_REL_NAME
-		+ ".\n\n");
+//	System.out.println("\n\nStart creating " + Parameters.FD_REL_NAME);
+//	FD.createFDRelation(dbConn);
+//	System.out.println("Finish creating " + Parameters.FD_REL_NAME
+//		+ ".\n\n");
 
 	/*
 	 * create FD+
