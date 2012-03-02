@@ -48,9 +48,6 @@ class IncrementalFD {
 	} else {
 	    createFDRelation(allResultRelations, dbConn);
 	}
-	
-	
-	
     }
 
     static void createFDRelation(ArrayList<Relation> allResultRelations,
