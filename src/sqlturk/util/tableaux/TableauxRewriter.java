@@ -51,6 +51,10 @@ public class TableauxRewriter {
 
     public static ArrayList<String> getRewriteQueries(
 	    ArrayList<String> queries, Connection dbConn) throws SQLException {
+	
+	// first, clear the record which stores the tables whose FK tables had been created in the previous rounds
+	ForeignKeyConstraintUtil.clearCreatedFKRelations();
+	
 	Statement stmt = dbConn.createStatement();
 	stmt.executeUpdate("DROP TABLE IF EXISTS "
 		+ Parameters.SELECT_ALIAS_REL_NAME);

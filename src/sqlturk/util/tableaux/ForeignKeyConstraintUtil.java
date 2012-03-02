@@ -17,8 +17,10 @@ import sqlturk.configuration.Parameters;
 class ForeignKeyConstraintUtil {
     static HashSet<String> createdFKRelations = new HashSet<String>();
 
-    // itself
-    // private static final TableauxUtil INSTANCE = new TableauxUtil();
+    static void clearCreatedFKRelations() {
+	createdFKRelations = null;
+	createdFKRelations = new HashSet<String>();
+    }
 
     /**
      * Create the FK dependency table for the given table
@@ -145,29 +147,22 @@ class ForeignKeyConstraintUtil {
 	    Statement stmt = null;
 	    ResultSet rs = null;
 	    
-	    // when the exception comes up, just ignore it.
-	    try {
-		stmt = conn.createStatement();
-		rs = stmt.executeQuery("select * from "
-			+ Parameters.FK_CONSTRAINT_TABLE_PREFIX + relName
-			+ Parameters.FK_CONSTRAINT_TABLE_SUFFIX);
-		while (rs.next()) {
-		    String fkConstraint = rs.getString("TABLE_NAME") + "."
-			    + rs.getString("COLUMN_NAME") + "="
-			    + rs.getString("REFERENCED_TABLE_NAME") + "."
-			    + rs.getString("REFERENCED_COLUMN_NAME");
-		    fkConstraintStrings.add(fkConstraint);
-		    // System.out.println("debug:\t" + fkConstraint);
-		}
-	    } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException e) {
-		System.out.println("No Foreign Key in the table.");
-	    } finally {
-		if (rs != null) {
-		    rs.close();
-		}
-		if (stmt != null) {
-		    stmt.close();
-		}
+	    stmt = conn.createStatement();
+	    rs = stmt.executeQuery("select * from "
+		    + Parameters.FK_CONSTRAINT_TABLE_PREFIX + relName
+		    + Parameters.FK_CONSTRAINT_TABLE_SUFFIX);
+	    while (rs.next()) {
+		String fkConstraint = rs.getString("TABLE_NAME") + "."
+			+ rs.getString("COLUMN_NAME") + "="
+			+ rs.getString("REFERENCED_TABLE_NAME") + "."
+			+ rs.getString("REFERENCED_COLUMN_NAME");
+		fkConstraintStrings.add(fkConstraint);
+	    }
+	    if (rs != null) {
+		rs.close();
+	    }
+	    if (stmt != null) {
+		stmt.close();
 	    }
 	}
 
