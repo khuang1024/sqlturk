@@ -416,7 +416,7 @@ class IncrementalFD {
 		    rs.close();
 		}
 		if (stmt != null) {
-		    stmt.cancel();
+		    stmt.close();
 		}
 		return true;
 	    }
