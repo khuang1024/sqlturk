@@ -132,10 +132,13 @@ public class ColumnInfo {
 		+ resultColumnName + "'");
 
 	rs.next();
-	String originalTableName = rs
-		.getString(Parameters.FROM_ALIAS_TABLE_REAL);
-	rs.close();
-	stmt.close();
+	String originalTableName = rs.getString(Parameters.FROM_ALIAS_TABLE_REAL);
+	if (rs != null) {
+	    rs.close();
+	}
+	if (stmt != null) {
+	    stmt.close();
+	}
 	return originalTableName;
 
 	// if (rs.next()) {
