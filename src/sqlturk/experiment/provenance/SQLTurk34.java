@@ -142,8 +142,8 @@ public class SQLTurk34 {
 		appendToLog(header + ", Union, Precision=" + unionStd + ", Recall=" + stdUnion, Parameters.PERFORMANCE_LOG_NAME);
 	    } else if (type.equals("fd")) {
 		System.out.println("Start creating " + Parameters.FD_REL_NAME);
-		FD.createFDRelation(dbConn);
-//		FD.createFDRelationOptimally(datasetName, queryIndex, topN, candidates, dbConn);
+//		FD.createFDRelation(dbConn);
+		FD.createFDRelationOptimally(datasetName, queryIndex, topN, candidates, dbConn);
 		System.out.println("Finish creating " + Parameters.FD_REL_NAME + ".\n");
 		double stdFD = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_REL_NAME, dbConn);
 		double fdStd = Metric.sim(Parameters.FD_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
