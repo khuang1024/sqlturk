@@ -32,6 +32,15 @@ public class FD {
 		+ " RENAME TO " + FDRelationName);
 	stmt.close();
     }
+    
+    public static void createFDRelationOptimally(String datasetName, int queryIndex, int topN, int[] candidates, Connection dbConn) throws SQLException {
+	// must clear previous tables
+	ArrayList<Relation> allResultRelations = getAllResultRelations(dbConn);
+	IncrementalFD.createFDRelationOptimally(allResultRelations,
+		    datasetName, queryIndex, topN, candidates,
+		    dbConn);
+	allResultRelations = null;
+    }
 
     /**
      * Create the Full Disjunction table for the current database.
@@ -64,7 +73,7 @@ public class FD {
 
     // Retrieve all the tuples of a given relation. Please note, the schema of
     // the tuples of this relation has no ROWID column.
-    private static ArrayList<Tuple> getTuples(String relationName,
+    static ArrayList<Tuple> getTuples(String relationName,
 	    Connection dbConn) throws SQLException {
 	ArrayList<Tuple> allTuples = new ArrayList<Tuple>();
 	ArrayList<String> schema = getSchema(relationName, dbConn);

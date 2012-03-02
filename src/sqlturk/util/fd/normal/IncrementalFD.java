@@ -2,13 +2,16 @@ package sqlturk.util.fd.normal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import sqlturk.configuration.Parameters;
+import sqlturk.experiment.provenance.SQLTurk34;
 import sqlturk.util.equi.Equivalence;
 import sqlturk.util.map.ColumnInfo;
+import sqlturk.util.query.QueryExecutor;
 
 class IncrementalFD {
 
@@ -16,6 +19,38 @@ class IncrementalFD {
 
     private IncrementalFD() {
 	throw new AssertionError();
+    }
+    
+    static void createFDRelationOptimally(ArrayList<Relation> allResultRelations,
+	    String datasetName, int queryIndex, int topN, int[] candidates,
+	    Connection dbConn
+	    ) throws SQLException {
+	// optimization: if we have previous top(k-1) FD table, we can use it
+	// actually, FD can be created recursively. (top(k) = top(k-1)FD(the additional query))
+	String previousFDName = SQLTurk34.getFDName(datasetName, queryIndex, topN-1, candidates);
+	if (isExist(previousFDName, dbConn)) {
+	    // if the previous FD exists in the database
+	    
+	    System.out.println("debug:\tprevious FD exists! Use it for optimzied computation.");
+	    
+	    if (QueryExecutor.getCurrentLastQueryResultTableName().equals(getAdditionalResultTableName(dbConn))) {
+		throw new RuntimeException("Confusing additional resulting table.");
+	    }
+	    
+	    String additionalQueryResultRelationName = getAdditionalResultTableName(dbConn);
+	    Relation previousFDRelation = new Relation(previousFDName, FD.getTuples(previousFDName, dbConn));
+	    Relation additionalQueryResultRelation = new Relation(additionalQueryResultRelationName, FD.getTuples(additionalQueryResultRelationName, dbConn));
+	    ArrayList<Relation> relationsToCompute = new ArrayList<Relation>();
+	    relationsToCompute.add(additionalQueryResultRelation);
+	    relationsToCompute.add(previousFDRelation);
+	    
+	    createFDRelation(relationsToCompute, dbConn);
+	} else {
+	    createFDRelation(allResultRelations, dbConn);
+	}
+	
+	
+	
     }
 
     static void createFDRelation(ArrayList<Relation> allResultRelations,
@@ -373,5 +408,47 @@ class IncrementalFD {
 	    }
 	}
 	return false;
+    }
+    
+    private static boolean isExist(String tableName, Connection dbConn) throws SQLException {
+	Statement stmt = dbConn.createStatement();
+	ResultSet rs = stmt.executeQuery("SHOW TABLES");
+	while (rs.next()) {
+	    if (rs.getString(1).equals(tableName)) {
+		if (rs != null) {
+		    rs.close();
+		}
+		if (stmt != null) {
+		    stmt.cancel();
+		}
+		return true;
+	    }
+	}
+	if (rs != null) {
+	    rs.close();
+	}
+	if (stmt != null) {
+	    stmt.cancel();
+	}
+	return false;
+    }
+    
+    private static String getAdditionalResultTableName(Connection dbConn) throws SQLException {
+	Statement stmt = dbConn.createStatement();
+	ResultSet rs = stmt.executeQuery("SHOW TABLES");
+	String additionalResultTableName = "";
+	while (rs.next()) {
+	    if (rs.getString(1).startsWith(Parameters.QUERY_RESULT_PREFIX)
+		    && rs.getString(1).endsWith(Parameters.QUERY_RESULT_SUFFIX)) {
+		additionalResultTableName = rs.getString(1);
+	    }
+	}
+	if (rs != null) {
+	    rs.close();
+	}
+	if (stmt != null) {
+	    stmt.close();
+	}
+	return additionalResultTableName;
     }
 }
