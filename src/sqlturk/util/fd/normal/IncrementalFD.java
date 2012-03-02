@@ -51,32 +51,57 @@ class IncrementalFD {
 
     static void createFDRelation(ArrayList<Relation> allResultRelations, boolean hasFD,
 	    Connection dbConn) throws SQLException {
+	Statement stmt = dbConn.createStatement();
 	
 	// first, get common schema, using the same function, but neet to wrap it
 	ArrayList<String> combinedSchema = null;
-	if (hasFD) {	 
-	    ArrayList<Relation> wrapper = new ArrayList<Relation>();
-	    wrapper.add(allResultRelations.get(0));
-	    ArrayList<String> additionalResultSchema = getCombinedSchema(wrapper, dbConn); // commbinedSchema is the rewritten schema of additionalResultRelation
-	    ArrayList<String> previousFDSchema = allResultRelations.get(1).getTuples().get(0).getSchema(); // FD' schema has already been rewritten, so don't need to rewrite
-	    combinedSchema = new ArrayList<String>();
-	    // get their combined schema
-	    for (String col : previousFDSchema) {
-		if (combinedSchema.contains(col)) {
-		    throw new RuntimeException("Duplicate column names in previous FD.");
-		} else {
-		    combinedSchema.add(col);
+	if (hasFD) {
+	    
+	    // if we have FD, maybe this new query is equivalent to a previous one
+	    // if so, we don't need to compute it, so we reduce our computation more
+	    ArrayList<String> needComputeResultTableNames = Equivalence.getInequivalentResultTables(dbConn);
+	    Relation additionalResultRelation = allResultRelations.get(0);
+	    if (!needComputeResultTableNames.contains(additionalResultRelation.getRelationName())) {
+		// if the new table is not a representative, then we don't need to compute.
+		
+		System.out.println("Congrats! " + additionalResultRelation.getRelationName() + " is equal to at least one previous query. We don't need any computation.");
+//		System.out.println("Create table " + )
+		
+		// create the FD table directly
+		stmt.executeUpdate("DROP TABLE IF EXISTS " + Parameters.FD_REL_NAME);
+		String query = "CREATE TABLE " + Parameters.FD_REL_NAME + " AS SELECT * FROM " + allResultRelations.get(1).getRelationName();
+
+		// debug
+		 System.out.println("debug:\tIncrementalFD: "+query);
+
+		// create the table
+		stmt.executeUpdate(query);
+		stmt.close();
+		return;
+	    } else {
+		ArrayList<Relation> wrapper = new ArrayList<Relation>();
+		wrapper.add(allResultRelations.get(0));
+		ArrayList<String> additionalResultSchema = getCombinedSchema(wrapper, dbConn); // commbinedSchema is the rewritten schema of additionalResultRelation
+		ArrayList<String> previousFDSchema = allResultRelations.get(1).getTuples().get(0).getSchema(); // FD' schema has already been rewritten, so don't need to rewrite
+		combinedSchema = new ArrayList<String>();
+		// get their combined schema
+		for (String col : previousFDSchema) {
+		    if (combinedSchema.contains(col)) {
+			throw new RuntimeException("Duplicate column names in previous FD.");
+		    } else {
+			combinedSchema.add(col);
+		    }
 		}
-	    }
-	    for (String col : additionalResultSchema) {
-		if (!combinedSchema.contains(col)) {
-		    combinedSchema.add(col);
+		for (String col : additionalResultSchema) {
+		    if (!combinedSchema.contains(col)) {
+			combinedSchema.add(col);
+		    }
 		}
 	    }
 	} else {
 	    combinedSchema = getCombinedSchema(allResultRelations, dbConn);
 	}
-	Statement stmt = dbConn.createStatement();
+	
 
 	
 	// get each FDi
