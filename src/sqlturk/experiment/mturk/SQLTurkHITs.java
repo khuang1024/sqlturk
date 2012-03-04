@@ -110,7 +110,7 @@ public class SQLTurkHITs {
 	world02.add("select Name, Capital from Country");
 	world02.add("SELECT Country.Name, Country.Capital FROM City, Country WHERE City.CountryCode = Country.Code");
 	world02.add("select ctry.Name as CtryName, cty.Name as CtyName from Country as ctry, City as cty where ctry.Capital = cty.ID");
-	world02.add("SELECT Country.Name, City.Name  FROM Country, City  WHERE Country.Capital= City.ID");
+	world02.add("SELECT Country.Name as Name1, City.Name as Name2  FROM Country, City  WHERE Country.Capital= City.ID");
 	world02.add("select Name,Capital from Country");
 	world02.add("select c2.Name Country, c1.Name, Capital from City c1, Country c2  where c1.ID=c2.Capital");
 	
@@ -148,7 +148,7 @@ public class SQLTurkHITs {
 	world05.add("SELECT City.Name FROM City, Country, CountryLanguage WHERE CountryLanguage.CountryCode = Country.Code AND Country.Code = City.CountryCode AND CountryLanguage.Language = 'Chinese' AND City.Population > 3000000");
 	
 	world06.add("select a.Name,a.Capital from Country a,CountryLanguage b where a.Code=b.CountryCode and b.Language='English' and b.Percentage >= 50");
-	world06.add("select a.Name,b.Name from Country a, City b, CountryLanguage c where a.Capital = b.ID and c.CountryCode = a.Code and c.Language = 'English' and c.Percentage >= 50");
+	world06.add("select a.Name as Ctry,b.Name as Cty from Country a, City b, CountryLanguage c where a.Capital = b.ID and c.CountryCode = a.Code and c.Language = 'English' and c.Percentage >= 50");
 	world06.add("select Name, Capital from Country, CountryLanguage where (Country.Code = CountryLanguage.CountryCode) and (CountryLanguage.Language = 'English' and CountryLanguage.Percentage >= 50)");
 	world06.add("Select C.Name,C.Capital from Country C,CountryLanguage CL where CL.Language='English' and CL.Percentage>'50.0'");
 	world06.add("Select Country.Name, Country.Capital  From Country , CountryLanguage   Where CountryLanguage.Language = 'English' and CountryLanguage.Percentage >= 50  and CountryLanguage.CountryCode = Country.Code");
@@ -228,7 +228,7 @@ public class SQLTurkHITs {
 	tpch05.add("select S_NAME , S_PHONE FROM SUPPLIER , NATION where N_NAME = 'CHINA' and S_ACCTBAL > 9000");
 	tpch05.add("SELECT S_NAME, S_PHONE FROM SUPPLIER, NATION  WHERE S_ACCTBAL>9000  AND S_NATIONKEY=N_NATIONKEY  AND LOWER(N_NAME)='china'");
 	tpch05.add("SELECT A.S_NAME,A.S_PHONE FROM SUPPLIER AS A,CUSTOMER AS B WHERE B.C_ADDRESS='CHINA' AND B.C_ACCTBAL>=9000");
-	tpch05.add("SELECT S_NAME, S_PHONE, S_ACCTBAL FROM SUPPLIER, NATION  WHERE N_NATIONKEY = S_NATIONKEY AND N_NATIONKEY = 'CHINA' AND S_ACCTBAL > 9000");
+	tpch05.add("SELECT S_NAME, S_PHONE, S_ACCTBAL FROM SUPPLIER, NATION  WHERE N_NATIONKEY = S_NATIONKEY AND N_NAME = 'CHINA' AND S_ACCTBAL > 9000");
 	tpch05.add("select S_NAME,S_PHONE from SUPPLIER S,NATION N where (S_ACCTBAL >= 9000 and N_NAME='CHINA' and S_NATIONKEY=N_NATIONKEY)");
 	tpch05.add("SELECT S_NAME, S_PHONE FROM NATION, SUPPLIER WHERE N_NATIONKEY= S_NATIONKEY AND  N_NAME = 'China'  AND  S_ACCTBAL > 9000");
 	tpch05.add("SELECT S_NAME,S_PHONE  FROM SUPPLIER,NATION  WHERE N_NAME ='CHINA'  AND S_NATIONKEY = N_NATIONKEY  AND S_ACCTBAL > 9000");
