@@ -118,15 +118,28 @@ class Tuple {
     
     static boolean isAlreadyOriginalTableColumnName(ArrayList<String> schema, Connection dbConn) throws SQLException {
 	for (String att : schema) {
-	    String[] elements =	att.split("_"); 
+	    String[] elements =	att.split("_", 2); 
 	    if (elements.length != 2) {
 		return false;
 	    } else {
 		String tableName = elements[0];
 		String columnName = elements[1];
 		Statement stmt = dbConn.createStatement();
-		ResultSet rs = stmt.executeQuery("DESC " + tableName);
+		ResultSet rs = stmt.executeQuery("SHOW TABLES");
 		boolean isFound = false;
+		while (rs.next()) {
+		    if (rs.getString(1).equals(tableName)) {
+			isFound = true;
+			break;
+		    }
+		}
+		rs.close();
+		if (!isFound) {
+		    stmt.close();
+		    return false;
+		}
+		rs = stmt.executeQuery("DESC " + tableName);
+		isFound = false;
 		while (rs.next()) {
 		    if (rs.getString(1).equals(columnName)) {
 			isFound = true;
