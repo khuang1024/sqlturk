@@ -16,17 +16,9 @@ public class FD {
 	throw new AssertionError();
     }
 
-    /**
-     * Create the Full Disjunction table for the current database and rename it
-     * as the given name.
-     * 
-     * @param dbConn
-     * @param FDRelationName
-     * @throws SQLException
-     */
-
-    
-    public static void createFDRelationOptimally(String datasetName, int queryIndex, int topN, int[] candidates, Connection dbConn) throws SQLException {
+    public static void createFDRelationOptimally(String datasetName, 
+	    int queryIndex, int topN, int[] candidates, Connection dbConn) 
+		    throws SQLException {
 	// must clear previous tables
 	ArrayList<Relation> allResultRelations = getAllResultRelations(dbConn);
 	IncrementalFD.createFDRelationOptimally(allResultRelations,
@@ -35,18 +27,13 @@ public class FD {
 	allResultRelations = null;
     }
 
-    /**
-     * Create the Full Disjunction table for the current database.
-     * 
-     * @param dbConn
-     * @throws SQLException
-     */
-//    public static void createFDRelation(Connection dbConn) throws SQLException {
-//	// must clear previous tables
-//	ArrayList<Relation> allResultRelations = getAllResultRelations(dbConn);
-//	IncrementalFD.createFDRelation(allResultRelations, dbConn);
-//	allResultRelations = null;
-//    }
+
+    public static void createFDRelationNormally(Connection dbConn) throws SQLException {
+	// must clear previous tables
+	ArrayList<Relation> allResultRelations = getAllResultRelations(dbConn);
+	IncrementalFD.createFDRelationNormally(allResultRelations, dbConn);
+	allResultRelations = null;
+    }
 
     // The returned relations are with tuples, and the schemas of these tuples
     // do not have ROWID.

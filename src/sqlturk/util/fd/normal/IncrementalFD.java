@@ -21,6 +21,11 @@ class IncrementalFD {
 	throw new AssertionError();
     }
     
+    static void createFDRelationNormally(ArrayList<Relation> allResultRelations,
+	    Connection dbConn) throws SQLException {
+	createFDRelation(allResultRelations, false, dbConn);
+    }
+    
     static void createFDRelationOptimally(ArrayList<Relation> allResultRelations,
 	    String datasetName, int queryIndex, int topN, int[] candidates,
 	    Connection dbConn
@@ -49,7 +54,7 @@ class IncrementalFD {
 	}
     }
 
-    static void createFDRelation(ArrayList<Relation> allResultRelations, boolean hasFD,
+    private static void createFDRelation(ArrayList<Relation> allResultRelations, boolean hasFD,
 	    Connection dbConn) throws SQLException {
 	Statement stmt = dbConn.createStatement();
 	
@@ -112,7 +117,7 @@ class IncrementalFD {
 		unionTableAtoms.add("SELECT * FROM " + createSubFDRelationFor(allResultRelations.get(i), allResultRelations, combinedSchema, dbConn));
 	    } 
 	} else {
-	 // filter
+	    // filter
 	    ArrayList<Relation> needComputeResultTables = new ArrayList<Relation>();
 	    ArrayList<String> needComputeResultTableNames = Equivalence.getInequivalentResultTables(dbConn);
 	    for (int i = 0; i < allResultRelations.size(); i++) {
