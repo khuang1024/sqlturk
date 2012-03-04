@@ -132,22 +132,28 @@ public class SQLTurk34 {
 		System.out.println("Finish creating " + Parameters.INTERSECTION_REL_NAME + ".\n");
 		double stdIntersec = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.INTERSECTION_REL_NAME, dbConn);
 		double intersecStd = Metric.sim(Parameters.INTERSECTION_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
-		appendToLog(header + ", Intersection, Precision=" + intersecStd + ", Recall=" + stdIntersec, Parameters.PERFORMANCE_LOG_NAME);
+		String result = header + ", Intersection, Precision=" + intersecStd + ", Recall=" + stdIntersec;
+		System.out.println(result);
+		appendToLog(result, Parameters.PERFORMANCE_LOG_NAME);
 	    } else if (type.equals("union")) {
 		System.out.println("Start creating " + Parameters.UNION_REL_NAME + " ............");
 		Union.createUionRelation(dbConn);
 		System.out.println("Finish creating " + Parameters.UNION_REL_NAME + ".\n");
 		double stdUnion = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.UNION_REL_NAME, dbConn);
 		double unionStd = Metric.sim(Parameters.UNION_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
-		appendToLog(header + ", Union, Precision=" + unionStd + ", Recall=" + stdUnion, Parameters.PERFORMANCE_LOG_NAME);
+		String result = header + ", Union, Precision=" + unionStd + ", Recall=" + stdUnion;
+		System.out.println(result);
+		appendToLog(result, Parameters.PERFORMANCE_LOG_NAME);
 	    } else if (type.equals("fd")) {
 		System.out.println("Start creating " + Parameters.FD_REL_NAME);
-//		FD.createFDRelation(dbConn);
-		FD.createFDRelationOptimally(datasetName, queryIndex, topN, candidates, dbConn);
+		FD.createFDRelationNormally(dbConn);
+//		FD.createFDRelationOptimally(datasetName, queryIndex, topN, candidates, dbConn);
 		System.out.println("Finish creating " + Parameters.FD_REL_NAME + ".\n");
 		double stdFD = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_REL_NAME, dbConn);
 		double fdStd = Metric.sim(Parameters.FD_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
-		appendToLog(header + ", FD, Precision=" + fdStd + ", Recall=" + stdFD, Parameters.PERFORMANCE_LOG_NAME);
+		String result = header + ", FD, Precision=" + fdStd + ", Recall=" + stdFD;
+		System.out.println(result);
+		appendToLog(result, Parameters.PERFORMANCE_LOG_NAME);
 	    } else if (type.equals("fdplus")) {
 		System.out.println("Start creating " + Parameters.PROV_REL_NAME);
 		Provenance.createWhyProvenanceRelation(rewriteQueries, dbConn); // create PROV table
@@ -160,7 +166,9 @@ public class SQLTurk34 {
 		System.out.println("Finish creating " + Parameters.FD_PLUS_REL_NAME + ".\n");
 		double stdFDPlus = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_PLUS_REL_NAME, dbConn);
 		double fdplusStd = Metric.sim(Parameters.FD_PLUS_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);
-		appendToLog(header + ", FDP_Plus, Precision=" + fdplusStd + ", Recall=" + stdFDPlus, Parameters.PERFORMANCE_LOG_NAME);
+		String result = header + ", FDP_Plus, Precision=" + fdplusStd + ", Recall=" + stdFDPlus;
+		System.out.println(result);
+		appendToLog(result, Parameters.PERFORMANCE_LOG_NAME);
 	    } else {
 		throw new RuntimeException("Wrong type.");
 	    }
