@@ -186,7 +186,7 @@ public class Parameters {
     public static final String REAL_RELATION_8 = "Payments";
     public static final String REAL_RELATION_9 = "Products";
     
-    public static final String PERFORMANCE_LOG_NAME = "performance.tsv";
+    public static final String PERFORMANCE_LOG_NAME = "performance.csv";
     
     public static final int LIMIT_NUM = 200;
     
