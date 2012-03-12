@@ -40,10 +40,10 @@ public class Projection {
 		.getRewriteResultTables(dbConn);
 	
 	// debug:
-	if (!isSizeMatch(allCommonAttributes, allRewriteResultTables, dbConn)) {
-	    allProjectedRewriteResultTables = null;
-	    return;
-	}
+//	if (!isSizeMatch(allCommonAttributes, allRewriteResultTables, dbConn)) {
+//	    allProjectedRewriteResultTables = null;
+//	    return;
+//	}
 
 	// TODO We only consider common attribute, rather than equivalent
 	// attirbute.
