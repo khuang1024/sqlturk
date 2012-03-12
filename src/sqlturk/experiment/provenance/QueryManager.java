@@ -83,7 +83,7 @@ public class QueryManager {
 	worldAnswers.add("select Country.Name as Country_Name from CountryLanguage, Country where Language='Swedish' AND IsOfficial=true AND Country.Code=CountryLanguage.CountryCode");
 	worldAnswers.add("select City.Name as City_Name from City, CountryLanguage where CountryLanguage.Language='Chinese' and City.Population>3000000 and City.CountryCode=CountryLanguage.CountryCode");
 	worldAnswers.add("select City.Name as City_Name, Country.Name as Country_Name from Country, CountryLanguage, City Where Country.Code = CountryLanguage.CountryCode and City.ID = Country.Capital and CountryLanguage.Language = 'English' and CountryLanguage.Percentage >=.5");
-	
+	worldAnswers.add("select City.Name as City_Name, City.Population as City_Population from City, Country, CountryLanguage where Language='Spanish' and IsOfficial=true and Continent='Europe' and City.CountryCode=Country.Code and Country.Code=CountryLanguage.CountryCode and City.Population < 200000");
 	
 	ArrayList<String> tpchAnswers = new ArrayList<String>();
 	tpchAnswers.add("select O_CLERK as ORDERS_O_CLERK from ORDERS where O_TOTALPRICE>500000");
@@ -91,6 +91,7 @@ public class QueryManager {
 	tpchAnswers.add("select N_NAME as NATION_N_NAME, R_NAME as REGION_R_NAME from NATION, REGION where N_REGIONKEY=R_REGIONKEY");
 	tpchAnswers.add("select S_NAME as SUPPLIER_S_NAME, N_NAME as NATION_N_NAME from NATION, SUPPLIER where N_NATIONKEY=S_NATIONKEY");
 	tpchAnswers.add("select O_ORDERKEY as ORDERS_O_ORDERKEY, O_ORDERSTATUS as ORDERS_O_ORDERSTATUS, O_ORDERPRIORITY as ORDERS_O_ORDERPRIORITY from ORDERS, LINEITEM where L_DISCOUNT=0 and O_TOTALPRICE>530000 and O_ORDERKEY=L_ORDERKEY");
+	tpchAnswers.add("select S_NAME as SUPPLIER_S_NAME, S_PHONE as SUPPLIER_S_PHONE from SUPPLIER, NATION where N_NAME='CHINA' and S_ACCTBAL>9000 and S_NATIONKEY=N_NATIONKEY");
 	tpchAnswers.add("select C_NAME as CUSTOMER_C_NAME, C_ACCTBAL as CUSTOMER_C_ACCTBAL from CUSTOMER, NATION, REGION where R_NAME='EUROPE' and C_ACCTBAL>9990 and R_REGIONKEY=N_REGIONKEY and N_NATIONKEY=C_NATIONKEY");
 	tpchAnswers.add("select S_NAME as SUPPLIER_S_NAME, S_PHONE as SUPPLIER_S_PHONE from PARTSUPP, PART, SUPPLIER where P_RETAILPRICE>2096 and P_PARTKEY=PS_PARTKEY and PS_SUPPKEY=S_SUPPKEY and S_ACCTBAL>1000");
 	
