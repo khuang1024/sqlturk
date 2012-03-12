@@ -194,7 +194,9 @@ public class Cleaner {
 
     public static void dropAll(Connection dbConn) throws SQLException {
 	dropWhyConnectedTable(dbConn);
+	System.out.println("connected");
 	dropWhyProvenanceTable(dbConn);
+	System.out.println("prov");
 //	dropFDTable(dbConn);
 //	dropFDPlusTable(dbConn);
 	dropSelectAliasTable(dbConn);
@@ -212,12 +214,14 @@ public class Cleaner {
 
     public static void dropIntermediateTables(Connection dbConn)
 	    throws SQLException {
-	// dropWhyConnectedTable(dbConn);
-	// dropWhyProvenanceTable(dbConn);
+	dropWhyConnectedTable(dbConn);
+	dropWhyProvenanceTable(dbConn);
 	dropSelectAliasTable(dbConn);
 	dropFromAliasTable(dbConn);
 	dropSourceMapTable(dbConn);
 	dropColumnInfoTable(dbConn);
+	dropIntersectionTable(dbConn);
+	dropUnionTable(dbConn);
 	dropForeignKeyConstraintTables(dbConn);
 	dropResultRewriteTables(dbConn);
 	dropFDTempTables(dbConn);
@@ -233,7 +237,6 @@ public class Cleaner {
      */
     public static void main(String[] args) throws InstantiationException,
 	    IllegalAccessException, ClassNotFoundException, SQLException {
-	// TODO Auto-generated method stub
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	Connection dbConn;
 
@@ -249,6 +252,7 @@ public class Cleaner {
 	System.out.println("Start dropping all tables...");
 	dropAll(dbConn);
 	System.out.println("Finish dropping all tables");
+	dbConn.close();
     }
 
 }
