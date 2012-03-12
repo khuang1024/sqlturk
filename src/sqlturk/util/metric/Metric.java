@@ -192,11 +192,11 @@ public class Metric {
 	}
 	stmt.close();
 
-	// // debug
-	// for (ForeignKeyChain fkc : foreignKeyChains) {
-	// System.out.println("debug:\tChain ID=" + fkc.getChainId());
-	// System.out.println("debug:\t\t" + fkc.getChainString());
-	// }
+//	 // debug
+//	 for (ForeignKeyChain fkc : foreignKeyChains) {
+//	 System.out.println("debug:\tChain ID=" + fkc.getChainId());
+//	 System.out.println("debug:\t\t" + fkc.getChainString());
+//	 }
     }
 
 }
