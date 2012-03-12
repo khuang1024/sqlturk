@@ -11,10 +11,11 @@ public class Experiment4 {
      * @throws SQLException
      */
     public static void main(String[] args) throws SQLException, IOException {
-	String datasetName = args[0];
-	int queryIndex = Integer.parseInt(args[1]);
-	int topN = Integer.parseInt(args[2]);
-	int limit = Integer.parseInt(args[3]);
+	String type = args[0];
+	String datasetName = args[1];
+	int queryIndex = Integer.parseInt(args[2]);
+	int topN = Integer.parseInt(args[3]);
+	int limit = Integer.parseInt(args[4]);
 	
 	// validate input
 	if (!datasetName.equals("world") && !datasetName.equals("tpch")) {
@@ -56,18 +57,10 @@ public class Experiment4 {
 	int[][] tpchCandidates = { tpchQuery0, tpchQuery1, tpchQuery2,
 		tpchQuery3, tpchQuery4, tpchQuery5, tpchQuery6, tpchQuery7 };
 	
-	
-	
 	if (datasetName.equals("world")) {
-	    SQLTurk34.run("intersection", datasetName, queryIndex, topN, worldCandidates[queryIndex], limit);
-	    SQLTurk34.run("union", datasetName, queryIndex, topN, worldCandidates[queryIndex], limit);
-	    SQLTurk34.run("fd", datasetName, queryIndex, topN, worldCandidates[queryIndex], limit);
-	    SQLTurk34.run("fdplus", datasetName, queryIndex, topN, worldCandidates[queryIndex], limit);
+	    SQLTurk34.run(type, datasetName, queryIndex, topN, worldCandidates[queryIndex], limit);
 	} else {
-	    SQLTurk34.run("intersection", datasetName, queryIndex, topN, tpchCandidates[queryIndex], limit);
-	    SQLTurk34.run("union", datasetName, queryIndex, topN, tpchCandidates[queryIndex], limit);
-	    SQLTurk34.run("fd", datasetName, queryIndex, topN, tpchCandidates[queryIndex], limit);
-	    SQLTurk34.run("fdplus", datasetName, queryIndex, topN, tpchCandidates[queryIndex], limit);
+	    SQLTurk34.run(type, datasetName, queryIndex, topN, tpchCandidates[queryIndex], limit);
 	}
     }
 }
