@@ -54,11 +54,13 @@ public class QueryExecutor {
     public static void executeQueries(ArrayList<String> queries,
 	    Connection dbConn) throws SQLException {
 
-	dropOldResultTables(dbConn);
+//	dropOldResultTables(dbConn);
 
 	for (String query : queries) {
 	    executeQuery(query, dbConn);
 	}
+	
+	queryId = Parameters.QUERY_RESULT_TABLE_INDEX_START;
     }
 
     private static void executeQuery(String query, Connection dbConn)
@@ -66,6 +68,16 @@ public class QueryExecutor {
 	System.out.println("Start executing query No." + queryId + " ...");
 	System.out.println("debug:\t" + query);
 	Statement stmt = dbConn.createStatement();
+	
+	// create the result table
+	String resultTableName = Parameters.QUERY_RESULT_PREFIX + queryId
+		+ Parameters.QUERY_RESULT_SUFFIX;
+	
+	if (isExist(resultTableName, dbConn)) {
+	    System.out.println("\nTable "+ resultTableName +" has already existed, skip creating it. --\n");
+	    queryId ++;
+	    return;
+	}
 
 	// create a temporary table SQL_TURK_TMP
 	stmt.executeUpdate("DROP TABLE IF EXISTS TEMP");
@@ -75,9 +87,9 @@ public class QueryExecutor {
 	q += query;
 	stmt.executeUpdate(q);
 
-	// create the result table
-	String resultTableName = Parameters.QUERY_RESULT_PREFIX + queryId
-		+ Parameters.QUERY_RESULT_SUFFIX;
+	
+	
+	// if this table exists, keep it
 	stmt.executeUpdate("DROP TABLE IF EXISTS " + resultTableName);
 	stmt.executeUpdate("CREATE TABLE " + resultTableName + " LIKE TEMP");
 
@@ -119,6 +131,39 @@ public class QueryExecutor {
 	System.out.println("End executing query No." + queryId);
 
 	queryId++;
+    }
+    
+    private static boolean isExist(String tableName, Connection dbConn) {
+	Statement stmt = null;
+	ResultSet rs = null;
+	try {
+	    stmt = dbConn.createStatement();
+	    rs = stmt.executeQuery("SHOW TABLES");
+	    while (rs.next()) {
+		if (rs.getString(1).equals(tableName)) {
+		    return true;
+		}
+	    }
+	    return false;
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	    throw new RuntimeException("SQL Exception.");
+	} finally {
+	    if (rs != null) {
+		try {
+		    rs.close();
+		} catch (SQLException e) {
+		    e.printStackTrace();
+		}
+	    }
+	    if (stmt != null) {
+		try {
+		    stmt.close();
+		} catch (SQLException e) {
+		    e.printStackTrace();
+		}
+	    }
+	}
     }
 
 }
