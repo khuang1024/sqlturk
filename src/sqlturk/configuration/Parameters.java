@@ -108,7 +108,7 @@ public class Parameters {
 	            
     // result table
     public final static String QUERY_RESULT_PREFIX = "Q";
-    public final static int QUERY_RESULT_TABLE_INDEX_START = 1;
+    public final static int QUERY_RESULT_TABLE_INDEX_START = 0;
     public final static String QUERY_RESULT_SUFFIX = "_RES";
     
     public final static String QUERY_RESULT_REWRITE_PREFIX = "";
