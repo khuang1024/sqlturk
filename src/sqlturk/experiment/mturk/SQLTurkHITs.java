@@ -141,7 +141,7 @@ public class SQLTurkHITs {
 	world05.add("select Name from City where Population>=3000000");
 	world05.add("select City.Name from City, CountryLanguage where (City.CountryCode = CountryLanguage.CountryCode) and (CountryLanguage.Language = 'Chinese') and (City.Population > 3000000)");
 	world05.add("select C.Name from City C,Country CU,CountryLanguage CL where CU.Population>3000000 and CL.Language='Chinese'");
-	world05.add("SELECT Cy.Name from City Cy, Country C, CountryLanguage CL where Cy.CountryCode = C.Code and C.Code=CL.CountryCode  and CL.Language='Chinese'  and Cy.population>3000000");
+	world05.add("SELECT Cy.Name from City Cy, Country C, CountryLanguage CL where Cy.CountryCode = C.Code and C.Code=CL.CountryCode  and CL.Language='Chinese'  and Cy.Population>3000000");
 	world05.add("select cty.Name from City as cty,CountryLanguage as lan where lan.Language like 'Chinese' and cty.Population > 3000000");
 	world05.add("select c1.Name Name  from City c1, Country c2, CountryLanguage c3  where c1.CountryCode=c2.Code and  c3.CountryCode= c2.Code and  c3.Language='Chinese' and   c1.Population>3000000");
 	world05.add("Select City.Name  From City, CountryLanguage, Country  Where CountryLanguage.Language = 'Chinese'  and City.Population > 3000000 and Country.Code = CountryLanguage.CountryCode  and City.CountryCode = Country.Code");
@@ -165,7 +165,7 @@ public class SQLTurkHITs {
 	world07.add("Select City.Name, City.Population  From City, Country, CountryLanguage   Where Country.Continent = 'Europe' and CountryLanguage.Language = 'Spanish' and Country.Population < 200000  and CountryLanguage.CountryCode = Country.Code and City.CountryCode = Country.Code");
 	world07.add("SELECT City.Name, City.Population from City, CountryLanguage, Country where Country.Continent='Europe'AND Country.Population<200000 AND Country.Code=City.CountryCode AND City.CountryCode=CountryLanguage.CountryCode AND CountryLanguage.Language='Spanish'");
 	world07.add("select c1.Name Name, c1.Population Population  from City c1, Country c2, CountryLanguage c3  where c1.ID=c2.Capital and c3.CountryCode= c2.Code and c2.Continent='Europe' and c3.Language='Spanish' and c1.Population<200000");
-	world07.add("SELECT City.Name, City.population  FROM City,  CountryLanguage,  Country  WHERE Country.Code = CountryLanguage.CountryCode  AND Country.Continent= 'Europe'  AND City.CountryCode = Country.code  AND Language = 'Spanish' AND IsOfficial = 'T'");
+	world07.add("SELECT City.Name, City.Population  FROM City,  CountryLanguage,  Country  WHERE Country.Code = CountryLanguage.CountryCode  AND Country.Continent= 'Europe'  AND City.CountryCode = Country.code  AND Language = 'Spanish' AND IsOfficial = 'T'");
 	world07.add("SELECT C.Name,C.Population FROM City C,Country CC,CountryLanguage CL WHERE C.CountryCode=CC.Code AND CL.CountryCode=C.CountryCode AND CC.Continent='Europe' AND CL.Language='Spanish' AND CL.IsOfficial='T' AND  C.Population < 200000");
 	world07.add("Select Name , Population FROM Country , CountryLanguage where Continent = 'Europe' and Language = 'Spanish' and IsOfficial = 'T' and Population  < 200000");
 	
