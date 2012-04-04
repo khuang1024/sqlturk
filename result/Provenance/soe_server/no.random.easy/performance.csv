@@ -1,0 +1,737 @@
+WORLD_QUERY0_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP2_FROM10, FD, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP2_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+WORLD_QUERY0_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP3_FROM10, FD, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP3_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+WORLD_QUERY0_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP4_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP4_FROM10, FD, Precision=0.06666666666666667, Recall=1.0
+WORLD_QUERY0_TOP4_FROM10, FDP_Plus, Precision=0.06666666666666667, Recall=1.0
+,,,
+WORLD_QUERY0_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP5_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP5_FROM10, FD, Precision=0.06666666666666667, Recall=1.0
+WORLD_QUERY0_TOP5_FROM10, FDP_Plus, Precision=0.06666666666666667, Recall=1.0
+,,,
+WORLD_QUERY0_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP6_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP6_FROM10, FD, Precision=0.06666666666666667, Recall=1.0
+WORLD_QUERY0_TOP6_FROM10, FDP_Plus, Precision=0.06666666666666667, Recall=1.0
+,,,
+WORLD_QUERY0_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP7_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP7_FROM10, FD, Precision=0.06666666666666667, Recall=1.0
+WORLD_QUERY0_TOP7_FROM10, FDP_Plus, Precision=0.06666666666666667, Recall=1.0
+,,,
+WORLD_QUERY0_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP8_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP8_FROM10, FD, Precision=0.06666666666666667, Recall=1.0
+WORLD_QUERY0_TOP8_FROM10, FDP_Plus, Precision=0.06666666666666667, Recall=1.0
+,,,
+WORLD_QUERY0_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP9_FROM10, FD, Precision=0.06666666666666667, Recall=1.0
+WORLD_QUERY0_TOP9_FROM10, FDP_Plus, Precision=0.06666666666666667, Recall=1.0
+,,,
+WORLD_QUERY0_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP10_FROM10, FD, Precision=0.06666666666666667, Recall=1.0
+WORLD_QUERY0_TOP10_FROM10, FDP_Plus, Precision=0.06666666666666667, Recall=1.0
+,,,
+WORLD_QUERY1_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP2_FROM10, FD, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP2_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+WORLD_QUERY1_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP3_FROM10, FD, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP3_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+WORLD_QUERY1_TOP4_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP4_FROM10, FD, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP4_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+WORLD_QUERY1_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP5_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP5_FROM10, FD, Precision=0.25, Recall=1.0
+WORLD_QUERY1_TOP5_FROM10, FDP_Plus, Precision=0.25, Recall=1.0
+,,,
+WORLD_QUERY1_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP6_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP6_FROM10, FD, Precision=0.25, Recall=1.0
+WORLD_QUERY1_TOP6_FROM10, FDP_Plus, Precision=0.25, Recall=1.0
+,,,
+WORLD_QUERY1_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP7_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP7_FROM10, FD, Precision=0.25, Recall=1.0
+WORLD_QUERY1_TOP7_FROM10, FDP_Plus, Precision=0.25, Recall=1.0
+,,,
+WORLD_QUERY1_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP8_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP8_FROM10, FD, Precision=0.25, Recall=1.0
+WORLD_QUERY1_TOP8_FROM10, FDP_Plus, Precision=0.25, Recall=1.0
+,,,
+WORLD_QUERY1_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP9_FROM10, FD, Precision=0.25, Recall=1.0
+WORLD_QUERY1_TOP9_FROM10, FDP_Plus, Precision=0.25, Recall=1.0
+,,,
+WORLD_QUERY1_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP10_FROM10, FD, Precision=0.25, Recall=1.0
+WORLD_QUERY1_TOP10_FROM10, FDP_Plus, Precision=0.25, Recall=1.0
+,,,
+WORLD_QUERY4_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY4_TOP2_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP2_FROM10, FD, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP2_FROM10, FDP_Plus, Precision=0.5, Recall=1.0
+,,,
+WORLD_QUERY4_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY4_TOP3_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP3_FROM10, FD, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP3_FROM10, FDP_Plus, Precision=0.5, Recall=1.0
+,,,
+WORLD_QUERY4_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP4_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP4_FROM10, FD, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP4_FROM10, FDP_Plus, Precision=0.5, Recall=1.0
+,,,
+WORLD_QUERY4_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP5_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP5_FROM10, FD, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP5_FROM10, FDP_Plus, Precision=0.5, Recall=1.0
+,,,
+WORLD_QUERY4_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP6_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP6_FROM10, FD, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP6_FROM10, FDP_Plus, Precision=0.5, Recall=1.0
+,,,
+WORLD_QUERY4_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP7_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP7_FROM10, FD, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP7_FROM10, FDP_Plus, Precision=0.5, Recall=1.0
+,,,
+WORLD_QUERY4_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP8_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP8_FROM10, FD, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP8_FROM10, FDP_Plus, Precision=0.5, Recall=1.0
+,,,
+WORLD_QUERY4_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP9_FROM10, FD, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP9_FROM10, FDP_Plus, Precision=0.5, Recall=1.0
+,,,
+WORLD_QUERY4_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP10_FROM10, FD, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP10_FROM10, FDP_Plus, Precision=0.5, Recall=1.0
+,,,
+WORLD_QUERY5_TOP2_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP2_FROM10, Union, Precision=0.08256880733944955, Recall=1.0
+WORLD_QUERY5_TOP2_FROM10, FD, Precision=0.08256880733944955, Recall=1.0
+WORLD_QUERY5_TOP2_FROM10, FDP_Plus, Precision=0.08256880733944955, Recall=1.0
+,,,
+WORLD_QUERY5_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP3_FROM10, Union, Precision=0.08256880733944955, Recall=1.0
+WORLD_QUERY5_TOP3_FROM10, FD, Precision=0.08256880733944955, Recall=1.0
+WORLD_QUERY5_TOP3_FROM10, FDP_Plus, Precision=0.08256880733944955, Recall=1.0
+,,,
+WORLD_QUERY5_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP4_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP4_FROM10, FD, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP4_FROM10, FDP_Plus, Precision=0.0743801652892562, Recall=1.0
+,,,
+WORLD_QUERY5_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP5_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP5_FROM10, FD, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP5_FROM10, FDP_Plus, Precision=0.0743801652892562, Recall=1.0
+,,,
+WORLD_QUERY5_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP6_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP6_FROM10, FD, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP6_FROM10, FDP_Plus, Precision=0.0743801652892562, Recall=1.0
+,,,
+WORLD_QUERY5_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP7_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP7_FROM10, FD, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP7_FROM10, FDP_Plus, Precision=0.0743801652892562, Recall=1.0
+,,,
+WORLD_QUERY5_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP8_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP8_FROM10, FD, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP8_FROM10, FDP_Plus, Precision=0.0743801652892562, Recall=1.0
+,,,
+WORLD_QUERY5_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP9_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP9_FROM10, FD, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP9_FROM10, FDP_Plus, Precision=0.0743801652892562, Recall=1.0
+,,,
+WORLD_QUERY5_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP10_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP10_FROM10, FD, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP10_FROM10, FDP_Plus, Precision=0.0743801652892562, Recall=1.0
+,,,
+WORLD_QUERY6_TOP2_FROM10, Intersection, Precision=0.5, Recall=0.171875
+WORLD_QUERY6_TOP2_FROM10, Union, Precision=0.5, Recall=0.171875
+WORLD_QUERY6_TOP2_FROM10, FD, Precision=0.5, Recall=0.171875
+WORLD_QUERY6_TOP2_FROM10, FDP_Plus, Precision=0.5, Recall=0.171875
+,,,
+WORLD_QUERY6_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY6_TOP3_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY6_TOP3_FROM10, FD, Precision=0.19540229885057467, Recall=0.265625
+,,,
+TPCH_QUERY0_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP2_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP2_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY0_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP3_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP3_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY0_TOP4_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP4_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP4_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY0_TOP5_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP5_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP5_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY0_TOP6_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP6_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP6_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY0_TOP7_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP7_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP7_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY0_TOP8_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP8_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP8_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP8_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY0_TOP9_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP9_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP9_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP9_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY0_TOP10_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP10_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP10_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP10_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY1_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP2_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP2_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY1_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP3_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP3_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY1_TOP4_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP4_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP4_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY1_TOP5_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP5_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP5_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY1_TOP6_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP6_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP6_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY1_TOP7_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP7_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP7_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY1_TOP8_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP8_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP8_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP8_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY1_TOP9_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP9_FROM10, Union, Precision=0.9629629629629629, Recall=1.0
+TPCH_QUERY1_TOP9_FROM10, FD, Precision=0.9629629629629629, Recall=1.0
+TPCH_QUERY1_TOP9_FROM10, FDP_Plus, Precision=0.9629629629629629, Recall=1.0
+,,,
+TPCH_QUERY1_TOP10_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP10_FROM10, Union, Precision=0.9629629629629629, Recall=1.0
+TPCH_QUERY1_TOP10_FROM10, FD, Precision=0.9629629629629629, Recall=1.0
+TPCH_QUERY1_TOP10_FROM10, FDP_Plus, Precision=0.9629629629629629, Recall=1.0
+,,,
+TPCH_QUERY2_TOP2_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP2_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP2_FROM10, FD, Precision=0.5, Recall=1.0
+TPCH_QUERY2_TOP2_FROM10, FDP_Plus, Precision=0.375, Recall=1.0
+,,,
+TPCH_QUERY2_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP3_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP3_FROM10, FD, Precision=0.5, Recall=1.0
+TPCH_QUERY2_TOP3_FROM10, FDP_Plus, Precision=0.375, Recall=1.0
+,,,
+TPCH_QUERY2_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP4_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP4_FROM10, FD, Precision=0.5, Recall=1.0
+TPCH_QUERY2_TOP4_FROM10, FDP_Plus, Precision=0.375, Recall=1.0
+,,,
+TPCH_QUERY2_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP5_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP5_FROM10, FD, Precision=0.5, Recall=1.0
+TPCH_QUERY2_TOP5_FROM10, FDP_Plus, Precision=0.375, Recall=1.0
+,,,
+TPCH_QUERY2_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP6_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP6_FROM10, FD, Precision=0.5, Recall=1.0
+TPCH_QUERY2_TOP6_FROM10, FDP_Plus, Precision=0.375, Recall=1.0
+,,,
+TPCH_QUERY2_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP7_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP7_FROM10, FD, Precision=0.5, Recall=1.0
+TPCH_QUERY2_TOP7_FROM10, FDP_Plus, Precision=0.375, Recall=1.0
+,,,
+TPCH_QUERY2_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP8_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP8_FROM10, FD, Precision=0.5, Recall=1.0
+TPCH_QUERY2_TOP8_FROM10, FDP_Plus, Precision=0.375, Recall=1.0
+,,,
+TPCH_QUERY2_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP9_FROM10, FD, Precision=0.2999999999999997, Recall=1.0
+TPCH_QUERY2_TOP9_FROM10, FDP_Plus, Precision=0.20000000000000015, Recall=1.0
+,,,
+TPCH_QUERY2_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP10_FROM10, FD, Precision=0.2999999999999997, Recall=1.0
+TPCH_QUERY2_TOP10_FROM10, FDP_Plus, Precision=0.19999999999999982, Recall=1.0
+,,,
+TPCH_QUERY4_TOP2_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP2_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP2_FROM10, FD, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP2_FROM10, FDP_Plus, Precision=1.0, Recall=0.6666666666666664
+,,,
+TPCH_QUERY4_TOP3_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP3_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP3_FROM10, FD, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP3_FROM10, FDP_Plus, Precision=1.0, Recall=0.6666666666666664
+,,,
+TPCH_QUERY4_TOP4_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP4_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP4_FROM10, FD, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP4_FROM10, FDP_Plus, Precision=1.0, Recall=0.6666666666666664
+,,,
+TPCH_QUERY4_TOP5_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP5_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP5_FROM10, FD, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP5_FROM10, FDP_Plus, Precision=1.0, Recall=0.6666666666666664
+,,,
+TPCH_QUERY4_TOP6_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP6_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP6_FROM10, FD, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP6_FROM10, FDP_Plus, Precision=1.0, Recall=0.6666666666666664
+,,,
+TPCH_QUERY4_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP7_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP7_FROM10, FD, Precision=0.6666666666666666, Recall=0.6666666666666664
+TPCH_QUERY4_TOP7_FROM10, FDP_Plus, Precision=0.5000000000000001, Recall=0.6666666666666664
+,,,
+TPCH_QUERY4_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP8_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP8_FROM10, FD, Precision=0.3125, Recall=0.6666666666666664
+TPCH_QUERY4_TOP8_FROM10, FDP_Plus, Precision=0.25, Recall=0.6666666666666664
+,,,
+TPCH_QUERY4_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP9_FROM10, FD, Precision=0.3125, Recall=0.6666666666666664
+TPCH_QUERY4_TOP9_FROM10, FDP_Plus, Precision=0.25, Recall=0.6666666666666664
+,,,
+TPCH_QUERY4_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP10_FROM10, FD, Precision=0.3125, Recall=0.6666666666666664
+TPCH_QUERY4_TOP10_FROM10, FDP_Plus, Precision=0.25, Recall=0.6666666666666664
+,,,
+TPCH_QUERY5_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP2_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP2_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY5_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP3_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP3_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY5_TOP4_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP4_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP4_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY5_TOP5_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP5_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP5_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY5_TOP6_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP6_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP6_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY5_TOP7_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP7_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP7_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY5_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY5_TOP8_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY5_TOP8_FROM10, FD, Precision=0.6666666666666669, Recall=1.0
+TPCH_QUERY5_TOP8_FROM10, FDP_Plus, Precision=0.6666666666666662, Recall=1.0
+,,,
+TPCH_QUERY5_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY5_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY5_TOP9_FROM10, FD, Precision=0.6666666666666669, Recall=1.0
+TPCH_QUERY5_TOP9_FROM10, FDP_Plus, Precision=0.6666666666666662, Recall=1.0
+,,,
+TPCH_QUERY5_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY5_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY5_TOP10_FROM10, FD, Precision=0.6666666666666669, Recall=1.0
+TPCH_QUERY5_TOP10_FROM10, FDP_Plus, Precision=0.6666666666666662, Recall=1.0
+,,,
+TPCH_QUERY6_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP2_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP2_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY6_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP3_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP3_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY6_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP4_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP4_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY6_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP5_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP5_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY6_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP6_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP6_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY6_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP7_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP7_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY6_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP8_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP8_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP8_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY6_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP9_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP9_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY6_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP10_FROM10, FD, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP10_FROM10, FDP_Plus, Precision=1.0, Recall=1.0
+,,,
+TPCH_QUERY7_TOP2_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP2_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP2_FROM10, FD, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP2_FROM10, FDP_Plus, Precision=0.0867579908675799, Recall=1.0
+,,,
+TPCH_QUERY7_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP3_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP3_FROM10, FD, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP3_FROM10, FDP_Plus, Precision=0.0867579908675799, Recall=1.0
+,,,
+TPCH_QUERY7_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP4_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP4_FROM10, FD, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP4_FROM10, FDP_Plus, Precision=0.0867579908675799, Recall=1.0
+,,,
+TPCH_QUERY7_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP5_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP5_FROM10, FD, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP5_FROM10, FDP_Plus, Precision=0.0867579908675799, Recall=1.0
+,,,
+TPCH_QUERY7_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP6_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP6_FROM10, FD, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP6_FROM10, FDP_Plus, Precision=0.0867579908675799, Recall=1.0
+,,,
+TPCH_QUERY7_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP7_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP7_FROM10, FD, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP7_FROM10, FDP_Plus, Precision=0.0867579908675799, Recall=1.0
+,,,
+TPCH_QUERY7_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP8_FROM10, Union, Precision=0.08482142857142858, Recall=1.0
+TPCH_QUERY7_TOP8_FROM10, FD, Precision=0.08482142857142858, Recall=1.0
+TPCH_QUERY7_TOP8_FROM10, FDP_Plus, Precision=0.08482142857142858, Recall=1.0
+,,,
+TPCH_QUERY7_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP9_FROM10, Union, Precision=0.08482142857142858, Recall=1.0
+TPCH_QUERY7_TOP9_FROM10, FD, Precision=0.08482142857142858, Recall=1.0
+TPCH_QUERY7_TOP9_FROM10, FDP_Plus, Precision=0.08482142857142858, Recall=1.0
+,,,
+TPCH_QUERY7_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP10_FROM10, Union, Precision=0.08482142857142858, Recall=1.0
+TPCH_QUERY7_TOP10_FROM10, FD, Precision=0.08482142857142858, Recall=1.0
+TPCH_QUERY7_TOP10_FROM10, FDP_Plus, Precision=0.08482142857142858, Recall=1.0
+,,,
+TPCH_QUERY0_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP4_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP5_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP6_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP7_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP8_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP8_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP9_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP9_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP10_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY0_TOP10_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP4_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP5_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP6_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP7_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP8_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP8_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP9_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP9_FROM10, Union, Precision=0.9629629629629629, Recall=1.0
+TPCH_QUERY1_TOP10_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY1_TOP10_FROM10, Union, Precision=0.9629629629629629, Recall=1.0
+TPCH_QUERY2_TOP2_FROM10, Intersection, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP2_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP3_FROM10, Intersection, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP3_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP4_FROM10, Intersection, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP4_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP5_FROM10, Intersection, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP5_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP6_FROM10, Intersection, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP6_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP7_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP8_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY2_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY2_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP2_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP2_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP3_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP3_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP4_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP4_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP5_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP5_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP6_FROM10, Intersection, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP6_FROM10, Union, Precision=1.0, Recall=0.6666666666666664
+TPCH_QUERY4_TOP7_FROM10, Union, Precision=1.0, Recall=0.3333333333333332
+TPCH_QUERY4_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP8_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY4_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+TPCH_QUERY5_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP4_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP5_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP6_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP7_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP8_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP8_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP9_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP9_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY5_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY5_TOP10_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+TPCH_QUERY6_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP8_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY6_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP9_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY6_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY6_TOP10_FROM10, Union, Precision=1.0, Recall=0.5
+TPCH_QUERY7_TOP2_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP2_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP3_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP4_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP5_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP6_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP7_FROM10, Union, Precision=0.0867579908675799, Recall=1.0
+TPCH_QUERY7_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP8_FROM10, Union, Precision=0.08482142857142858, Recall=1.0
+TPCH_QUERY7_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP9_FROM10, Union, Precision=0.08482142857142858, Recall=1.0
+TPCH_QUERY7_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+TPCH_QUERY7_TOP10_FROM10, Union, Precision=0.08482142857142858, Recall=1.0
+WORLD_QUERY0_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP8_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY0_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY0_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY1_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP2_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP3_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP4_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP4_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP5_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP5_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP6_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP6_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP7_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP7_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP8_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP8_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP9_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP9_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP10_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY1_TOP10_FROM10, Union, Precision=1.0, Recall=1.0
+WORLD_QUERY4_TOP2_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY4_TOP2_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP3_FROM10, Intersection, Precision=1.0, Recall=1.0
+WORLD_QUERY4_TOP3_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP4_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP5_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP6_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP7_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP8_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP9_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY4_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY4_TOP10_FROM10, Union, Precision=0.5, Recall=1.0
+WORLD_QUERY5_TOP2_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP2_FROM10, Union, Precision=0.08256880733944955, Recall=1.0
+WORLD_QUERY5_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP3_FROM10, Union, Precision=0.08256880733944955, Recall=1.0
+WORLD_QUERY5_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP4_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP5_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP6_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP7_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP8_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP9_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY5_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY5_TOP10_FROM10, Union, Precision=0.0743801652892562, Recall=1.0
+WORLD_QUERY6_TOP2_FROM10, Intersection, Precision=0.5, Recall=0.171875
+WORLD_QUERY6_TOP2_FROM10, Union, Precision=0.5, Recall=0.171875
+WORLD_QUERY6_TOP3_FROM10, Intersection, Precision=1.0, Recall=0.109375
+WORLD_QUERY6_TOP3_FROM10, Union, Precision=0.5862068965517241, Recall=0.265625
+WORLD_QUERY6_TOP4_FROM10, Intersection, Precision=1.0, Recall=0.109375
+WORLD_QUERY6_TOP4_FROM10, Union, Precision=0.5862068965517241, Recall=0.265625
+WORLD_QUERY6_TOP5_FROM10, Intersection, Precision=1.0, Recall=0.109375
+WORLD_QUERY6_TOP5_FROM10, Union, Precision=0.5862068965517241, Recall=0.265625
+WORLD_QUERY6_TOP6_FROM10, Intersection, Precision=1.0, Recall=0.109375
+WORLD_QUERY6_TOP6_FROM10, Union, Precision=0.5862068965517241, Recall=0.265625
+WORLD_QUERY6_TOP7_FROM10, Intersection, Precision=1.0, Recall=0.109375
+WORLD_QUERY6_TOP7_FROM10, Union, Precision=0.5333333333333333, Recall=0.5
+WORLD_QUERY6_TOP8_FROM10, Intersection, Precision=1.0, Recall=0.109375
+WORLD_QUERY6_TOP8_FROM10, Union, Precision=0.5333333333333333, Recall=0.5
+WORLD_QUERY6_TOP9_FROM10, Intersection, Precision=1.0, Recall=0.109375
+WORLD_QUERY6_TOP9_FROM10, Union, Precision=0.5333333333333333, Recall=0.5
+WORLD_QUERY6_TOP10_FROM10, Intersection, Precision=1.0, Recall=0.109375
+WORLD_QUERY6_TOP10_FROM10, Union, Precision=0.5333333333333333, Recall=0.5
+WORLD_QUERY7_TOP2_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP2_FROM10, Union, Precision=0.9736842105263158, Recall=1.0
+WORLD_QUERY7_TOP3_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP3_FROM10, Union, Precision=0.9487179487179487, Recall=1.0
+WORLD_QUERY7_TOP4_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP4_FROM10, Union, Precision=0.9487179487179487, Recall=1.0
+WORLD_QUERY7_TOP5_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP5_FROM10, Union, Precision=0.9487179487179487, Recall=1.0
+WORLD_QUERY7_TOP6_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP6_FROM10, Union, Precision=0.9487179487179487, Recall=1.0
+WORLD_QUERY7_TOP7_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP7_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP8_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP8_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP9_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP9_FROM10, Union, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP10_FROM10, Intersection, Precision=0.0, Recall=0.0
+WORLD_QUERY7_TOP10_FROM10, Union, Precision=0.0, Recall=0.0
