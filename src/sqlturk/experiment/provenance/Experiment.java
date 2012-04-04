@@ -6,9 +6,15 @@ import java.sql.SQLException;
 public class Experiment {
 
     /**
+     * 
      * @param args
-     * @throws IOException
+     * 		args[0] the type of the computation.   
+     * 		args[1] the name of the dataset (tpch or world).
+     * 		args[2] the index of the query, from 0 to 7.
+     * 		args[3] the number of top queries used for computation.
+     * 		args[4] the number of resutlting tuples.
      * @throws SQLException
+     * @throws IOException
      */
     public static void main(String[] args) throws SQLException, IOException {
 	String type = args[0];
