@@ -75,13 +75,6 @@ public class AuthoringManager {
 		    + AuthoringQuestion.getQueryAnswer(datasetName,
 			    questionIndexWithSample) + "&"
 		    + new Date().toString() + "&" + hitUrl;
-	    // String content = Parameters.HIT_LOG_HIT_ID + "=" + hitId + "&"
-	    // + Parameters.HIT_LOG_RIGHT_ANSWER + "="
-	    // + Question.getQueryAnswer(datasetName, questionQueryIndex)
-	    // + "&" + Parameters.HIT_LOG_QUESTION_SIGNATURE + "="
-	    // + questionSignature + "&" + Parameters.HIT_LOG_TIME_STAMP
-	    // + "=" + timeStamp + "&" + Parameters.HIT_LOG_HIT_URL + "="
-	    // + hitUrl;
 	    appendToLog(content, Parameters.HIT_LOG);
 	    System.out.println(hitId);
 	    System.out.println(hitUrl);
@@ -186,11 +179,6 @@ public class AuthoringManager {
 	    String content = hitId + "&" + answeredSQLWithoutSample + "&"
 		    + answeredSQLWithSample + "&" + workerId + "&"
 		    + assignment.getSubmitTime().getTime().toString();
-	    // String content = Parameters.ANSWER_LOG_HIT_ID + "=" + hitId + "&"
-	    // + Parameters.ANSWER_LOG_ANSWER_SQL + "=" + answeredSQL
-	    // + "&" + Parameters.ANSWER_LOG_WORKER_ID + "=" + workerId
-	    // + "&" + Parameters.ANSWER_LOG_TIME_STAMP + "="
-	    // + assignment.getSubmitTime();
 
 	    if (!answeredSQLWithoutSample.equals("")
 		    && sqlturk.util.query.QueryValidator.isValidQuery(
