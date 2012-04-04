@@ -58,9 +58,9 @@ public class Experiment {
 		tpchQuery3, tpchQuery4, tpchQuery5, tpchQuery6, tpchQuery7 };
 	
 	if (datasetName.equals("world")) {
-	    SQLTurk34.run(type, datasetName, queryIndex, topN, worldCandidates[queryIndex], limit);
+	    SQLTurk.run(type, datasetName, queryIndex, topN, worldCandidates[queryIndex], limit);
 	} else {
-	    SQLTurk34.run(type, datasetName, queryIndex, topN, tpchCandidates[queryIndex], limit);
+	    SQLTurk.run(type, datasetName, queryIndex, topN, tpchCandidates[queryIndex], limit);
 	}
     }
 }

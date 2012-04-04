@@ -28,9 +28,9 @@ import sqlturk.util.union.Union;
  * 
  * 
  */
-public class SQLTurk34 {
+public class SQLTurk {
 
-    private static void appendToLog(String content, String file) {
+    public static void appendToLog(String content, String file) {
 	BufferedWriter bw = null;
 	try {
 	    bw = new BufferedWriter(new FileWriter(file, true));
@@ -99,7 +99,16 @@ public class SQLTurk34 {
 	    System.out.println("Start rewriting queries ...............");
 	    tempQueries = TableauxRewriter.getRewriteQueries(originalQueries, dbConn);
 	    for (int i = 0; i < tempQueries.size(); i++) {
-		rewriteQueries.add(tempQueries.get(i) + " LIMIT " + limit);
+		if (tempQueries.get(i).contains("PARTSUPP.PSUPPLIER.S_SUPPKEY")) {
+		    String correct = tempQueries.get(i).replaceAll("PARTSUPP.PSUPPLIER.S_SUPPKEY", "PARTSUPP.PS_SUPPKEY");
+		    rewriteQueries.add(correct);
+		} else if (tempQueries.get(i).contains("SUPPLIER.S_SUPPKEY = PSUPPLIER.S_SUPPKEY")) {
+		    String correct = tempQueries.get(i).replaceAll("SUPPLIER.S_SUPPKEY = PSUPPLIER.S_SUPPKEY", "SUPPLIER.S_SUPPKEY = PARTSUPP.PS_SUPPKEY");
+		    rewriteQueries.add(correct);
+		} else {
+		    rewriteQueries.add(tempQueries.get(i) + " LIMIT " + limit);
+		}
+		
 //		rewriteQueries.add(tempQueries.get(i) + " ORDER BY RAND() LIMIT " + limit);
 	    }
 	    System.out.println("Finish rewriting queries.\n");
@@ -134,8 +143,8 @@ public class SQLTurk34 {
 		appendToLog(result, Parameters.PERFORMANCE_LOG_NAME);
 	    } else if (type.equals("fd")) {
 		System.out.println("Start creating " + Parameters.FD_REL_NAME);
-		FD.createFDRelationNormally(dbConn);
-//		FD.createFDRelationOptimally(datasetName, queryIndex, topN, candidates, dbConn);
+//		FD.createFDRelationNormally(dbConn);
+		FD.createFDRelationOptimally(datasetName, queryIndex, topN, candidates, dbConn);
 		System.out.println("Finish creating " + Parameters.FD_REL_NAME + ".\n");
 		double stdFD = Metric.sim(Parameters.STANDARD_ANSWER_REL_NAME, Parameters.FD_REL_NAME, dbConn);
 		double fdStd = Metric.sim(Parameters.FD_REL_NAME, Parameters.STANDARD_ANSWER_REL_NAME, dbConn);

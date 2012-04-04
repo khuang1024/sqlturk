@@ -194,11 +194,7 @@ public class Cleaner {
 
     public static void dropAll(Connection dbConn) throws SQLException {
 	dropWhyConnectedTable(dbConn);
-	System.out.println("connected");
 	dropWhyProvenanceTable(dbConn);
-	System.out.println("prov");
-//	dropFDTable(dbConn);
-//	dropFDPlusTable(dbConn);
 	dropSelectAliasTable(dbConn);
 	dropFromAliasTable(dbConn);
 	dropSourceMapTable(dbConn);
