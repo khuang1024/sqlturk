@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import sqlturk.configuration.Parameters;
-import sqlturk.experiment.provenance.SQLTurk34;
+import sqlturk.experiment.provenance.SQLTurk;
 import sqlturk.util.equi.Equivalence;
 import sqlturk.util.map.ColumnInfo;
 import sqlturk.util.query.QueryExecutor;
@@ -32,7 +32,7 @@ class IncrementalFD {
 	    ) throws SQLException {
 	// optimization: if we have previous top(k-1) FD table, we can use it
 	// actually, FD can be created recursively. (top(k) = top(k-1)FD(the additional query))
-	String previousFDName = SQLTurk34.getFDName(datasetName, queryIndex, topN-1, candidates);
+	String previousFDName = SQLTurk.getFDName(datasetName, queryIndex, topN-1, candidates);
 	if (isExist(previousFDName, dbConn)) {
 	    // if the previous FD exists in the database
 	    
