@@ -38,11 +38,16 @@ class IncrementalFD {
 	    
 	    System.out.println("debug:\tprevious FD exists! Use it for optimzied computation.");
 	    
-	    if (!QueryExecutor.getCurrentLastQueryResultTableName().equals(getAdditionalResultTableName(dbConn))) {
-		throw new RuntimeException("Confusing additional resulting table.");
-	    }
+//	    if (!QueryExecutor.getCurrentLastQueryResultTableName(dbConn).equals(getAdditionalResultTableName(dbConn))) {
+//		System.out.println(QueryExecutor.getCurrentLastQueryResultTableName(dbConn));
+//		System.out.println(getAdditionalResultTableName(dbConn));
+//		throw new RuntimeException("Confusing additional resulting table.");
+//	    }
 	    
 	    String additionalResultRelationName = getAdditionalResultTableName(dbConn);
+	    System.out.println("=====================================================================");
+	    System.out.println("debug:\tThe additional resulting table is: " + additionalResultRelationName);
+	    System.out.println("=====================================================================");
 	    Relation previousFDRelation = new Relation(previousFDName, FD.getTuples(previousFDName, dbConn));
 	    Relation additionalResultRelation = new Relation(additionalResultRelationName, FD.getTuples(additionalResultRelationName, dbConn));
 	    ArrayList<Relation> relationsToCompute = new ArrayList<Relation>();
