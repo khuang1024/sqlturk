@@ -23,11 +23,6 @@ public class QueryExecutor {
 	Statement stmt2 = dbConn.createStatement();
 	ResultSet rs = stmt.executeQuery("SHOW TABLES");
 
-	// // debug
-	// System.out.println(dbConn.isClosed());
-	// System.out.println(stmt.isClosed());
-	// System.out.println(rs.isClosed());
-
 	while (rs.next()) {
 	    String tableName = rs.getString(1);
 	    if (tableName.startsWith(Parameters.QUERY_RESULT_PREFIX)
@@ -46,10 +41,25 @@ public class QueryExecutor {
 	}
     }
     
-    public static String getCurrentLastQueryResultTableName () {
-	return Parameters.QUERY_RESULT_PREFIX + (queryId-1)
-	+ Parameters.QUERY_RESULT_SUFFIX;
+    public static String getCurrentLastQueryResultTableName (Connection dbConn) throws SQLException {
+	Statement stmt = dbConn.createStatement();
+	ResultSet rs = stmt.executeQuery("SHOW TABLES");
+	String lastResultTable = null;
+	while (rs.next()) {
+	    String tableName = rs.getString(1);
+	    if (tableName.startsWith(Parameters.QUERY_RESULT_PREFIX)
+		    && tableName.endsWith(Parameters.QUERY_RESULT_SUFFIX)) {
+		lastResultTable = tableName;
+	    }
+	}
+	return lastResultTable;
+//	return Parameters.QUERY_RESULT_PREFIX + (queryId-1) + Parameters.QUERY_RESULT_SUFFIX;
     }
+    
+//    public static String getCurrentLastQueryResultTableName () {
+//	
+//	return Parameters.QUERY_RESULT_PREFIX + (queryId-1) + Parameters.QUERY_RESULT_SUFFIX;
+//    }
 
     public static void executeQueries(ArrayList<String> queries,
 	    Connection dbConn) throws SQLException {
@@ -73,6 +83,7 @@ public class QueryExecutor {
 	String resultTableName = Parameters.QUERY_RESULT_PREFIX + queryId
 		+ Parameters.QUERY_RESULT_SUFFIX;
 	
+	// if this table exists, keep it
 	if (isExist(resultTableName, dbConn)) {
 	    System.out.println("\nTable "+ resultTableName +" has already existed, skip creating it. --\n");
 	    queryId ++;
@@ -89,7 +100,7 @@ public class QueryExecutor {
 
 	
 	
-	// if this table exists, keep it
+	
 	stmt.executeUpdate("DROP TABLE IF EXISTS " + resultTableName);
 	stmt.executeUpdate("CREATE TABLE " + resultTableName + " LIKE TEMP");
 
