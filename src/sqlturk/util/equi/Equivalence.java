@@ -20,8 +20,6 @@ public class Equivalence {
 	throw new AssertionError();
     }
     
-    
-    
     public static ArrayList<String> getInequivalentResultTables(Connection dbConn) throws SQLException {
 	ArrayList<String> inequivalentResultTables = new ArrayList<String>();
 	if (!isInitialized) {
@@ -208,21 +206,6 @@ public class Equivalence {
 		e.printStackTrace();
 	    }
 	}
-//	System.out.println("t = " + isEqual("t1", "t8", dbConn));
-//	System.out.println("t = " + isEqual("t3", "t4", dbConn));
-//	System.out.println("t = " + isEqual("t7", "t10", dbConn));
-//	System.out.println("f = " + isEqual("t1", "t3", dbConn));
-//	System.out.println("f = " + isEqual("t7", "t3", dbConn));
-//	System.out.println("f = " + isEqual("t9", "t3", dbConn));
-//	System.out.println("f = " + isEqual("t9", "t7", dbConn));
-//	System.out.println("f = " + isEqual("t1", "t2", dbConn));
-//	System.out.println("f = " + isEqual("t1", "t7", dbConn));
-//	System.out.println("f = " + isEqual("t4", "t2", dbConn));
-//	System.out.println("f = " + isEqual("t7", "t9", dbConn));
-//	
-//	init(dbConn);
-
-//	dbConn.close();
     }
 
 }
