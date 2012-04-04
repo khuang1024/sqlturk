@@ -3,7 +3,7 @@ package sqlturk.experiment.provenance;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class Experiment4 {
+public class Experiment {
 
     /**
      * @param args
