@@ -37,22 +37,20 @@ public class Connected {
 	ArrayList<String> resultRelationNames = new ArrayList<String>();
 	ArrayList<Tuple> resultTuples = new ArrayList<Tuple>();
 
-	// put the query result tables into an array
+	//get all resulting tables
 	while (rs.next()) {
 	    if (rs.getString(1).startsWith(Parameters.QUERY_RESULT_PREFIX)
 		    && rs.getString(1).endsWith(Parameters.QUERY_RESULT_SUFFIX)) {
 		resultRelationNames.add(rs.getString(1));
 	    }
 	}
-	rs.close();
 
 	// get all the tuples and their schemas
 	for (String resultRelationName : resultRelationNames) {
 	    ArrayList<String> schema = new ArrayList<String>();
 
-	    ResultSet rsTuples = stmt.executeQuery("SELECT * FROM "
-		    + resultRelationName);
-	    ResultSetMetaData rsmd = rsTuples.getMetaData();
+	    rs = stmt.executeQuery("SELECT * FROM " + resultRelationName);
+	    ResultSetMetaData rsmd = rs.getMetaData();
 	    int nColumn = rsmd.getColumnCount();
 
 	    // get the schema of the relation
@@ -61,50 +59,27 @@ public class Connected {
 	    }
 
 	    // get all the tuples
-	    while (rsTuples.next()) {
+	    while (rs.next()) {
 		ArrayList<String> values = new ArrayList<String>();
 		for (int i = 1; i <= nColumn; i++) {
-		    values.add(rsTuples.getString(i));
+		    values.add(rs.getString(i));
 		}
 		resultTuples.add(new Tuple(resultRelationName, schema, values));
 	    }
-	    rsTuples.close();
+	    rs.close();
 	}
 
-	// // debug
-	// for (int i = 0; i < resultTuples.size(); i++) {
-	// System.out.print("debug:\tresult tuple:\t");
-	// for (int j = 0; j < resultTuples.get(i).getValues().size(); j++) {
-	// System.out.print(resultTuples.get(i).getValues().get(j) + ",\t\t");
-	// }
-	// System.out.println();
-	// }
-	// for (int i = 0; i < resultRelations.size(); i++) {
-	// System.out.print("debug:\tresult schema:\t");
-	// for (int j = 0; j < resultRelations.get(i).getSchema().size(); j++) {
-	// System.out.print(resultRelations.get(i).getSchema().get(j).getRelName()
-	// + "." + resultRelations.get(i).getSchema().get(j).getAttName() +
-	// ",\t\t");
-	// }
-	// System.out.println();
-	// }
-
-	// clean the old CONN table, and create a new one
-	try {
-	    stmt.executeUpdate("DROP TABLE IF EXISTS "
-		    + Parameters.CONN_REL_NAME);
-	    stmt.executeUpdate("CREATE TABLE " + Parameters.CONN_REL_NAME
+	// drop the old CONN table, and create a new one
+	stmt.executeUpdate("DROP TABLE IF EXISTS " + Parameters.CONN_REL_NAME);
+	stmt.executeUpdate("CREATE TABLE " + Parameters.CONN_REL_NAME
 		    + " (" + Parameters.CONN_TUPLE1_ID_ATT + " int(11), "
 		    + Parameters.CONN_TUPLE2_ID_ATT + " int(11))");
-	    stmt.close();
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
+	stmt.close();
 
-	computeWhyConnected(dbConn, resultTuples);
+	populateWhyConnectedRelation(dbConn, resultTuples);
     }
 
-    private static void computeWhyConnected(Connection dbConn,
+    private static void populateWhyConnectedRelation(Connection dbConn,
 	    List<Tuple> tuples) throws SQLException {
 
 	minimizeWitnessSet(dbConn); // minimize the witness set.
@@ -494,8 +469,6 @@ public class Connected {
 				    .equals(Parameters.ROWID_ATT_NAME)) {
 			hasCommonAttributes = true;
 			if (!values1.get(i).equals(values2.get(j))) {
-			    // System.out.println("Violate condition 1: Different "
-			    // + "values in common column " + schema1.get(i));
 			    return false;
 			}
 		    }
