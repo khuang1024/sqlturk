@@ -52,7 +52,8 @@ public class TableauxRewriter {
     public static ArrayList<String> getRewriteQueries(
 	    ArrayList<String> queries, Connection dbConn) throws SQLException {
 	
-	// first, clear the record which stores the tables whose FK tables had been created in the previous rounds
+	// first, clear the record which stores the tables 
+	// whose FK tables had been created in the previous rounds
 	ForeignKeyConstraintUtil.clearCreatedFKRelations();
 	
 	Statement stmt = dbConn.createStatement();
@@ -64,9 +65,6 @@ public class TableauxRewriter {
 
 	ArrayList<String> rewriteQueries = new ArrayList<String>();
 	for (String query : queries) {
-	    // debug
-	    // System.out.println("debug:\t" + query);
-
 	    rewriteQueries.add(getRewriteQuery(query, dbConn));
 	}
 
