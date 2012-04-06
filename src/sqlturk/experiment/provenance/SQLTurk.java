@@ -22,6 +22,7 @@ import sqlturk.util.metric.Metric;
 import sqlturk.util.provenance.Provenance;
 import sqlturk.util.query.QueryExecutor;
 import sqlturk.util.tableaux.TableauxRewriter;
+import sqlturk.util.tableaux.XRewriter;
 import sqlturk.util.union.Union;
 
 /**
@@ -119,27 +120,25 @@ public class SQLTurk {
 
 
 	// rewrite queries
-	ArrayList<String> rewriteQueries = new ArrayList<String>();
+	ArrayList<String> rewrittenQueries = new ArrayList<String>();
 	ArrayList<String> tempQueries = new ArrayList<String>();
 	System.out.println("Rewritten Query Info (begin) ===================");
-	tempQueries = TableauxRewriter.getRewriteQueries(originalQueries, dbConn);
+//	tempQueries = TableauxRewriter.getRewriteQueries(originalQueries, dbConn);
+	tempQueries = XRewriter.getRewrittenQueries(originalQueries, dbConn);
 	for (int i = 0; i < tempQueries.size(); i++) {
-	    if (tempQueries.get(i).contains("PARTSUPP.PSUPPLIER.S_SUPPKEY")) {
-		String correct = tempQueries.get(i).replaceAll("PARTSUPP.PSUPPLIER.S_SUPPKEY", "PARTSUPP.PS_SUPPKEY");
-		rewriteQueries.add(correct);
-	    } else if (tempQueries.get(i).contains("SUPPLIER.S_SUPPKEY = PSUPPLIER.S_SUPPKEY")) {
-		String correct = tempQueries.get(i).replaceAll("SUPPLIER.S_SUPPKEY = PSUPPLIER.S_SUPPKEY", "SUPPLIER.S_SUPPKEY = PARTSUPP.PS_SUPPKEY");
-		rewriteQueries.add(correct);
-	    } else {
-		rewriteQueries.add(tempQueries.get(i) + " LIMIT " + limit);
-	    }
+	    rewrittenQueries.add(tempQueries.get(i) + " LIMIT " + limit);
 	}
-	System.out.println("Rewritten Query Info (end) ===================");
+	for (int i = 0; i < originalQueries.size(); i++) {
+	    System.out.println("--Original: " + originalQueries.get(i));
+	    System.out.println("--Rewritten: " + rewrittenQueries.get(i));
+	    System.out.println();
+	}
+	System.out.println("Rewritten Query Info (end) ===================");	
 
 
 	// execute the queries
 	System.out.println("Execute Query Info (begin) ===================");
-	QueryExecutor.executeQueries(rewriteQueries, dbConn);
+	QueryExecutor.executeQueries(rewrittenQueries, dbConn);
 	System.out.println("Execute Query Info (end) =====================");
 	    
 	    
@@ -153,12 +152,12 @@ public class SQLTurk {
 	} else if (type.equals("fd")) {
 	    computeFD(header, datasetName, queryIndex, topN, candidates, dbConn);
 	} else if (type.equals("fdplus")) {
-	    computeFDPlus(header,rewriteQueries, datasetName, queryIndex, topN, candidates, dbConn);
+	    computeFDPlus(header,rewrittenQueries, datasetName, queryIndex, topN, candidates, dbConn);
 	} else if (type.equals("all")) {
 	    computeIntersection(header, dbConn);
 	    computeUnion(header, dbConn);
 	    computeFD(header, datasetName, queryIndex, topN, candidates, dbConn);
-	    computeFDPlus(header,rewriteQueries, datasetName, queryIndex, topN, candidates, dbConn);
+	    computeFDPlus(header,rewrittenQueries, datasetName, queryIndex, topN, candidates, dbConn);
 	} else {
 	    throw new RuntimeException("Wrong type.");
 	}
