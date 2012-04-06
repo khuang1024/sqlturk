@@ -14,6 +14,7 @@ import sqlturk.configuration.Parameters;
  * TableauxUtil is a singleton class! Get the only one instance by getInstance.
  * 
  */
+@Deprecated
 class ForeignKeyConstraintUtil {
     static HashSet<String> createdFKRelations = new HashSet<String>();
 

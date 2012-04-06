@@ -19,6 +19,7 @@ import sqlturk.util.map.ColumnInfo;
  * "select t1.A, t2.B from table1 as t1, table2 as t2 where t1.A = t2.A"
  * 
  */
+@Deprecated
 public class TableauxRewriter {
 
     private static int queryId = Parameters.QUERY_RESULT_TABLE_INDEX_START;

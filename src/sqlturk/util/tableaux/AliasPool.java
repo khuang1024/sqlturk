@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+@Deprecated
 class AliasPool {
 
     private static final String ALIAS_NAME_PREFIX = "t";

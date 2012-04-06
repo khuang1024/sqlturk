@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import sqlturk.configuration.Parameters;
 
+@Deprecated
 class AliasManager {
     private ArrayList<AliasPair> globalAliasPairWarehouse;
     private ArrayList<String> referencedRelations;

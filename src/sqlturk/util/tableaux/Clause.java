@@ -3,6 +3,7 @@ package sqlturk.util.tableaux;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Deprecated
 class Clause {
     private HashMap<String, String> alias; // the clause has<rel, alias>
     private String key; // the name of the clause, "select", "from", "where"

@@ -1,5 +1,6 @@
 package sqlturk.util.tableaux;
 
+@Deprecated
 class AliasPair {
     private String originalName;
     private String aliasName;
