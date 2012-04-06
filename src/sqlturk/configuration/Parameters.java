@@ -129,7 +129,7 @@ public class Parameters {
     public final static String CONN_TUPLE2_ID_ATT = "TUPLE2__ROWID";
     
     // tableaux
-    public static final String TABLEAUX_ALIAS_PREFIX = "Tableaux_";
+    public static final String TABLEAUX_ALIAS_PREFIX = "TABLEAUX";
     public static final int TABLEAUX_ALIAS_START_ID = 0;
     public static final String TABLEAUX_ALIAS_SUFFIX = "";
     
@@ -189,5 +189,7 @@ public class Parameters {
     public static final String PERFORMANCE_LOG_NAME = "performance.csv";
     
     public static final int LIMIT_NUM = 200;
+    
+    public static final String REWRITE_ATT_DELIM = "_";
     
 }
