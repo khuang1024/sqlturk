@@ -48,7 +48,7 @@ public class XIntersection {
 		String newTempTable = getTempTable();
 		stmt.execute("DROP TABLE IF EXISTS " + newTempTable);
 		stmt.execute("CREATE TABLE " + newTempTable + " AS " + getIntersectionQuery(commonAtt, currentTable, rels.get(i)));
-//		stmt.execute("DROP TABLE " + currentTable);
+		stmt.execute("DROP TABLE " + currentTable);
 		currentTable = newTempTable;
 	    }
 	    stmt.execute("ALTER TABLE " + currentTable + " RENAME TO " + Parameters.INTERSECTION_REL_NAME);
@@ -92,16 +92,20 @@ public class XIntersection {
 	}
 	
 	ArrayList<String> rels = new ArrayList<String>();
-	rels.add("Q0_RES"); //19
-//	rels.add("Q1_RES"); //200
-//	rels.add("Q2_RES");
-//	rels.add("Q3_RES");
-//	rels.add("Q4_RES"); //200
-//	rels.add("Q5_RES");
-//	rels.add("Q6_RES"); //200
-	rels.add("Q7_RES"); //24
-	rels.add("Q8_RES"); //19
-	rels.add("Q9_RES"); //19
+//	rels.add("Q0_RES"); //19
+////	rels.add("Q1_RES"); //200
+////	rels.add("Q2_RES");
+////	rels.add("Q3_RES");
+////	rels.add("Q4_RES"); //200
+////	rels.add("Q5_RES");
+////	rels.add("Q6_RES"); //200
+//	rels.add("Q7_RES"); //24
+//	rels.add("Q8_RES"); //19
+//	rels.add("Q9_RES"); //19
+	
+	rels.add("R");
+	rels.add("S");
+	rels.add("T");
 	XIntersection.createIntersecTable(rels, dbConn);
 	
 	System.out.println("Done.");
