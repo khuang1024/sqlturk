@@ -12,7 +12,9 @@ import sqlturk.configuration.Parameters;
 
 public class XRewriter {
     
-    private XRewriter() {}
+    private XRewriter() {
+	throw new AssertionError();
+    }
     
     public static ArrayList<String> getRewrittenQueries(ArrayList<String> oQueries, Connection dbConn)
 	    throws SQLException {
