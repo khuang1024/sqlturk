@@ -40,6 +40,15 @@ public class XForeignKey {
 	return fk;
     }
     
+    public ArrayList<String> getEqCols() {
+	ArrayList<String> eqCols = new ArrayList<String>();
+	for (String k : hm.keySet()) {
+	    eqCols.add(k.replaceFirst("\\.", "_"));
+	    eqCols.add(hm.get(k).replaceFirst("\\.", "_"));
+	}
+	return eqCols;
+    }
+    
     private void init() throws SQLException {
 	Statement stmt = dbConn.createStatement();
 	ResultSet rs = stmt.executeQuery(getFKQuery(rel));
