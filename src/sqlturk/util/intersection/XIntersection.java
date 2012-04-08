@@ -21,7 +21,7 @@ public class XIntersection {
 	    Connection dbConn) throws SQLException {
 	Statement stmt = dbConn.createStatement();
 	
-	ArrayList<String> commonCols = XCommon.getCommonColumnNames(rels, dbConn);
+	ArrayList<String> commonCols = XCommon.getCommonCols(rels, dbConn);
 	
 	String commonAtt = "";
 	for (String att : commonCols) {
