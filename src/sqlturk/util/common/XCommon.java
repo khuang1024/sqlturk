@@ -13,7 +13,22 @@ public class XCommon {
     
     private XCommon() {}
     
-    public static ArrayList<String> getCommonColumnNames(
+    public static ArrayList<String> getCommonCols(ArrayList<XTuple> tuples) {
+	if (tuples.size() == 1) {
+	    throw new RuntimeException("Error: Only on tuple.");
+	}
+	
+	ArrayList<String> currCommonAtts = tuples.get(0).getCommonAtts(tuples.get(1));
+	
+	for (int i = 2; i < tuples.size(); i++) {
+	    ArrayList<String> newCommonAtts = tuples.get(i).getCommonAtts(currCommonAtts);
+	    currCommonAtts = newCommonAtts;
+	}
+	
+	return currCommonAtts;
+    }
+    
+    public static ArrayList<String> getCommonCols(
 	    ArrayList<String> rels, Connection dbConn) throws SQLException {
 	
 	ArrayList<String> commonColNames = new ArrayList<String>();
@@ -69,12 +84,25 @@ public class XCommon {
 	    System.out.println("Using local.\n");
 	}
 	
-	ArrayList<String> rels = new ArrayList<String>();
-	rels.add("Q0_RES");
-	rels.add("Q1_RES");
-	rels.add("Q10_RES");
-	ArrayList<String> att = XCommon.getCommonColumnNames(rels, dbConn);
-	System.out.println(att.toString());
+//	ArrayList<String> rels = new ArrayList<String>();
+//	rels.add("Q0_RES");
+//	rels.add("Q1_RES");
+//	rels.add("Q10_RES");
+//	ArrayList<String> att = XCommon.getCommonCols(rels, dbConn);
+//	System.out.println(att.toString());
+	
+	XTuple tp1 = new XTable("Q0_RES", dbConn).getTuple(0);
+	XTuple tp2 = new XTable("Q1_RES", dbConn).getTuple(0);
+	XTuple tp3 = new XTable("TEST", dbConn).getTuple(0);
+	XTuple tp4 = new XTable("TEST2", dbConn).getTuple(0);
+	
+	ArrayList<XTuple> tps = new ArrayList<XTuple>();
+	tps.add(tp1);
+	tps.add(tp2);
+//	tps.add(tp3);
+	tps.add(tp4);
+	
+	System.out.println(XCommon.getCommonCols(tps).toString());
     }
 
 }
