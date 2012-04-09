@@ -13,7 +13,7 @@ public class XParser {
     
     XParser(String oQuery) {
 	this.oQuery = oQuery;
-	this.select = new HashMap<String, String>(); // select <alias, original>
+	this.select = new HashMap<String, String>(); // select <alias, original> (original can be Country.Code or Code, depends on the original input by workers)
 	this.from = new HashMap<String, String>(); // from <alias, original>
 	this.where = null; // where predicates
 	init();
