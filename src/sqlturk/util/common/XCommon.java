@@ -11,7 +11,48 @@ import sqlturk.configuration.Parameters;
 
 public class XCommon {
     
-    private XCommon() {}
+    private XCommon() {
+	throw new AssertionError();
+    }
+    
+    public static String flattenByComma(ArrayList<String> array) {
+	String string = "";
+	for (String e : array) {
+	    string += e + ", ";
+	}
+	string = string.substring(0, string.length() - 2);
+	return string;
+    }
+    
+    public static ArrayList<String> getAllCols(ArrayList<String> rels, Connection dbConn) throws SQLException {
+	
+	ArrayList<String> allColNames = new ArrayList<String>();
+	
+	Statement stmt = dbConn.createStatement();
+	ResultSet rs = null;
+	
+	for (int i = 0; i < rels.size(); i++) {
+	    rs = stmt.executeQuery("DESC " + rels.get(i));
+	    while (rs.next()) {
+		String colName = rs.getString(1);
+		if (!allColNames.contains(colName)) {
+		    allColNames.add(colName);
+		}
+	    }
+	}
+	
+	// remove __ROWID
+	while (allColNames.contains(Parameters.ROWID_ATT_NAME)) {
+	    allColNames.remove(Parameters.ROWID_ATT_NAME);
+	}
+	
+	rs.close();
+	stmt.close();
+	
+	return allColNames;
+	
+    }
+    
     
     public static ArrayList<String> getCommonCols(ArrayList<XTuple> tuples) {
 	if (tuples.size() == 1) {
@@ -83,26 +124,6 @@ public class XCommon {
 	    dbConn = DriverManager.getConnection(Parameters.LOCAL_DB_URL, Parameters.LOCAL_USER, Parameters.LOCAL_PASSWORD);
 	    System.out.println("Using local.\n");
 	}
-	
-//	ArrayList<String> rels = new ArrayList<String>();
-//	rels.add("Q0_RES");
-//	rels.add("Q1_RES");
-//	rels.add("Q10_RES");
-//	ArrayList<String> att = XCommon.getCommonCols(rels, dbConn);
-//	System.out.println(att.toString());
-	
-	XTuple tp1 = new XTable("Q0_RES", dbConn).getTuple(0);
-	XTuple tp2 = new XTable("Q1_RES", dbConn).getTuple(0);
-	XTuple tp3 = new XTable("TEST", dbConn).getTuple(0);
-	XTuple tp4 = new XTable("TEST2", dbConn).getTuple(0);
-	
-	ArrayList<XTuple> tps = new ArrayList<XTuple>();
-	tps.add(tp1);
-	tps.add(tp2);
-//	tps.add(tp3);
-	tps.add(tp4);
-	
-	System.out.println(XCommon.getCommonCols(tps).toString());
     }
 
 }
