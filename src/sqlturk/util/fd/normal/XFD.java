@@ -21,11 +21,38 @@ public class XFD {
 	throw new AssertionError();
     }
     
-    public static void createFDTable(ArrayList<String> rels, Connection dbConn) {
+    public static String createFDTable(ArrayList<String> rels, Connection dbConn) throws SQLException {
+	Statement stmt = dbConn.createStatement();
 	
+	ArrayList<String> FDIs = new ArrayList<String>();
+	ArrayList<String> commonSchema = XCommon.getAllCols(rels, dbConn);
+	for (String rel : rels) {
+	    FDIs.add(createFDI(rel, rels, commonSchema, dbConn)); // get all FDi
+	}
+	
+	// do the union operation
+	String union = "";
+	for (String fdi : FDIs) {
+	    union += "SELECT * FROM " + fdi + " UNION ";
+	}
+	union = union.substring(0, union.length() - "UNION ".length());
+	
+	// create the FD
+	String create = "CREATE TABLE " + Parameters.FD_REL_NAME + " AS " + union;
+	stmt.execute(create);
+	
+	
+	// drop all FDi tables
+	for (String fdi : FDIs) {
+	    stmt.execute("DROP TABLE " + fdi);
+	}
+	
+	stmt.close();
+	
+	return Parameters.FD_REL_NAME;
     }
     
-    static void createFDi(String rel, ArrayList<String> rels, ArrayList<String> commonSchema, Connection dbConn) throws SQLException {
+    static String createFDI(String rel, ArrayList<String> rels, ArrayList<String> commonSchema, Connection dbConn) throws SQLException {
 	Statement stmt = dbConn.createStatement();
 	
 	String fdiName = "TMPFD" + (fdiIndex++);
@@ -39,11 +66,15 @@ public class XFD {
 	
 	String commonSchemaString = "";
 	for (String col : commonSchema) {
-	    commonSchemaString += col + " VARCHAR(30), ";
+	    commonSchemaString += col + " VARCHAR(50), ";
 	}
 	commonSchemaString = commonSchemaString.substring(0, commonSchemaString.length() - 2);
 	
+	// drop the existing FDi (old FDi)
+	stmt.execute("DROP TABLE IF EXISTS " + fdiName);
+	
 	String create = "CREATE TABLE " + fdiName + " (" + commonSchemaString + ")";
+	stmt.execute(create);
 	System.out.println("\n" + create);
 	
 	for (XTupleSet ts : tupleSets) {
@@ -55,11 +86,14 @@ public class XFD {
 	    }
 	    valueString = valueString.substring(0, valueString.length() - 2);
 	    String insert = "INSERT INTO " + fdiName + " VALUES (" + valueString + ")";
+	    stmt.execute(insert);
 	    System.out.println(insert);
 	}
 	System.out.println();
 	
 	stmt.close();
+	
+	return fdiName;
     }
     
     
@@ -188,19 +222,13 @@ public class XFD {
 	Cleaner.dropFDPlusTable(dbConn);
 	
 	ArrayList<String> rels = new ArrayList<String>();
-	String rel = "TEST";
 	rels.add("Q0_RES");
 	rels.add("Q1_RES");
 	rels.add("Q2_RES");
 	rels.add("Q3_RES");
 	rels.add("TEST");
 	
-//	String rel = "R";
-//	rels.add("R");
-//	rels.add("S");
-//	rels.add("T");
-	ArrayList<String> commonSchema = XCommon.getAllCols(rels, dbConn);
-	XFD.createFDi(rel, rels, commonSchema, dbConn);
+	System.out.println(createFDTable(rels, dbConn));
 
     }
 
