@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import sqlturk.configuration.Parameters;
+import sqlturk.util.common.XCommon;
 
 public class XRewriter {
     
@@ -43,13 +44,38 @@ public class XRewriter {
 	ArrayList<String> oCols = xParser.getAllOriginalCols(); // the original projection
 	ArrayList<String> rCols = new ArrayList<String>(); // the new alias
 	ArrayList<String> sCols = new ArrayList<String>(); // the new projection string
-	for (String oCol : oCols) {
-	    String oTable = getOriginalTable(oCol, xParser, dbConn);
-	    String oColumn = getOriginalCol(oCol);
-	    String rColumn = getRewrittenCol(oTable, oColumn);
-	    rCols.add(rColumn);
-	    sCols.add(oTable + "." + oColumn + " AS " + rColumn);
+	if (oCols.size() == 1 && oCols.get(0).equals("*")) { // if it is "SELECT * FROM ..."
+	    ArrayList<String> allOriginalColumns = new ArrayList<String>();
+	    for (String table : xParser.getAllOriginalTables()) {
+		allOriginalColumns.addAll(getAllColumns(table, dbConn));
+	    }
+	    
+	    for (String col : allOriginalColumns) {
+		String rColumn = col.replaceAll("\\.", "_");
+		rCols.add(rColumn);
+		sCols.add(col + " AS " + rColumn);
+	    }
+	} else {
+	    for (String oCol : oCols) {
+		if (oCol.contains(".*")) { // if it is "SELECT A.*, B.* FROM ..."
+		    String oTable = getOriginalTable(oCol, xParser, dbConn);
+		    ArrayList<String> allOriginalColumns = getAllColumns(oTable, dbConn);
+		    for (String col : allOriginalColumns) {
+			String rColumn = col.replaceAll("\\.", "_");
+			rCols.add(rColumn);
+			sCols.add(col + " AS " + rColumn);
+		    }
+		} else {
+		    String oTable = getOriginalTable(oCol, xParser, dbConn);
+		    String oColumn = getOriginalCol(oCol);
+		    String rColumn = getRewrittenCol(oTable, oColumn);
+		    rCols.add(rColumn);
+		    sCols.add(oTable + "." + oColumn + " AS " + rColumn);
+		}
+		
+	    }
 	}
+	
 	
 	// rewrite from
 	ArrayList<String> oTables = xParser.getAllOriginalTables();
@@ -117,6 +143,7 @@ public class XRewriter {
     
     private static String getOriginalTable(String oCol, XParser xParser, 
 	    Connection dbConn) throws SQLException {
+	
 	String table = getTablePrefix(oCol);
 	if (table != null) { // if it is R.A
 	    return xParser.getOriginalTable(table);
@@ -134,6 +161,7 @@ public class XRewriter {
 		    }
 		}
 	    }
+	    
 	    rs.close();
 	    stmt.close();
 	    throw new RuntimeException("Error: " + oCol + " Original table not found.");
@@ -146,6 +174,24 @@ public class XRewriter {
 	} else {
 	    return null;
 	}
+    }
+    
+    private static ArrayList<String> getAllColumns(String  rel, Connection dbConn) throws SQLException {
+	ArrayList<String> newColumns = new ArrayList<String>();
+	
+	Statement stmt = dbConn.createStatement();
+	ResultSet rs = stmt.executeQuery("DESC " + rel);
+	while (rs.next()) {
+	    if (!rs.getString(1).equals(Parameters.ROWID_ATT_NAME)) {
+		newColumns.add(rel + "." + rs.getString(1));
+	    }
+	    
+	}
+	
+	rs.close();
+	stmt.close();
+	
+	return newColumns;
     }
 
     /**
