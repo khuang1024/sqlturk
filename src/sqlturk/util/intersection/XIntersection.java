@@ -22,7 +22,7 @@ public class XIntersection {
 	return createIntersecTable(resultTables, dbConn);
     }
     
-    public static String createIntersecTable(ArrayList<String> rels,
+    private static String createIntersecTable(ArrayList<String> rels,
 	    Connection dbConn) throws SQLException {
 	Statement stmt = dbConn.createStatement();
 	
