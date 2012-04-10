@@ -37,8 +37,9 @@ public class XIntersection {
 	stmt.execute("DROP TABLE IF EXISTS " + Parameters.INTERSECTION_REL_NAME);
 	
 	if (commonAtt.equals("")) { // if no common attributes
-	    String create = "CREATE TABLE " + Parameters.INTERSECTION_REL_NAME + " (NO_COMMON VARHCHAR(10))";
+	    String create = "CREATE TABLE " + Parameters.INTERSECTION_REL_NAME + " (NO_COMMON VARCHAR(10))";
 	    String instert = "INSERT INTO " + Parameters.INTERSECTION_REL_NAME + " VALUES (\"NO_COMMON\")";
+	    System.out.println(create);
 	    stmt.execute(create);
 	    stmt.execute(instert);
 	} else {
