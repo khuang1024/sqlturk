@@ -36,7 +36,7 @@ public class XUnion {
 	stmt.execute("DROP TABLE IF EXISTS " + Parameters.UNION_REL_NAME);
 	
 	if (commonAtt.equals("")) {
-	    String create = "CREATE TABLE " + Parameters.UNION_REL_NAME + " (NO_COMMON VARHCHAR(10))";
+	    String create = "CREATE TABLE " + Parameters.UNION_REL_NAME + " (NO_COMMON VARCHAR(10))";
 	    String instert = "INSERT INTO " + Parameters.UNION_REL_NAME + " VALUES (\"NO_COMMON\")";
 	    stmt.execute(create);
 	    stmt.execute(instert);
