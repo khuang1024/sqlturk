@@ -17,7 +17,12 @@ public class XIntersection {
 	throw new AssertionError();
     }
     
-    public static void createIntersecTable(ArrayList<String> rels,
+    public static String createIntersecTable(Connection dbConn) throws SQLException {
+	ArrayList<String> resultTables = XCommon.getAllResultTables(dbConn);
+	return createIntersecTable(resultTables, dbConn);
+    }
+    
+    public static String createIntersecTable(ArrayList<String> rels,
 	    Connection dbConn) throws SQLException {
 	Statement stmt = dbConn.createStatement();
 	
@@ -55,6 +60,8 @@ public class XIntersection {
 	}
 	
 	stmt.close();
+	
+	return Parameters.INTERSECTION_REL_NAME;
 	
     }
     
