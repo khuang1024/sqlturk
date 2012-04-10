@@ -103,6 +103,33 @@ public class XCommon {
 	
 	return commonColNames;
     }
+    
+    public static ArrayList<String> getAllResultTables(Connection dbConn) throws SQLException {
+	ArrayList<String> tables = XCommon.getAllTables(dbConn);
+	ArrayList<String> resultTables = new ArrayList<String>();
+	for (String table : tables) {
+	    if (table.startsWith(Parameters.QUERY_RESULT_PREFIX)
+		    && table.endsWith(Parameters.QUERY_RESULT_SUFFIX)) {
+		resultTables.add(table);
+	    }
+	}
+	return resultTables;
+    }
+    
+    public static ArrayList<String> getAllTables(Connection dbConn) throws SQLException {
+	ArrayList<String> allTables = new ArrayList<String>();
+	
+	Statement stmt = dbConn.createStatement();
+	ResultSet rs = stmt.executeQuery("SHOW TABLES");
+	while (rs.next()) {
+	    allTables.add(rs.getString(1));
+	}
+	
+	rs.close();
+	stmt.close();
+	
+	return allTables;
+    }
 
     /**
      * @param args
