@@ -16,7 +16,12 @@ public class XUnion {
 	throw new AssertionError();
     }
     
-    public static void createUnionTable(ArrayList<String> rels, 
+    public static String createUnionTable(Connection dbConn) throws SQLException {
+	ArrayList<String> resultTables = XCommon.getAllResultTables(dbConn);
+	return createUnionTable(resultTables, dbConn);
+    }
+    
+    public static String createUnionTable(ArrayList<String> rels, 
 	    Connection dbConn) throws SQLException {
 	Statement stmt = dbConn.createStatement();
 	
@@ -42,6 +47,8 @@ public class XUnion {
 	}
 	
 	stmt.close();
+	
+	return Parameters.UNION_REL_NAME;
     }
     
     private static String getUnionQuery(String commonAtt, ArrayList<String> rels) {
