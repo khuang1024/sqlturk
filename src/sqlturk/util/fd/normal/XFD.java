@@ -21,6 +21,11 @@ public class XFD {
 	throw new AssertionError();
     }
     
+    public static String createFDTable(Connection dbConn) throws SQLException {
+	ArrayList<String> resultTables = XCommon.getAllResultTables(dbConn);
+	return createFDTable(resultTables, dbConn);
+    }
+    
     public static String createFDTable(ArrayList<String> rels, Connection dbConn) throws SQLException {
 	Statement stmt = dbConn.createStatement();
 	
@@ -36,6 +41,9 @@ public class XFD {
 	    union += "SELECT * FROM " + fdi + " UNION ";
 	}
 	union = union.substring(0, union.length() - "UNION ".length());
+	
+	// drop the old FD table
+	stmt.execute("DROP TABLE IF EXISTS " + Parameters.FD_REL_NAME);
 	
 	// create the FD
 	String create = "CREATE TABLE " + Parameters.FD_REL_NAME + " AS " + union;
