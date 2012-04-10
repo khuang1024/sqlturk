@@ -16,24 +16,6 @@ public class Provenance {
 	throw new AssertionError();
     }
 
-    // // materializes the results of the queries
-    // // and augments them with the __ROWID attribute
-    // private void materializeResults(ArrayList<String> queries, Connection
-    // dbConn) {
-    // int nextRowID=Parameters.QUERY_RESULT_ROWID_START;
-    // int qIndex = 1;
-    // for (String query: queries) {
-    // String resultRelationName = Parameters.QUERY_RESULT_PREFIX + qIndex +
-    // Parameters.QUERY_RESULT_SUFFIX;
-    // // materialize the query result
-    // DBUtil.materializeQueryResult(dbConn, query, resultRelationName);
-    // // augment with __ROWID attribute
-    // nextRowID = DBUtil.augmentRelationRowID(dbConn, resultRelationName,
-    // nextRowID);
-    // qIndex++;
-    // }
-    // }
-
     // populates the why-provenance relation, for all the queries
     public static void createWhyProvenanceRelation(ArrayList<String> queries,
 	    Connection dbConn) throws SQLException {
