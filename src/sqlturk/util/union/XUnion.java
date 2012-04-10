@@ -21,7 +21,7 @@ public class XUnion {
 	return createUnionTable(resultTables, dbConn);
     }
     
-    public static String createUnionTable(ArrayList<String> rels, 
+    private static String createUnionTable(ArrayList<String> rels, 
 	    Connection dbConn) throws SQLException {
 	Statement stmt = dbConn.createStatement();
 	
