@@ -33,17 +33,14 @@ public class Provenance {
 	    StringBuffer provProcedure = generateProvenanceProcedure(query,
 		    qIndex);
 
-	    // System.out.println("Provenance tracking procedure: ");
-	    // System.out.println(provProcedure);
-
 	    // now we need to deploy the procedure to the database
 
-	    System.out.println("Deploying procedure:");
+//	    System.out.println("Deploying procedure:");
 	    ProcedureDeployer.deployProcedure(dbConn,
 		    Parameters.TRACK_PROV_PROCNAME, provProcedure.toString());
 
 	    // execute the newly deployed procedure
-	    System.out.println("Executing procedure:");
+//	    System.out.println("Executing procedure:");
 	    ProcedureExecuter.executeProcedure(dbConn,
 		    Parameters.TRACK_PROV_PROCNAME);
 	    qIndex++;
