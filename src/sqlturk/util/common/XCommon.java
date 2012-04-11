@@ -3,6 +3,7 @@ package sqlturk.util.common;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -24,7 +25,36 @@ public class XCommon {
 	return string;
     }
     
-    public static ArrayList<String> getAllCols(ArrayList<String> rels, Connection dbConn) throws SQLException {
+    public static ArrayList<XTuple> getTuples(String rel, Connection dbConn) throws SQLException {
+	ArrayList<XTuple> tuples = new ArrayList<XTuple>();
+	
+	ArrayList<String> schema = new ArrayList<String>();
+	
+	
+	Statement stmt = dbConn.createStatement();
+	ResultSet rs = stmt.executeQuery("SELECT * FROM " + rel);
+	ResultSetMetaData rsmd = rs.getMetaData();
+	int nColumn = rsmd.getColumnCount();
+	
+	for (int i = 1; i <= nColumn; i++) {
+	    schema.add(rsmd.getColumnLabel(i));
+	}
+	
+	while (rs.next()) {
+	    ArrayList<String> values = new ArrayList<String>();
+	    for (int i = 0; i < nColumn; i++) {
+		values.add(rs.getString(schema.get(i)));
+		tuples.add(new XTuple(rel, schema, values));
+	    }
+	    
+	}
+	
+	rs.close();
+	stmt.close();
+	return tuples;
+    }
+    
+    public static ArrayList<String> getAllColumns(ArrayList<String> rels, Connection dbConn) throws SQLException {
 	
 	ArrayList<String> allColNames = new ArrayList<String>();
 	
@@ -54,7 +84,7 @@ public class XCommon {
     }
     
     
-    public static ArrayList<String> getCommonCols(ArrayList<XTuple> tuples) {
+    public static ArrayList<String> getCommonColumns(ArrayList<XTuple> tuples) {
 	if (tuples.size() == 1) {
 	    throw new RuntimeException("Error: Only on tuple.");
 	}
@@ -69,7 +99,7 @@ public class XCommon {
 	return currCommonAtts;
     }
     
-    public static ArrayList<String> getCommonCols(
+    public static ArrayList<String> getCommonColumns(
 	    ArrayList<String> rels, Connection dbConn) throws SQLException {
 	
 	ArrayList<String> commonColNames = new ArrayList<String>();
