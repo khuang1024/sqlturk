@@ -30,7 +30,7 @@ public class XFD {
 	Statement stmt = dbConn.createStatement();
 	
 	ArrayList<String> FDIs = new ArrayList<String>();
-	ArrayList<String> commonSchema = XCommon.getAllCols(rels, dbConn);
+	ArrayList<String> commonSchema = XCommon.getAllColumns(rels, dbConn);
 	for (String rel : rels) {
 	    FDIs.add(createFDI(rel, rels, commonSchema, dbConn)); // get all FDi
 	}
