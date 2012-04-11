@@ -1,6 +1,10 @@
 package sqlturk.util.common;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import sqlturk.configuration.Parameters;
@@ -111,17 +115,31 @@ public class XTupleSet {
     
     public boolean jcc(XTupleSet ts) {
 	
-	ArrayList<String> schema1 = XCommon.getCommonCols(this.tuples);
-	ArrayList<String> schema2 = XCommon.getCommonCols(ts.tuples);
 	boolean hasCommonAtt = false;
-	for (int i = 0; i < schema1.size(); i++) {
-	    String col1 = schema1.get(i);
-	    if (schema2.contains(col1)) {
-		hasCommonAtt = true;
-		String value1 = this.getValue(col1);
-		String value2 = ts.getValue(col1);
-		if (!value1.equals(value2)) {
-		    return false;
+	
+	for (XTuple thisTuple : this.tuples) {
+	    ArrayList<String> thisSchema = thisTuple.getSchema();
+	    ArrayList<String> thisValues = thisTuple.getValues();
+	    for (XTuple thatTuple : ts.tuples) {
+		ArrayList<String> thatSchema = thatTuple.getSchema();
+		ArrayList<String> thatValues = thatTuple.getValues();
+		
+		for (String column : thisSchema) {
+		    if (thatSchema.contains(column)) {
+			hasCommonAtt = true;
+			String thisValue = thisValues.get(thisSchema.indexOf(column));
+			String thatValue = thatValues.get(thatSchema.indexOf(column));
+			
+			if (thisValue != null) {
+			    if (!thisValue.equals(thatValue)) {
+				return false;
+			    }
+			} else {
+			    if (thatValue != null) {
+				return false;
+			    }
+			}
+		    }
 		}
 	    }
 	}
@@ -138,19 +156,29 @@ public class XTupleSet {
 	boolean hasCommonAtt = false;
 	
 	// check whether common attributes are equal for each tuple
-	for (XTuple t : this.tuples) {
-	    ArrayList<String> schema = t.getSchema(); // schema of the current tuple
-	    for (int i = 0; i < schema.size(); i++) {
-		String col = schema.get(i);
-		if (col.equals(Parameters.ROWID_ATT_NAME)) {
-		    continue;
-		}
-		if (tuple.getSchema().contains(col)) { // if they have common attribute
-		    hasCommonAtt = true;
-		    int index = tuple.getSchema().indexOf(col);
-		    String value = tuple.getValues().get(index);
-		    if (!value.equals(t.getValues().get(i))) {
-			return false;
+	
+	// check each tuple in this tuple set to see whether they have
+	// common attributes with the given tuple and the values are equal
+	for (XTuple thisTuple : this.tuples) {
+	    ArrayList<String> thisSchema = thisTuple.getSchema(); // schema of the current tuple
+	    for (int i = 0; i < thisSchema.size(); i++) {
+		String thisColumn = thisSchema.get(i);
+		if (!thisColumn.equals(Parameters.ROWID_ATT_NAME)) {
+		    if (tuple.getSchema().contains(thisColumn)) { // if they have common attribute
+			hasCommonAtt = true;
+			int index = tuple.getSchema().indexOf(thisColumn);
+			String thatValue = tuple.getValues().get(index);
+			
+			// note the value may be NULL
+			if (thatValue != null) {
+			    if (!thatValue.equals(thisTuple.getValues().get(i))) {
+				return false;
+			    }
+			} else {
+			    if (thisTuple.getValues().get(i) != null) {
+				return false;
+			    }
+			}
 		    }
 		}
 	    }
@@ -161,12 +189,96 @@ public class XTupleSet {
 	    return false;
 	}
     }
+    
+    public boolean connects(XTupleSet ts, Connection dbConn) throws SQLException {
+	
+	if (!this.jcc(ts)) {
+	    return false;
+	} else {
+	    // there is a tuple in this tuple set connecting to a tuple
+	    // from the given tuple set
+	    for (XTuple thisTuple : this.tuples) {
+		for (XTuple thatTuple : ts.tuples) {
+		    if (XTupleSet.connects(thisTuple, thatTuple, dbConn)) {
+			return true;
+		    }
+		}
+	    }
+	    return false;
+	}
+    }
+    
+    public boolean connects(XTuple thatTuple, Connection dbConn) throws SQLException {
+	
+	if (!this.jcc(thatTuple)) {
+	    return false;
+	}
+	
+	// check whether there is a tuple from this tuple set is connected
+	// to the given target thatTuple
+	for (XTuple thisTuple : this.tuples) {
+	    if (XTupleSet.connects(thisTuple, thatTuple, dbConn)) {
+		 return true;
+	    }
+	}
+	return false;
+    }
+    
+    public static boolean connects(XTuple tuple1, XTuple tuple2, Connection dbConn) throws SQLException {
+	String rowId1 = tuple1.getValues().get(tuple1.getSchema().indexOf(Parameters.ROWID_ATT_NAME));
+	String rowId2 = tuple2.getValues().get(tuple2.getSchema().indexOf(Parameters.ROWID_ATT_NAME));
+	return connects(rowId1, rowId2, dbConn);
+    }
+    
+    public static boolean connects(String rowId1, String rowId2, Connection dbConn) throws SQLException {
+	Statement stmt = dbConn.createStatement();
+	String query = "SELECT *" +
+			" FROM " + Parameters.CONN_REL_NAME +
+			" WHERE " + Parameters.CONN_TUPLE1_ID_ATT + "=" + rowId1 + 
+			" AND " + Parameters.CONN_TUPLE2_ID_ATT + "=" + rowId2;
+	ResultSet rs = stmt.executeQuery(query);
+	if (rs.next()) {
+	    rs.close();
+	    stmt.close();
+	    return true;
+	}
+	
+	// flip the two columns
+	query = "SELECT *" +
+		" FROM " + Parameters.CONN_REL_NAME +
+		" WHERE " + Parameters.CONN_TUPLE1_ID_ATT + "=" + rowId2 + 
+		" AND " + Parameters.CONN_TUPLE2_ID_ATT + "=" + rowId1;
+	rs = stmt.executeQuery(query);
+	if (rs.next()) {
+	    rs.close();
+	    stmt.close();
+	    return true;
+	}
+	
+	rs.close();
+	stmt.close();
+	return false;
+    }
 
     /**
      * @param args
+     * @throws SQLException 
+     * @throws ClassNotFoundException 
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	Connection dbConn = null;
+	if (Parameters.USE_SERVER) {
+	    dbConn = DriverManager.getConnection(Parameters.MYSQL_CONNECTION_STRING);
+	    System.out.println("Using server.\n");
+	} else {
+	    dbConn = DriverManager.getConnection(Parameters.LOCAL_DB_URL, Parameters.LOCAL_USER, Parameters.LOCAL_PASSWORD);
+	    System.out.println("Using local.\n");
+	}
 	
+	System.out.println(XTupleSet.connects("2000000077", "2000000113", dbConn));
     }
 
 }
