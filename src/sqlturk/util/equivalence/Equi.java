@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import sqlturk.configuration.Parameters;
+
 public class Equi {
     
     private Connection dbConn;
@@ -154,7 +156,11 @@ public class Equi {
 	// values of columns
 	String attributes = "";
 	for (int i = 0; i < nColumns; i++) {
-	    attributes += columnNames.get(i) + ", ";
+	    
+	    // ignore ROWID
+	    if (!columnNames.get(i).equals(Parameters.ROWID_ATT_NAME)) {
+		attributes += columnNames.get(i) + ", ";
+	    }
 	}
 	attributes = attributes.substring(0, attributes.length() - 2);
 	rs1 = stmt1.executeQuery("SELECT COUNT(*) FROM " + rel1 + " INNER JOIN " + rel2 + " USING(" + attributes + ")");
