@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import sqlturk.configuration.Parameters;
 
+
+@Deprecated
 public class Equivalence {
     
     
