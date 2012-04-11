@@ -12,6 +12,7 @@ import sqlturk.util.common.XCommon;
 import sqlturk.util.common.XTable;
 import sqlturk.util.common.XTuple;
 import sqlturk.util.common.XTupleSet;
+import sqlturk.util.equivalence.Equi;
 
 public class XFD {
     
@@ -24,6 +25,31 @@ public class XFD {
     public static String createFDTable(Connection dbConn) throws SQLException {
 	ArrayList<String> resultTables = XCommon.getAllResultTables(dbConn);
 	return createFDTable(resultTables, dbConn);
+    }
+    
+    public static String createFDTableOptimially(Connection dbConn) throws SQLException {
+	ArrayList<String> resultTables = XCommon.getAllResultTables(dbConn);
+	ArrayList<String> optimizedResultTables = new ArrayList<String>();
+	optimizedResultTables.add(resultTables.get(0));
+	
+	// optimize by ignoring computed tables (equal/same tables)
+	for (int i = 1; i < resultTables.size(); i++) {
+	    boolean equal = false;
+	    for (String table : optimizedResultTables) {
+		if (Equi.equals(table, resultTables.get(i), dbConn)) {
+		    System.out.println();
+		    System.out.println("Equal table found: " + table + "=" + resultTables.get(i));
+		    System.out.println();
+		    equal = true;
+		    break;
+		}
+	    }
+	    if (!equal) {
+		optimizedResultTables.add(resultTables.get(i));
+	    }
+	}
+	
+	return createFDTable(optimizedResultTables, dbConn);
     }
     
     public static String createFDTable(ArrayList<String> rels, Connection dbConn) throws SQLException {
