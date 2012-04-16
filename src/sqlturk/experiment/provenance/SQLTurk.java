@@ -14,16 +14,21 @@ import sqlturk.configuration.Parameters;
 import sqlturk.experiment.provenance.QueryManager;
 import sqlturk.util.cleaner.Cleaner;
 import sqlturk.util.connected.Connected;
+import sqlturk.util.connected.XConnect;
 import sqlturk.util.equi.Equivalence;
 import sqlturk.util.fd.normal.FD;
+import sqlturk.util.fd.normal.XFD;
 import sqlturk.util.fd.plus.FDPlus;
+import sqlturk.util.fd.plus.XFDPlus;
 import sqlturk.util.intersection.Intersection;
+import sqlturk.util.intersection.XIntersection;
 import sqlturk.util.metric.Metric;
 import sqlturk.util.provenance.Provenance;
 import sqlturk.util.query.QueryExecutor;
 import sqlturk.util.tableaux.TableauxRewriter;
 import sqlturk.util.tableaux.XRewriter;
 import sqlturk.util.union.Union;
+import sqlturk.util.union.XUnion;
 
 /**
  * This class is for testing the whole process of SQLTurk.
@@ -123,7 +128,6 @@ public class SQLTurk {
 	ArrayList<String> rewrittenQueries = new ArrayList<String>();
 	ArrayList<String> tempQueries = new ArrayList<String>();
 	System.out.println("Rewritten Query Info (begin) ===================");
-//	tempQueries = TableauxRewriter.getRewriteQueries(originalQueries, dbConn);
 	tempQueries = XRewriter.getRewrittenQueries(originalQueries, dbConn);
 	for (int i = 0; i < tempQueries.size(); i++) {
 	    rewrittenQueries.add(tempQueries.get(i) + " LIMIT " + limit);
@@ -140,31 +144,37 @@ public class SQLTurk {
 	System.out.println("Execute Query Info (begin) ===================");
 	QueryExecutor.executeQueries(rewrittenQueries, dbConn);
 	System.out.println("Execute Query Info (end) =====================");
-	    
-	    
-	Equivalence.init(dbConn);
-	    
-	String header = getHeader(datasetName, queryIndex, topN, candidates);
-	if (type.equals("intersection")) {
-	    computeIntersection(header, dbConn);
-	} else if (type.equals("union")) {
-	    computeUnion(header, dbConn);
-	} else if (type.equals("fd")) {
-	    computeFD(header, datasetName, queryIndex, topN, candidates, dbConn);
-	} else if (type.equals("fdplus")) {
-	    computeFDPlus(header,rewrittenQueries, datasetName, queryIndex, topN, candidates, dbConn);
-	} else if (type.equals("all")) {
-	    computeIntersection(header, dbConn);
-	    computeUnion(header, dbConn);
-	    computeFD(header, datasetName, queryIndex, topN, candidates, dbConn);
-	    computeFDPlus(header,rewrittenQueries, datasetName, queryIndex, topN, candidates, dbConn);
-	} else {
-	    throw new RuntimeException("Wrong type.");
-	}
-	    
-	System.out.println("Start clearing intermediate tables ............");
-	Cleaner.dropAll(dbConn);
-	System.out.println("Finish clearing intermediate tables.\n");
+	
+	System.out.println("The newly-created Intersec table is: " + XIntersection.createIntersecTable(dbConn));
+	System.out.println("The newly-created Union table is: " + XUnion.createUnionTable(dbConn));
+	System.out.println("The newly-created FD table is: " + XFD.createFDTableOptimially(dbConn));
+	Provenance.createWhyProvenanceRelation(rewrittenQueries, dbConn); // create PROV table
+	XConnect.createWhyConnectedRelation(dbConn); // create CONN table
+	System.out.println("The newly-created FD+ table is: " + XFDPlus.createFDTable(dbConn));
+	
+//	Equivalence.init(dbConn);
+//	    
+//	String header = getHeader(datasetName, queryIndex, topN, candidates);
+//	if (type.equals("intersection")) {
+//	    computeIntersection(header, dbConn);
+//	} else if (type.equals("union")) {
+//	    computeUnion(header, dbConn);
+//	} else if (type.equals("fd")) {
+//	    computeFD(header, datasetName, queryIndex, topN, candidates, dbConn);
+//	} else if (type.equals("fdplus")) {
+//	    computeFDPlus(header,rewrittenQueries, datasetName, queryIndex, topN, candidates, dbConn);
+//	} else if (type.equals("all")) {
+//	    computeIntersection(header, dbConn);
+//	    computeUnion(header, dbConn);
+//	    computeFD(header, datasetName, queryIndex, topN, candidates, dbConn);
+//	    computeFDPlus(header,rewrittenQueries, datasetName, queryIndex, topN, candidates, dbConn);
+//	} else {
+//	    throw new RuntimeException("Wrong type.");
+//	}
+//	    
+//	System.out.println("Start clearing intermediate tables ............");
+//	Cleaner.dropAll(dbConn);
+//	System.out.println("Finish clearing intermediate tables.\n");
 	
 	System.out.println("Done.");
     }

@@ -10,7 +10,7 @@ public class Parameters {
     public final static String MYSQL_CONNECTION_STRING="jdbc:mysql://mysql.cse.ucsc.edu/abogdan?user=abogdan&password=FJyJqqJs";
     
     // local testing database information
-    public static final boolean USE_SERVER = true;
+    public static final boolean USE_SERVER = false;
     public final static String LOCAL_DB_URL = "jdbc:mysql://127.0.0.1:3306/abogdan";
     public final static String LOCAL_USER = "root";
     public final static String LOCAL_PASSWORD = "1";
@@ -190,6 +190,6 @@ public class Parameters {
     
     public static final int LIMIT_NUM = 200;
     
-    public static final String REWRITE_ATT_DELIM = "_";
+    public static final String REWRITE_ATT_DELIM = "_"; // for new rewritten column name
     
 }
