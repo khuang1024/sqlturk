@@ -21,7 +21,7 @@ public class XFDPlus {
 	throw new AssertionError();
     }
     
-    public static String createFDTable(Connection dbConn) throws SQLException {
+    public static String createFDPlusTable(Connection dbConn) throws SQLException {
 	ArrayList<String> resultTables = XCommon.getAllResultTables(dbConn);
 	return createFDTable(resultTables, dbConn);
     }
