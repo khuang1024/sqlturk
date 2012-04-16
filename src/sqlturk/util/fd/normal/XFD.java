@@ -12,7 +12,7 @@ import sqlturk.util.common.XCommon;
 import sqlturk.util.common.XTable;
 import sqlturk.util.common.XTuple;
 import sqlturk.util.common.XTupleSet;
-import sqlturk.util.equivalence.Equi;
+import sqlturk.util.equivalence.XEqui;
 
 public class XFD {
     
@@ -36,7 +36,7 @@ public class XFD {
 	for (int i = 1; i < resultTables.size(); i++) {
 	    boolean equal = false;
 	    for (String table : optimizedResultTables) {
-		if (Equi.equals(table, resultTables.get(i), dbConn)) {
+		if (XEqui.equals(table, resultTables.get(i), dbConn)) {
 		    System.out.println();
 		    System.out.println("Equal table found: " + table + "=" + resultTables.get(i));
 		    System.out.println();
