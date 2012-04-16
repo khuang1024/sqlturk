@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import sqlturk.configuration.Parameters;
 import sqlturk.util.common.XCommon;
-import sqlturk.util.intersection.XIntersection;
 
 public class XUnion {
     
