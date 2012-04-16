@@ -44,8 +44,8 @@ public class XCommon {
 	    ArrayList<String> values = new ArrayList<String>();
 	    for (int i = 0; i < nColumn; i++) {
 		values.add(rs.getString(schema.get(i)));
-		tuples.add(new XTuple(rel, schema, values));
 	    }
+	    tuples.add(new XTuple(rel, schema, values));
 	    
 	}
 	
