@@ -57,7 +57,8 @@ public class XIntersection {
 		stmt.execute("DROP TABLE " + currentTable);
 		currentTable = newTempTable;
 	    }
-	    stmt.execute("ALTER TABLE " + currentTable + " RENAME TO " + Parameters.INTERSECTION_REL_NAME);
+	    stmt.execute("CREATE TABLE " + Parameters.INTERSECTION_REL_NAME + " AS SELECT DISTINCT * FROM " + currentTable);
+	    stmt.execute("DROP TABLE " + currentTable);
 	}
 	
 	stmt.close();
