@@ -133,7 +133,11 @@ public class XRewriter {
 	rQuery += " WHERE ";
 	
 	if (wheres.equals("")) { // if the WHERE clause is empty
-		rQuery += (additionalWheres == null)? "" : " " + additionalWheres;
+		if (additionalWheres == null) {
+			rQuery = rQuery.substring(0, rQuery.length() - " WHERE ".length());
+		} else {
+			rQuery += (additionalWheres == null)? "" : " " + additionalWheres;
+		}
 	} else {
 		rQuery += wheres;
 		rQuery += (additionalWheres == null)? "" : " AND" + additionalWheres;
