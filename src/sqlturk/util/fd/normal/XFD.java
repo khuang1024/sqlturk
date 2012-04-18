@@ -116,12 +116,12 @@ public class XFD {
 	    ArrayList<String> values = newTuple.getValues();
 	    String valueString = "";
 	    for (String value : values) {
-		valueString += "'" + value + "', ";
+		valueString += "\"" + value + "\", ";
 	    }
 	    valueString = valueString.substring(0, valueString.length() - 2);
 	    String insert = "INSERT INTO " + fdiName + " VALUES (" + valueString + ")";
-	    stmt.execute(insert);
 	    System.out.println(insert);
+	    stmt.execute(insert);
 	}
 	System.out.println();
 	
