@@ -131,8 +131,14 @@ public class XRewriter {
 	rQuery = rQuery.substring(0, rQuery.length()-1);
 	rQuery += (additionalFroms == null)? "" : "," + additionalFroms;
 	rQuery += " WHERE ";
-	rQuery += wheres;
-	rQuery += (additionalWheres == null)? "" : " AND" + additionalWheres;
+	
+	if (wheres.equals("")) { // if the WHERE clause is empty
+		rQuery += (additionalWheres == null)? "" : " " + additionalWheres;
+	} else {
+		rQuery += wheres;
+		rQuery += (additionalWheres == null)? "" : " AND" + additionalWheres;
+	}
+	
 	
 	// finally, replace extra whitespaces
 	rQuery = rQuery.trim().replaceAll("\\s+", " ");

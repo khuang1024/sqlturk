@@ -101,9 +101,12 @@ public class XParser {
 	if (this.oQuery.toUpperCase().indexOf("GROUP BY ") != -1) {
 	    throw new RuntimeException("Error: Contain GROUP BY.");
 	}
-	if (indexOfSelect == -1 || indexOfFrom == -1 || indexOfWhere == -1) {
+	if (indexOfSelect == -1 || indexOfFrom == -1) {
 //	    System.out.println(oQuery);
-	    throw new RuntimeException("Error: Not SPJ. " + oQuery);
+	    throw new RuntimeException("Error: Not a valid query. " + oQuery);
+	}
+	if (indexOfWhere == -1) {
+		indexOfWhere = oQuery.length();
 	}
 	
 	// select clause
@@ -161,7 +164,12 @@ public class XParser {
 //	}
 	
 	// where clause
-	this.where = oQuery.substring(indexOfWhere + 5, oQuery.length()).trim();
+	if (indexOfWhere > oQuery.length()) {
+		this.where = oQuery.substring(indexOfWhere + 5, oQuery.length()).trim();
+	} else {
+		this.where = "";
+	}
+	
     }
     
 
