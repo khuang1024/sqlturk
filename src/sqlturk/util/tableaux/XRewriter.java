@@ -85,7 +85,7 @@ public class XRewriter {
 	System.out.println("***" + wheres);
 	ArrayList<String> allTableAlias = xParser.getAllAliasTables();
 	for (String alias : allTableAlias) {
-		if (!wheres.contains(alias)) {
+		if (!wheres.contains(alias) && !wheres.equals("")) {
 		    // when wheres does not contain this "alias", it means
 		    // this alias is an original table name and the writer just wrote
 		    // the predicate with the column name instead of table name, such as
