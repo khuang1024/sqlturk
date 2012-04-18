@@ -82,21 +82,32 @@ public class XRewriter {
 	
 	// rewrite where
 	String wheres = xParser.getWherePredicates();
+	System.out.println("***" + wheres);
 	ArrayList<String> allTableAlias = xParser.getAllAliasTables();
 	for (String alias : allTableAlias) {
-	    wheres = wheres.replaceAll("\\s+" + alias + "\\.", " " + xParser.getOriginalTable(alias) + ".");
-	    wheres = wheres.replaceAll("\\+" + alias + "\\.", "+" + xParser.getOriginalTable(alias) + ".");
-	    wheres = wheres.replaceAll("-" + alias + "\\.", "-" + xParser.getOriginalTable(alias) + ".");
-	    wheres = wheres.replaceAll("\\*" + alias + "\\.", "*" + xParser.getOriginalTable(alias) + ".");
-	    wheres = wheres.replaceAll("/" + alias + "\\.", "/" + xParser.getOriginalTable(alias) + ".");
-	    wheres = wheres.replaceAll("\\(" + alias + "\\.", "(" + xParser.getOriginalTable(alias) + ".");
-	    wheres = wheres.replaceAll("\\)" + alias + "\\.", ")" + xParser.getOriginalTable(alias) + ".");
-	    wheres = wheres.replaceAll("=" + alias + "\\.", "=" + xParser.getOriginalTable(alias) + ".");
-	    wheres = wheres.replaceAll(">" + alias + "\\.", ">" + xParser.getOriginalTable(alias) + ".");
-	    wheres = wheres.replaceAll("<" + alias + "\\.", "<" + xParser.getOriginalTable(alias) + ".");
-	    if (wheres.startsWith(alias + ".")) {
-		wheres = xParser.getOriginalTable(alias) + wheres.substring(alias.length());
-	    }
+		if (!wheres.contains(alias)) {
+		    // when wheres does not contain this "alias", it means
+		    // this alias is an original table name and the writer just wrote
+		    // the predicate with the column name instead of table name, such as
+		    // "select * from City where where Population>=2000". This may cause
+		    // ambiguous column after appending tableaux if the tablaux include
+		    // a table which also has a column named Population.
+			wheres = xParser.replaceAlias(alias, wheres, dbConn);
+		} else {
+			wheres = wheres.replaceAll("\\s+" + alias + "\\.", " " + xParser.getOriginalTable(alias) + ".");
+		    wheres = wheres.replaceAll("\\+" + alias + "\\.", "+" + xParser.getOriginalTable(alias) + ".");
+		    wheres = wheres.replaceAll("-" + alias + "\\.", "-" + xParser.getOriginalTable(alias) + ".");
+		    wheres = wheres.replaceAll("\\*" + alias + "\\.", "*" + xParser.getOriginalTable(alias) + ".");
+		    wheres = wheres.replaceAll("/" + alias + "\\.", "/" + xParser.getOriginalTable(alias) + ".");
+		    wheres = wheres.replaceAll("\\(" + alias + "\\.", "(" + xParser.getOriginalTable(alias) + ".");
+		    wheres = wheres.replaceAll("\\)" + alias + "\\.", ")" + xParser.getOriginalTable(alias) + ".");
+		    wheres = wheres.replaceAll("=" + alias + "\\.", "=" + xParser.getOriginalTable(alias) + ".");
+		    wheres = wheres.replaceAll(">" + alias + "\\.", ">" + xParser.getOriginalTable(alias) + ".");
+		    wheres = wheres.replaceAll("<" + alias + "\\.", "<" + xParser.getOriginalTable(alias) + ".");
+		    if (wheres.startsWith(alias + ".")) {
+		    	wheres = xParser.getOriginalTable(alias) + wheres.substring(alias.length());
+		    }
+		}
 	}
 	
 	// append tableaux
@@ -176,6 +187,13 @@ public class XRewriter {
 	}
     }
     
+    /**
+     * Get all the columns and use the table name as the prefix of new name.
+     * @param rel
+     * @param dbConn
+     * @return
+     * @throws SQLException
+     */
     private static ArrayList<String> getAllColumns(String  rel, Connection dbConn) throws SQLException {
 	ArrayList<String> newColumns = new ArrayList<String>();
 	

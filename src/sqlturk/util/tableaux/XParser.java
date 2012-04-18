@@ -1,5 +1,9 @@
 package sqlturk.util.tableaux;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
@@ -55,6 +59,26 @@ public class XParser {
 	    throw new RuntimeException("Error: No predicates in where clause.");
 	}
 	return this.where;
+    }
+    
+    String replaceAlias(String table, String wheres, Connection dbConn) throws SQLException {
+    	ArrayList<String> columns = this.getColumns(table, dbConn);
+    	for (String column : columns) {
+    		wheres = wheres.replaceAll(column, table + "." + column);
+    	}
+    	return wheres;
+    }
+    
+    private ArrayList<String> getColumns(String table, Connection dbConn) throws SQLException {
+    	ArrayList<String> columns = new ArrayList<String>();
+    	Statement stmt = dbConn.createStatement();
+    	ResultSet rs = stmt.executeQuery("DESC " + table);
+    	while (rs.next()) {
+    		columns.add(rs.getString(1));
+    	}
+    	rs.close();
+    	stmt.close();
+    	return columns;
     }
     
     /**
