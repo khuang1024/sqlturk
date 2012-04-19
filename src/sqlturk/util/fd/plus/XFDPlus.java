@@ -83,7 +83,7 @@ public class XFDPlus {
 	
 	String commonSchemaString = "";
 	for (String col : commonSchema) {
-	    commonSchemaString += col + " VARCHAR(50), ";
+	    commonSchemaString += col + " VARCHAR(200), ";
 	}
 	commonSchemaString = commonSchemaString.substring(0, commonSchemaString.length() - 2);
 	
@@ -99,7 +99,7 @@ public class XFDPlus {
 	    ArrayList<String> values = newTuple.getValues();
 	    String valueString = "";
 	    for (String value : values) {
-		valueString += "'" + value + "', ";
+		valueString += "\"" + value + "\", ";
 	    }
 	    valueString = valueString.substring(0, valueString.length() - 2);
 	    String insert = "INSERT INTO " + fdiName + " VALUES (" + valueString + ")";

@@ -100,7 +100,7 @@ public class XFD {
 	
 	String commonSchemaString = "";
 	for (String col : commonSchema) {
-	    commonSchemaString += col + " VARCHAR(50), ";
+	    commonSchemaString += col + " VARCHAR(200), ";
 	}
 	commonSchemaString = commonSchemaString.substring(0, commonSchemaString.length() - 2);
 	
