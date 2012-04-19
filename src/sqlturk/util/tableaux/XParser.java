@@ -63,8 +63,18 @@ public class XParser {
     
     String replaceAlias(String table, String wheres, Connection dbConn) throws SQLException {
     	ArrayList<String> columns = this.getColumns(table, dbConn);
+    	wheres = " " + wheres; // make the first replaceAll work
     	for (String column : columns) {
-    		wheres = wheres.replaceAll(column, table + "." + column);
+    		wheres = wheres.replaceAll("\\s+" + column + "\\s+", " " + table + "." + column + " ");
+		    wheres = wheres.replaceAll("\\+" + column + "\\s+", "+" + table + "." + column + ".");
+		    wheres = wheres.replaceAll("-" + column + "\\s+", "-" + table + "." + column + ".");
+		    wheres = wheres.replaceAll("\\*" + column + "\\s+", "*" + table + "." + column + ".");
+		    wheres = wheres.replaceAll("/" + column + "\\s+", "/" + table + "." + column + ".");
+		    wheres = wheres.replaceAll("\\(" + column + "\\s+", "(" + table + "." + column + ".");
+		    wheres = wheres.replaceAll("\\)" + column + "\\s+", ")" + table + "." + column + ".");
+		    wheres = wheres.replaceAll("=" + column + "\\s+", "=" + table + "." + column + ".");
+		    wheres = wheres.replaceAll(">" + column + "\\s+", ">" + table + "." + column + ".");
+		    wheres = wheres.replaceAll("<" + column + "\\s+", "<" + table + "." + column + ".");
     	}
     	return wheres;
     }
