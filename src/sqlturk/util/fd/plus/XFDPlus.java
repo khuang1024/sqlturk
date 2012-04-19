@@ -68,13 +68,13 @@ public class XFDPlus {
 	ArrayList<XTupleSet> tupleSets = getCompleteTupleSets(rel, rels, dbConn);
 	
 	System.out.println("-----------------------------------------------------------------");
-	for (XTupleSet ts : tupleSets) {
-	    for (XTuple t : ts.getTuples()) {
-		System.out.println(t.valueString());
-	    }
-	    System.out.println();
-	}
-	System.out.println();
+//	for (XTupleSet ts : tupleSets) {
+//	    for (XTuple t : ts.getTuples()) {
+//		System.out.println(t.valueString());
+//	    }
+//	    System.out.println();
+//	}
+//	System.out.println();
 	
 	ArrayList<String> allRels = new ArrayList<String>();
 	allRels.add(rel);
