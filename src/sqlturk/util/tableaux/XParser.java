@@ -47,11 +47,11 @@ public class XParser {
 	return tables;
     }
     
-    String getOriginalTable(String alias) {
-	if (this.from.get(alias) == null) {
+    String getOriginalTable(String table) {
+	if (this.from.get(table) == null) {
 	    throw new RuntimeException("Error: No such original table.");
 	}
-	return this.from.get(alias);
+	return this.from.get(table);
     }
     
     String getWherePredicates() {
@@ -65,16 +65,16 @@ public class XParser {
     	ArrayList<String> columns = this.getColumns(table, dbConn);
     	wheres = " " + wheres; // make the first replaceAll work
     	for (String column : columns) {
-    		wheres = wheres.replaceAll("\\s+" + column + "\\s+", " " + table + "." + column + " ");
-		    wheres = wheres.replaceAll("\\+" + column + "\\s+", "+" + table + "." + column + ".");
-		    wheres = wheres.replaceAll("-" + column + "\\s+", "-" + table + "." + column + ".");
-		    wheres = wheres.replaceAll("\\*" + column + "\\s+", "*" + table + "." + column + ".");
-		    wheres = wheres.replaceAll("/" + column + "\\s+", "/" + table + "." + column + ".");
-		    wheres = wheres.replaceAll("\\(" + column + "\\s+", "(" + table + "." + column + ".");
-		    wheres = wheres.replaceAll("\\)" + column + "\\s+", ")" + table + "." + column + ".");
-		    wheres = wheres.replaceAll("=" + column + "\\s+", "=" + table + "." + column + ".");
-		    wheres = wheres.replaceAll(">" + column + "\\s+", ">" + table + "." + column + ".");
-		    wheres = wheres.replaceAll("<" + column + "\\s+", "<" + table + "." + column + ".");
+    		wheres = wheres.replaceAll("\\s+" + column, " " + table + "." + column + " ");
+		    wheres = wheres.replaceAll("\\+" + column, "+" + table + "." + column + " ");
+		    wheres = wheres.replaceAll("-" + column, "-" + table + "." + column + " ");
+		    wheres = wheres.replaceAll("\\*" + column, "*" + table + "." + column + " ");
+		    wheres = wheres.replaceAll("/" + column, "/" + table + "." + column + " ");
+		    wheres = wheres.replaceAll("\\(" + column, "(" + table + "." + column + " ");
+		    wheres = wheres.replaceAll("\\)" + column, ")" + table + "." + column + " ");
+		    wheres = wheres.replaceAll("=" + column, "=" + table + "." + column + " ");
+		    wheres = wheres.replaceAll(">" + column, ">" + table + "." + column + " ");
+		    wheres = wheres.replaceAll("<" + column, "<" + table + "." + column + " ");
     	}
     	return wheres;
     }
