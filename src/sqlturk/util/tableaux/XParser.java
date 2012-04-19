@@ -164,7 +164,7 @@ public class XParser {
 //	}
 	
 	// where clause
-	if (indexOfWhere > oQuery.length()) {
+	if (indexOfWhere < oQuery.length()) {
 		this.where = oQuery.substring(indexOfWhere + 5, oQuery.length()).trim();
 	} else {
 		this.where = "";
