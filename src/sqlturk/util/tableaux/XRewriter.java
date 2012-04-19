@@ -82,7 +82,6 @@ public class XRewriter {
 	
 	// rewrite where
 	String wheres = xParser.getWherePredicates();
-	System.out.println("***" + wheres);
 	ArrayList<String> allTableAlias = xParser.getAllAliasTables();
 	for (String alias : allTableAlias) {
 		if (!wheres.contains(alias) && !wheres.equals("")) {
@@ -92,7 +91,7 @@ public class XRewriter {
 		    // "select * from City where where Population>=2000". This may cause
 		    // ambiguous column after appending tableaux if the tablaux include
 		    // a table which also has a column named Population.
-			wheres = xParser.replaceAlias(alias, wheres, dbConn);
+			wheres = xParser.replaceAlias(xParser.getOriginalTable(alias), wheres, dbConn);
 		} else {
 			wheres = wheres.replaceAll("\\s+" + alias + "\\.", " " + xParser.getOriginalTable(alias) + ".");
 		    wheres = wheres.replaceAll("\\+" + alias + "\\.", "+" + xParser.getOriginalTable(alias) + ".");
